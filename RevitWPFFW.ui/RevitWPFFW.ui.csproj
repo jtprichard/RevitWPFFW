@@ -61,6 +61,7 @@
     <Folder Include="Converters\" />
     <Folder Include="Pages\" />
     <Folder Include="Revit Ribbon\Enablers\" />
+    <Folder Include="Revit Ribbon\Event Handlers\" />
     <Folder Include="Revit Ribbon\Registration\" />
     <Folder Include="Revit Ribbon\Utilities\" />
   </ItemGroup>

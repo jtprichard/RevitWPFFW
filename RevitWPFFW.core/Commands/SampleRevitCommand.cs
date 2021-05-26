@@ -28,7 +28,8 @@ namespace RevitWPFFW.core
         /// <exception cref="System.NotImplementedException"></exception>
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-
+            TaskDialog.Show("Test Command", RevitRibbonViewModel.Instance.RibbonComboBox);
+            
             return Result.Succeeded;
         }
 

@@ -52,6 +52,11 @@
     <Compile Include="Commands\Availability\AvailabilityProj.cs" />
     <Compile Include="Commands\SampleRevitCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Revit Ribbon\RevitRibbonViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\Base\" />
+    <Folder Include="ViewModels\Project\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
