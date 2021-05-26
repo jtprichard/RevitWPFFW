@@ -14,11 +14,6 @@ namespace RevitWPFFW
         public static UIControlledApplication UIContApp;
         public static RibbonInterface Ribbon;
 
-        //Instance of App
-        //public static App ThisApp;
-
-        private SeatMainPage _seatMainPage;
-
         #endregion
 
 
@@ -31,19 +26,18 @@ namespace RevitWPFFW
         {
             //Initialize Fields
             UIContApp = a;
-            string tabName = "WPF Test";
-            string panelName = "Testing Area";
+            string tabName = "REVIT TEMPLATE";
 
             //Initialize ribbon panels
             var ri = RibbonInterface.Instance;
-            ri.Initialize(a, tabName, panelName);
+            ri.Initialize(a, tabName);
             Ribbon = ri;
 
             //Initialize Selection Monitor Ribbon
-            MonitorSelectionRibbon.CreateRibbon(UIContApp);
+            //MonitorSelectionRibbon.CreateRibbon(UIContApp);
 
             //Startup Events
-            EventFactory.Startup(a);
+            //EventFactory.Startup(a);
 
             return Result.Succeeded;
         }
@@ -55,7 +49,7 @@ namespace RevitWPFFW
         /// <returns></returns>
         public Result OnShutdown(UIControlledApplication a)
         {
-            EventFactory.ShutDown(a);
+            //EventFactory.ShutDown(a);
             return Result.Succeeded;
         }
 

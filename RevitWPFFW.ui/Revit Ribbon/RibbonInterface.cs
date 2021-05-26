@@ -15,6 +15,10 @@ namespace RevitWPFFW.ui
         #endregion
 
         #region Properties
+        /// <summary>
+        /// Instance of Ribbon
+        /// Creates instance if none exists
+        /// </summary>
         public static RibbonInterface Instance
         {
             get
@@ -24,6 +28,10 @@ namespace RevitWPFFW.ui
                 return _instance;
             }
         }
+        /// <summary>
+        /// Name of Ribbon Tab
+        /// </summary>
+        public string TabName { get; private set; }
         #endregion
 
         #region Constructor
@@ -40,47 +48,15 @@ namespace RevitWPFFW.ui
         /// </summary>
         /// <param name="uiapp">UIControlled Application</param>
         /// <param name="tabName">Revit Ribbon Tab Name</param>
-        /// <param name="panelName">Revit Ribbon Panel Name</param>
-        public void Initialize(UIControlledApplication uiapp, string tabName, string panelName)
-        {
-            //Get assembly path 
-            string path = Assembly.GetExecutingAssembly().Location;
-
+        public void Initialize(UIControlledApplication uiapp, string tabName)
+        {   
             //Create Ribbon Tab
             uiapp.CreateRibbonTab(tabName);
+            TabName = tabName;
 
-            //Create Ribbon Panels
-            RibbonPanel panel = uiapp.CreateRibbonPanel(tabName, panelName);
+            //Create Ribbon Panels from Static Classes for Each Panel
+            RibbonPanel templatePanel = TemplatePanel.Create(uiapp, tabName);
 
-            #region Button - Show Form
-
-            //Family Mangaer - Show Form Command
-
-            var seatTestFormButtonData = new RevitPushButtonData
-            {
-                Label = "Show Test\nForm",
-                Panel = panel,
-                Tooltip = "Tooltip Sample",
-                CommandNamespacePath = ShowWPFMainFormCommand.GetPath(),
-                IconImageName = "duplicate.png",
-                //TooltipImageName = "tooltip_ShowFamilyManger_32x32.png"
-            };
-            var testButton = RevitPushButton.Create(seatTestFormButtonData);
-
-            #endregion
-
-            #region Button - Show Form Info
-
-            var showFormInfoButtonData = new RevitPushButtonData
-            {
-                Label = "Show Form\nInfo",
-                Panel = panel,
-                CommandNamespacePath = ShowFormInfo.GetPath(),
-
-            };
-            var showFormInfoButton = RevitPushButton.Create(showFormInfoButtonData);
-
-            #endregion
         }
 
         #endregion

@@ -49,10 +49,15 @@
     <Compile Include="ResourceImage.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Images\Icons\Blank_Button.png" />
+    <Folder Include="Fonts\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Fonts\" />
+    <EmbeddedResource Include="Images\Icons\blank_button_16x16.png" />
+    <EmbeddedResource Include="Images\Icons\checkmark_16x16.png" />
+    <EmbeddedResource Include="Images\Icons\number_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Icons\blank_button.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
