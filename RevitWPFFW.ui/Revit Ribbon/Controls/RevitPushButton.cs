@@ -12,34 +12,36 @@ namespace RevitWPFFW.ui
         public static PushButton Create(RevitPushButtonData data)
         {
             //The button name based on unique identifier
-            string btnDataName;
+            //string btnDataName;
 
-            if (null == data.Name)
-                return null;
-            else
-                btnDataName = data.Name;
+            var btnData = data.Create();
 
-            //Create The button
-            var btnData = new PushButtonData(btnDataName, data.Label, ApplicationAssembly.GetAssemblyLocation(), data.CommandNamespacePath);
+            //if (null == data.Name)
+            //    return null;
+            //else
+            //    btnDataName = data.Name;
 
-            //Add Tooltips, Image Data, and Availability Class Info
-            if (null != data.Tooltip)
-                btnData.ToolTip = data.Tooltip;
+            ////Create The button
+            //var btnData = new PushButtonData(btnDataName, data.Label, ApplicationAssembly.GetAssemblyLocation(), data.CommandNamespacePath);
 
-            if (null != data.LongDescription)
-                btnData.LongDescription = data.LongDescription;
+            ////Add Tooltips, Image Data, and Availability Class Info
+            //if (null != data.Tooltip)
+            //    btnData.ToolTip = data.Tooltip;
 
-            if (null != ResourceImage.GetIcon(data.IconImageName))
-                btnData.LargeImage = ResourceImage.GetIcon(data.IconImageName);
+            //if (null != data.LongDescription)
+            //    btnData.LongDescription = data.LongDescription;
 
-            if (null != ResourceImage.GetIcon(data.TooltipImageName))
-                btnData.ToolTipImage = ResourceImage.GetIcon(data.TooltipImageName);
+            //if (null != ResourceImage.GetIcon(data.IconImageName))
+            //    btnData.LargeImage = ResourceImage.GetIcon(data.IconImageName);
 
-            if (null != data.SmallIconImageName)
-                btnData.Image = ResourceImage.GetIcon(data.IconImageName);
+            //if (null != ResourceImage.GetIcon(data.TooltipImageName))
+            //    btnData.ToolTipImage = ResourceImage.GetIcon(data.TooltipImageName);
 
-            if (null != data.AvailabilityClassName)
-                btnData.AvailabilityClassName = data.AvailabilityClassName;
+            //if (null != data.SmallIconImageName)
+            //    btnData.Image = ResourceImage.GetIcon(data.IconImageName);
+
+            //if (null != data.AvailabilityClassName)
+            //    btnData.AvailabilityClassName = data.AvailabilityClassName;
 
             //return created button and host it on the panel provided
             return data.Panel.AddItem(btnData) as PushButton;

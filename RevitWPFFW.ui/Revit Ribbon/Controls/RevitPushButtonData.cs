@@ -1,5 +1,7 @@
 ﻿using System;
 using Autodesk.Revit.UI;
+using RevitWPFFW.res;
+using RevitWPFFW.core;
 
 namespace RevitWPFFW.ui
 {
@@ -90,5 +92,42 @@ namespace RevitWPFFW.ui
         }
 
         #endregion
+
+        public PushButtonData Create()
+        {
+            //The button name based on unique identifier
+            string btnDataName;
+
+            if (null == Name)
+                return null;
+            else
+                btnDataName = Name;
+
+            //Create The button
+            var btnData = new PushButtonData(btnDataName, Label, ApplicationAssembly.GetAssemblyLocation(), CommandNamespacePath);
+
+            //Add Tooltips, Image Data, and Availability Class Info
+            if (null != Tooltip)
+                btnData.ToolTip = Tooltip;
+
+            if (null != LongDescription)
+                btnData.LongDescription = LongDescription;
+
+            if (null != ResourceImage.GetIcon(IconImageName))
+                btnData.LargeImage = ResourceImage.GetIcon(IconImageName);
+
+            if (null != ResourceImage.GetIcon(TooltipImageName))
+                btnData.ToolTipImage = ResourceImage.GetIcon(TooltipImageName);
+
+            if (null != SmallIconImageName)
+                btnData.Image = ResourceImage.GetIcon(IconImageName);
+
+            if (null != AvailabilityClassName)
+                btnData.AvailabilityClassName = AvailabilityClassName;
+
+            //return PushButtonData object
+            return btnData;
+
+        }
     }
 }

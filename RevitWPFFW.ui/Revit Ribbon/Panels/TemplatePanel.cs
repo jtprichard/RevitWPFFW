@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Autodesk.Revit.UI;
 using RevitWPFFW.core;
 using RevitWPFFW.res;
@@ -11,10 +9,18 @@ using Autodesk.Revit.UI.Events;
 namespace RevitWPFFW.ui
 {
     /// <summary>
-    /// Static class to add Revit Ribbon Panel
+    /// Class to add Revit Ribbon Panel
     /// </summary>
     internal class TemplatePanel
     {
+        #region Constructor
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
+        internal TemplatePanel() { }
+        #endregion
+
+        #region Panel Creation Method
         /// <summary>
         /// Panel Creation Entry Point
         /// </summary>
@@ -24,7 +30,7 @@ namespace RevitWPFFW.ui
         internal RibbonPanel Create(UIControlledApplication uiApp, string tabName)
         {
             //Panel Name
-            string panelName = "TemplatePanel";
+            string panelName = "TEMPLATE PANEL";
             
             //Create Panel
             RibbonPanel rp = uiApp.CreateRibbonPanel(tabName, panelName);
@@ -33,9 +39,10 @@ namespace RevitWPFFW.ui
             AddControls(rp);
 
             return rp;
-
         }
+        #endregion
 
+        #region Controls Templates Location
         private void AddControls(RibbonPanel panel)
         {
             #region Pushbutton Template
@@ -198,8 +205,82 @@ namespace RevitWPFFW.ui
 
             #endregion
 
-        }
+            #region Separator
 
+            panel.AddSeparator();
+
+            #endregion
+
+            #region Stacked Panel Template
+
+            //Create the Button Data
+            //Uses RevitButtonData Helper Class
+            var stackRvtBtnData1 = new RevitPushButtonData()
+            {
+                Label = "Stack\nButton 1",
+                Panel = panel,
+                Tooltip = "Tooltip Sample",
+                CommandNamespacePath = SampleRevitCommand.GetPath(),
+                //IconImageName = "blank_button.png",
+                TooltipImageName = "blank_button.png",
+                SmallIconImageName = "blank_button_16x16.png",
+                LongDescription = "This is a long description for the ToolTip",
+                AvailabilityClassName = AvailabilityProj.GetPath()
+            };
+            var stackBtnData1 = stackRvtBtnData1.Create();
+
+            var stackRvtBtnData2 = new RevitPushButtonData()
+            {
+                Label = "Stack\nButton 2",
+                Panel = panel,
+                Tooltip = "Tooltip Sample",
+                CommandNamespacePath = SampleRevitCommand.GetPath(),
+                //IconImageName = "blank_button.png",
+                TooltipImageName = "blank_button.png",
+                SmallIconImageName = "blank_button_16x16.png",
+                LongDescription = "This is a long description for the ToolTip",
+                AvailabilityClassName = AvailabilityProj.GetPath()
+            };
+            var stackBtnData2 = stackRvtBtnData2.Create();
+
+            var stackRvtBtnData3 = new RevitPushButtonData()
+            {
+                Label = "Stack\nButton 3",
+                Panel = panel,
+                Tooltip = "Tooltip Sample",
+                CommandNamespacePath = SampleRevitCommand.GetPath(),
+                //IconImageName = "blank_button.png",
+                TooltipImageName = "blank_button.png",
+                SmallIconImageName = "blank_button_16x16.png",
+                LongDescription = "This is a long description for the ToolTip",
+                AvailabilityClassName = AvailabilityProj.GetPath()
+            };
+            var stackBtnData3 = stackRvtBtnData3.Create();
+
+            //Create Stacked Items from Data
+            var stackedItems = panel.AddStackedItems(stackBtnData1, stackBtnData2, stackBtnData3);
+
+            //Create Buttons from Button Data
+            if(stackedItems.Count() > 1)
+            {
+                PushButton stackBtn1 = stackedItems[0] as PushButton;
+                PushButton stackBtn2 = stackedItems[1] as PushButton;
+                PushButton stackBtn3 = stackedItems[2] as PushButton;
+            }
+
+            #endregion
+
+            #region More Customization Options
+
+            //There is good information here:
+            //https://thebuildingcoder.typepad.com/blog/2011/02/pimp-my-autocad-or-revit-ribbon.html
+            //That allows direct access to WPF data in Ribbon panel
+            //For much more customization
+
+            #endregion
+
+        }
+        #endregion
 
         #region Event Handlers
         /// <summary>
@@ -211,7 +292,6 @@ namespace RevitWPFFW.ui
         {
             //Get Textbox information
             TextBox textBox = sender as TextBox;
-            string t = null;
             string tbData = textBox.Value as string;
 
             //Store string in ViewModel
