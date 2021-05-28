@@ -17,6 +17,10 @@ namespace RevitWPFFW.core
 
         #region Public Methods
 
+        /// <summary>
+        /// Property Changed Method
+        /// </summary>
+        /// <param name="name"></param>
         public void OnPropertyChanged(string name)
         {
             PropertyChanged(this, new PropertyChangedEventArgs(name));

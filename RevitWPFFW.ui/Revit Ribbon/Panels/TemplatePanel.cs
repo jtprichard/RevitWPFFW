@@ -63,6 +63,9 @@ namespace RevitWPFFW.ui
             };
             var sampleButton = RevitPushButton.Create(buttonData);
 
+            //For Toggle Button, store button in view model
+            RevitRibbonViewModel.Instance.ShowPagePushButton = sampleButton;
+
             #endregion
 
             #region SplitButton Template
@@ -201,7 +204,7 @@ namespace RevitWPFFW.ui
             comboBox.CurrentChanged += ComboBox_CurrentChanged;
 
             //Store default value in ViewModel
-            RevitRibbonViewModel.Instance.RibbonComboBox = comboBox.ItemText;
+            RevitRibbonViewModel.Instance.RibbonComboBox = comboBox.Current.ItemText;
 
             #endregion
 
@@ -221,7 +224,7 @@ namespace RevitWPFFW.ui
                 Panel = panel,
                 Tooltip = "Tooltip Sample",
                 CommandNamespacePath = SampleRevitCommand.GetPath(),
-                //IconImageName = "blank_button.png",
+                IconImageName = "blank_button_16x16.png",
                 TooltipImageName = "blank_button.png",
                 SmallIconImageName = "blank_button_16x16.png",
                 LongDescription = "This is a long description for the ToolTip",
@@ -235,7 +238,7 @@ namespace RevitWPFFW.ui
                 Panel = panel,
                 Tooltip = "Tooltip Sample",
                 CommandNamespacePath = SampleRevitCommand.GetPath(),
-                //IconImageName = "blank_button.png",
+                IconImageName = "blank_button_16x16.png",
                 TooltipImageName = "blank_button.png",
                 SmallIconImageName = "blank_button_16x16.png",
                 LongDescription = "This is a long description for the ToolTip",
@@ -249,7 +252,7 @@ namespace RevitWPFFW.ui
                 Panel = panel,
                 Tooltip = "Tooltip Sample",
                 CommandNamespacePath = SampleRevitCommand.GetPath(),
-                //IconImageName = "blank_button.png",
+                IconImageName = "blank_button_16x16.png",
                 TooltipImageName = "blank_button.png",
                 SmallIconImageName = "blank_button_16x16.png",
                 LongDescription = "This is a long description for the ToolTip",
@@ -282,7 +285,7 @@ namespace RevitWPFFW.ui
         }
         #endregion
 
-        #region Event Handlers
+        #region Internal Event Handlers
         /// <summary>
         /// Process the text input into the textbox and store it in the Core View Model Class
         /// </summary>

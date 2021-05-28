@@ -46,11 +46,14 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationAssembly.cs" />
     <Compile Include="Commands\Availability\AvailabilityFam.cs" />
     <Compile Include="Commands\Availability\AvailabilityProj.cs" />
+    <Compile Include="Commands\Availability\MonitorSelectionEnabler.cs" />
+    <Compile Include="Commands\Monitor Selection\MonitorSelectionCommand.cs" />
     <Compile Include="Commands\SampleRevitCommand.cs" />
     <Compile Include="Commands\ShowDockablePaneCommand.cs" />
     <Compile Include="Enumerations\ViewModels\PageType.cs" />
@@ -62,6 +65,11 @@
     <Compile Include="ViewModels\Project\MainPageViewModel.cs" />
     <Compile Include="ViewModels\Revit Ribbon\RevitRibbonViewModel.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\RevitWPFFW.res\RevitWPFFW.res.csproj">
+      <Project>{4abb7f68-520f-4956-8851-8ac0cd9bf9de}</Project>
+      <Name>RevitWPFFW.res</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

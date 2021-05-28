@@ -3,7 +3,6 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.Attributes;
 using System.Windows;
 using RevitWPFFW.core;
-using System;
 
 namespace RevitWPFFW.ui
 {
@@ -23,6 +22,8 @@ namespace RevitWPFFW.ui
 
         public Result Execute(UIApplication uiApp)
         {
+            //Title of Dockable WPF Pane
+            string paneTitle = "Revit WPF Template";
 
             var data = new DockablePaneProviderData();
             var mainPage = new MainPage();
@@ -33,7 +34,7 @@ namespace RevitWPFFW.ui
             var dpid = new DockablePaneId(DockablePaneIdentifier.GetMainPaneIdentifier());
 
             //register pane
-            uiApp.RegisterDockablePane(dpid, "Revit WPF Template", mainPage as IDockablePaneProvider);
+            uiApp.RegisterDockablePane(dpid, paneTitle, mainPage);
 
             return Result.Succeeded;
         }

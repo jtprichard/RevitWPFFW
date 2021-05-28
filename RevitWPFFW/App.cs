@@ -11,33 +11,31 @@ namespace RevitWPFFW
 
         #region Fields
 
-        public static UIControlledApplication UIContApp;
         public static RibbonInterface Ribbon;
 
         #endregion
 
-
+        #region Entry and Exit Points
         /// <summary>
         /// Main startup application
         /// </summary>
         /// <param name="a"></param>
         /// <returns></returns>
-        public Result OnStartup(UIControlledApplication a)
+        public Result OnStartup(UIControlledApplication uiApp)
         {
             //Initialize Fields
-            UIContApp = a;
             string tabName = "REVIT TEMPLATE";
 
             //Initialize ribbon panels
             var ri = RibbonInterface.Instance;
-            ri.Initialize(a, tabName);
+            ri.Initialize(uiApp, tabName);
             Ribbon = ri;
 
             //Initialize Selection Monitor Ribbon
-            //MonitorSelectionRibbon.CreateRibbon(UIContApp);
+            MonitorSelectionRibbon.CreateRibbon(uiApp);
 
             //Startup Events
-            EventFactory.Startup(a);
+            EventFactory.Startup(uiApp);
 
             return Result.Succeeded;
         }
@@ -53,5 +51,6 @@ namespace RevitWPFFW
             return Result.Succeeded;
         }
 
+        #endregion
     }
 }

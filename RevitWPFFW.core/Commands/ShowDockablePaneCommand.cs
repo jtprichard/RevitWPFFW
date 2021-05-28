@@ -36,9 +36,15 @@ namespace RevitWPFFW.core
             else
                 dp.Show();
 
+            RevitRibbonViewModel.Instance.ShowPageButtonImageToggle();
+
             return Result.Succeeded;
         }
 
+        /// <summary>
+        /// Returns the path for the command namespace on the Ribbon
+        /// </summary>
+        /// <returns></returns>
         public static string GetPath()
         {
             //return constructed namespace path

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace RevitWPFFW.core
 {
@@ -38,6 +33,7 @@ namespace RevitWPFFW.core
         public ICommand Page1Command { get; set; }
         public ICommand Page2Command { get; set; }
         public ICommand Page3Command { get; set; }
+        public ICommand Page4Command { get; set; }
 
         #endregion
 
@@ -99,13 +95,12 @@ namespace RevitWPFFW.core
         public static void SwitchToPage1()
         {
             _currentVM.CurrentPage = PageType.Page1;
-
         }
 
         /// <summary>
         /// Allows external call to switch to Page 2
         /// </summary>
-        public static void SwitchPageToSeatType()
+        public static void SwitchToPage2()
         {
             _currentVM.CurrentPage = PageType.Page2;
         }
@@ -113,9 +108,28 @@ namespace RevitWPFFW.core
         /// <summary>
         /// Allows external call to switch to Page 3
         /// </summary>
-        public static void SwitchPageToRowProperties()
+        public static void SwitchToPage3()
         {
             _currentVM.CurrentPage = PageType.Page3;
+        }
+
+        /// <summary>
+        /// Allows external call to switch to Page 4
+        /// Page 4 currently set up for monitor selection
+        /// </summary>
+        public static void SwitchToPage4()
+        {
+            _currentVM.CurrentPage = PageType.Page4;
+        }
+
+        /// <summary>
+        /// Selection Monitoring call to move away from Page 4
+        /// When no selection is made
+        /// </summary>
+        public static void SwitchPageOffPage4()
+        {
+            if (_currentVM.CurrentPage == PageType.Page4)
+                SwitchToPage1();
         }
 
         #endregion

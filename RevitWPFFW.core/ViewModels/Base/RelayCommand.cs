@@ -62,7 +62,7 @@ namespace RevitWPFFW.core
         /// <returns>If this command can be executed; otherwise, <see langword="false""/></returns>
         public bool CanExecute(object parameter)
         {
-            return _canExecuteMethod == null ? true : _canExecuteMethod(parameter);
+            return _canExecuteMethod == null || _canExecuteMethod(parameter);
         }
 
         /// <summary>

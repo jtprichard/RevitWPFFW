@@ -66,6 +66,9 @@
     <Compile Include="Pages\Properties\Page2.xaml.cs">
       <DependentUpon>Page2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Properties\Page4.xaml.cs">
+      <DependentUpon>Page4.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Properties\Page3.xaml.cs">
       <DependentUpon>Page3.xaml</DependentUpon>
     </Compile>
@@ -76,14 +79,14 @@
     <Compile Include="Revit Ribbon\Controls\RevitPushButton.cs" />
     <Compile Include="Revit Ribbon\Controls\RevitPushButtonData.cs" />
     <Compile Include="Revit Ribbon\Controls\RevitSplitButton.cs" />
+    <Compile Include="Revit Ribbon\Monitor Selection\MonitorSelectionRibbon.cs" />
     <Compile Include="Revit Ribbon\Panels\TemplatePanel.cs" />
     <Compile Include="Revit Ribbon\Registration\RegisterMainPageCommand.cs" />
     <Compile Include="Revit Ribbon\RibbonInterface.cs" />
+    <Compile Include="Revit Ribbon\Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\Base\" />
-    <Folder Include="Revit Ribbon\Enablers\" />
-    <Folder Include="Revit Ribbon\Event Handlers\" />
     <Folder Include="Revit Ribbon\Utilities\" />
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +115,10 @@
     <Page Include="Pages\Properties\Page2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Properties\Page4.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Properties\Page3.xaml">
       <SubType>Designer</SubType>

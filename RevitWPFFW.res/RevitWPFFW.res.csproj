@@ -59,5 +59,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Images\Icons\blank_button.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Icons\blank_button_no.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

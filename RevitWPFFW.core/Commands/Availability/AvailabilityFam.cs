@@ -9,6 +9,12 @@ namespace RevitWPFFW.core
     /// </summary>
     public class AvailabilityFam : IExternalCommandAvailability
     {
+        /// <summary>
+        /// Availability Command Method
+        /// </summary>
+        /// <param name="uiApp">UI Application</param>
+        /// <param name="selectedCategories">Category Set</param>
+        /// <returns>True if Family Document</returns>
         public bool IsCommandAvailable(UIApplication uiApp, CategorySet selectedCategories)
         {
             try
@@ -27,6 +33,10 @@ namespace RevitWPFFW.core
             }
         }
 
+        /// <summary>
+        /// Provide constructed namespace path
+        /// </summary>
+        /// <returns></returns>
         public static string GetPath()
         {
             //return constructed namespace path

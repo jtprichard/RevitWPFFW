@@ -93,6 +93,7 @@ namespace RevitWPFFW.ui
 
         #endregion
 
+        #region Public Methods
         public PushButtonData Create()
         {
             //The button name based on unique identifier
@@ -129,5 +130,6 @@ namespace RevitWPFFW.ui
             return btnData;
 
         }
+        #endregion
     }
 }

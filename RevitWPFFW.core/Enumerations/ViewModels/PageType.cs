@@ -14,9 +14,12 @@
         /// </summary>
         Page2,
         /// <summary>
-        /// Page 1 3 - Adjust Descriptor as Required
+        /// Page 3 - Adjust Descriptor as Required
         /// </summary>
         Page3,
-
+        /// <summary>
+        /// Page 4 Selection - Used for Selection Monitor
+        /// </summary>
+        Page4,
     }
 }

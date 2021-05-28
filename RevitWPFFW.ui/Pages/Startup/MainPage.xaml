@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RevitWPFFW.ui"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="300">
+             d:DesignHeight="500" d:DesignWidth="400">
     
     <!-- Resource Dictionary Reference-->
     <Page.Resources>
@@ -47,7 +47,7 @@
             <Frame x:Name="MainPageFrame"
                Content="{Binding CurrentPage, Converter={StaticResource MainPageConverter}}"
                 NavigationUIVisibility="Hidden"
-                   BorderBrush="Blue"
+                   BorderBrush="#FF0732A2"
                    BorderThickness="3"
                    />
         </Border>

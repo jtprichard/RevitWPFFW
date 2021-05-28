@@ -51,14 +51,14 @@ namespace RevitWPFFW.ui
         public void Initialize(UIControlledApplication uiapp, string tabName)
         {
             //Initialize the Ribbon ViewModel to Store Ribbon Data
-            var vm = RevitRibbonViewModel.Instance;
-            
+            _ = RevitRibbonViewModel.Instance;
+
             //Create Ribbon Tab
             uiapp.CreateRibbonTab(tabName);
             TabName = tabName;
 
             //Create Ribbon Panels from Static Classes for Each Panel
-            RibbonPanel templatePanel = new TemplatePanel().Create(uiapp, tabName);
+            _ = new TemplatePanel().Create(uiapp, tabName);
 
         }
 
