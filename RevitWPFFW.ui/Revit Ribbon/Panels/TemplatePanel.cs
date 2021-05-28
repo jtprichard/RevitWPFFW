@@ -49,12 +49,12 @@ namespace RevitWPFFW.ui
             //Add a Pushbutton
             //Name is only required if future reference is needed
             //Guid is generated if no name provided
-            var buttonData = new RevitPushButtonData("Sample_Button")
+            var buttonData = new RevitPushButtonData("Show_Dockable_Pane")
             {
-                Label = "Sample\nButton",
+                Label = "Show\nPane",
                 Panel = panel,
                 Tooltip = "Tooltip Sample",
-                CommandNamespacePath = SampleRevitCommand.GetPath(),
+                CommandNamespacePath = ShowDockablePaneCommand.GetPath(),
                 IconImageName = "blank_button.png",
                 TooltipImageName = "blank_button.png",
                 SmallIconImageName = "blank_button_16x16.png",

@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AdWindows, Version=2018.11.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\AdWindows.dll</HintPath>
+    </Reference>
     <Reference Include="RevitAPI">
       <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
     </Reference>
@@ -48,9 +52,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Utilities\EventFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RevitWPFFW.core\RevitWPFFW.core.csproj">
+      <Project>{b0db87ba-a6fc-481c-bf58-da4b4f791c0f}</Project>
+      <Name>RevitWPFFW.core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RevitWPFFW.ui\RevitWPFFW.ui.csproj">
       <Project>{dce04318-fe42-464b-86bc-4d60f1a7fce6}</Project>
       <Name>RevitWPFFW.ui</Name>
