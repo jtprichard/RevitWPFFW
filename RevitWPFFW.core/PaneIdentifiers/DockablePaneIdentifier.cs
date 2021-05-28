@@ -11,15 +11,33 @@ namespace RevitWPFFW.core
         /// <summary>
         /// Stores the Main Pane Guid
         /// </summary>
-        private static Guid _mainPaneGuid;
+        private Guid _mainPaneGuid;
 
+        private static DockablePaneIdentifier _instance = null;
+
+        /// <summary>
+        /// Instance of Dockable Pane Indentifier
+        /// Creates instance if none exists
+        /// </summary>
+        private static DockablePaneIdentifier Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new DockablePaneIdentifier();
+                return _instance;
+            }
+        }
         #endregion
 
         #region Default Constructor
         /// <summary>
         /// Constructor
         /// </summary>
-        public DockablePaneIdentifier() { }
+        private DockablePaneIdentifier()
+        {
+            _mainPaneGuid = Guid.NewGuid();
+        }
         #endregion
 
         #region Public Methods
@@ -29,13 +47,7 @@ namespace RevitWPFFW.core
         /// <returns></returns>
         public static Guid GetMainPaneIdentifier()
         {
-            if (null == _mainPaneGuid)
-            {
-                DockablePaneIdentifier dp = new DockablePaneIdentifier();
-                _mainPaneGuid = Guid.NewGuid();
-            }
-
-            return _mainPaneGuid;
+            return Instance._mainPaneGuid;
         }
         #endregion
 

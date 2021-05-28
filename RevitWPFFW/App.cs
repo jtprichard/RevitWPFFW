@@ -37,7 +37,7 @@ namespace RevitWPFFW
             //MonitorSelectionRibbon.CreateRibbon(UIContApp);
 
             //Startup Events
-            //EventFactory.Startup(a);
+            EventFactory.Startup(a);
 
             return Result.Succeeded;
         }
