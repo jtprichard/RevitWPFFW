@@ -1,11 +1,6 @@
 ﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RevitWPFFW.core
 {
@@ -31,12 +26,7 @@ namespace RevitWPFFW.core
             var dpid = new DockablePaneId(DockablePaneIdentifier.GetMainPaneIdentifier());
             var dp = commandData.Application.GetDockablePane(dpid);
 
-            if (dp.IsShown())
-                dp.Hide();
-            else
-                dp.Show();
-
-            RevitRibbonViewModel.Instance.ShowPageButtonImageToggle();
+            TogglePane(dp);
 
             return Result.Succeeded;
         }
@@ -50,6 +40,30 @@ namespace RevitWPFFW.core
             //return constructed namespace path
             return typeof(ShowDockablePaneCommand).Namespace + "." + nameof(ShowDockablePaneCommand);
         }
+        #endregion
+
+        #region Private Methods
+        private void TogglePane(DockablePane dp) 
+        {
+            if (null != dp)
+            {
+                if (dp.IsShown())
+                {
+                    dp.Hide();
+                    RevitRibbonViewModel.TurnPageButtonImageOff();
+                }
+                else
+                {
+                    dp.Show();
+                    RevitRibbonViewModel.TurnPageButtonImageOn();
+                }
+            }
+            else
+                return;
+
+        }
+
+
         #endregion
     }
 }

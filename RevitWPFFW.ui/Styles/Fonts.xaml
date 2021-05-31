@@ -1,0 +1,49 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RevitWPFFW.ui"
+             xmlns:System="clr-namespace:System;assembly=mscorlib">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Colors.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- Font size-->
+    <System:Double x:Key="SmallFontSize">9</System:Double>
+    <System:Double x:Key="RegularFontSize">12</System:Double>
+    <System:Double x:Key="LargeFontSize">14</System:Double>
+    <System:Double x:Key="ExtraLargeFontSize">16</System:Double>
+    <System:Double x:Key="ExtraExtraLargeFontSize">24</System:Double>
+    
+
+    <!-- Provide Font Family Here -->
+    <!-- Note - Example fonts not included in resources, provided only for example -->
+    
+    <!--<FontFamily x:Key="OpenSansLite">pack://application:,,,/FamilyManager.res;Component/Fonts/OpenSans/#Open Sans Light</FontFamily>
+    <FontFamily x:Key="OpenSansLiteItalic">pack://application:,,,/FamilyManager.res;Component/Fonts/OpenSans/#Open Sans Light Italic</FontFamily>
+    <FontFamily x:Key="OpenSansRegular">pack://application:,,,/FamilyManager.res;Component/Fonts/OpenSans/#Open Sans Regular</FontFamily>-->
+
+    
+    <!-- Text block styles. -->
+    <Style TargetType="{x:Type TextBlock}" x:Key="BaseTextBlockStyle">
+        <!--<Setter Property="FontFamily" Value="{StaticResource OpenSansLite}" />-->
+        <Setter Property="FontSize" Value="{StaticResource RegularFontSize}" />
+        <Setter Property="FontWeight" Value="Normal"/>
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="MediumBoldTextBlockStyle">
+        <!--<Setter Property="FontFamily" Value="{StaticResource OpenSansLite}" />-->
+        <Setter Property="FontSize" Value="{StaticResource LargeFontSize}" />
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="LargeBoldTextBlockStyle">
+        <!--<Setter Property="FontFamily" Value="{StaticResource OpenSansLite}" />-->
+        <Setter Property="FontSize" Value="{StaticResource ExtraExtraLargeFontSize}" />
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
+
+
+</ResourceDictionary>

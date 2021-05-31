@@ -6,14 +6,130 @@
              xmlns:local="clr-namespace:RevitWPFFW.ui"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="300">
+
+    <!-- Resource Dictionary Reference-->
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../App.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
     <Grid>
         <Grid.Background>
-            <SolidColorBrush Color="#FF82B6B6"></SolidColorBrush>
+            <SolidColorBrush Color="{StaticResource BlueBackground}"></SolidColorBrush>
         </Grid.Background>
 
-        <TextBlock HorizontalAlignment="Center" 
-                   FontSize="24"
-                   FontWeight="Bold">Page 1</TextBlock>
+        <StackPanel>
+            <TextBlock Style="{StaticResource LargeBoldTextBlockStyle}"
+                   HorizontalAlignment="Center" 
+                   Foreground="{StaticResource DarkGrayFontBrush}"
+                   >Page 1</TextBlock>
+
+            <Separator VerticalAlignment="top"
+                       BorderBrush="{StaticResource MainBorderBrush}"
+                       Margin="20 10"
+                       Height="20"
+                       BorderThickness="20"/>
+
+            <!-- Text Sample -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+
+
+                <TextBlock Grid.Row="0" Grid.Column="0"
+                           Margin="20 0 0 0"
+                           Style="{StaticResource BaseTextBlockStyle}">
+                    Text Label 1
+                </TextBlock>
+
+                <TextBox Grid.Row="0" Grid.Column="1"
+                         Margin="20 0 20 0"
+                         Text="{Binding TextBox1, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+                <TextBlock Grid.Row="1" Grid.Column="0"
+                           Margin="20 0 0 0"
+                           Style="{StaticResource BaseTextBlockStyle}">
+                    Text Label 2
+                </TextBlock>
+
+                <TextBox Grid.Row="1" Grid.Column="1"
+                         Margin="20 0 20 0"
+                         Text="{Binding TextBox2, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+                <TextBlock Grid.Row="2" Grid.Column="0"
+                           Margin="20 0 0 0"
+                           Style="{StaticResource BaseTextBlockStyle}">
+                    Text Combined
+                </TextBlock>
+
+                <TextBox Grid.Row="2" Grid.Column="1"
+                         Margin="20 0 20 0"
+                         IsEnabled="False"
+                         Text="{Binding TextBox3, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+
+            <!-- Page 1A Reference -->
+            <Separator VerticalAlignment="top"
+                       BorderBrush="{StaticResource MainBorderBrush}"
+                       Margin="20 10"
+                       Height="20"
+                       BorderThickness="20"/>
+
+            <Expander Header="Page 1A WPF Expander">
+                <Grid Background="#FFE5E5E5">
+                    <local:Page1A/>
+                </Grid>
+            </Expander>
+
+
+            <Separator VerticalAlignment="top"
+                       BorderBrush="{StaticResource MainBorderBrush}"
+                       Margin="20 10"
+                       Height="20"
+                       BorderThickness="20"/>
             
+            <!-- Page 1B Reference -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+
+                <Button Style="{StaticResource ExpanderButton}"
+                        Grid.Row="0"
+                        x:Name="ExpandButton"
+                        Click="ExpandButton_Click">
+                    Page 1B Expand with Button
+                </Button>
+                <Border x:Name="Page1BControl"
+                        Grid.Row="1"
+                        Height="0">
+                    <local:Page1B/>
+                </Border>
+                
+            </Grid>
+
+
+        </StackPanel>
+
+
     </Grid>
 </Page>

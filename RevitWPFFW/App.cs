@@ -22,7 +22,7 @@ namespace RevitWPFFW
         /// <param name="a"></param>
         /// <returns></returns>
         public Result OnStartup(UIControlledApplication uiApp)
-        {
+        {            
             //Initialize Fields
             string tabName = "REVIT TEMPLATE";
 

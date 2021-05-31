@@ -1,6 +1,6 @@
 ﻿using Autodesk.Revit.UI;
 using RevitWPFFW.res;
-using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace RevitWPFFW.core
 {
@@ -13,9 +13,9 @@ namespace RevitWPFFW.core
         #region Private Fields
         private static RevitRibbonViewModel _instance = null;
 
-        private static ImageSource _showPageImageOn = ResourceImage.GetIcon("blank_button");
+        private static BitmapImage _showPageImageOn = ResourceImage.GetIcon("blank_button.png");
 
-        private static ImageSource _showPageImageOff = ResourceImage.GetIcon("blank_button_no");
+        private static BitmapImage _showPageImageOff = ResourceImage.GetIcon("blank_button_no.png");
 
         #endregion
 
@@ -39,10 +39,7 @@ namespace RevitWPFFW.core
 
         public string RibbonTextBox { get; set; }
         public string RibbonComboBox { get; set; }
-        public PushButton ShowPagePushButton { get; set; }
-        
-
-        public ImageSource ShowPageButtonImage { get; set; }
+        public RibbonButton ShowPagePushButton { get; set; }
 
         #endregion
 
@@ -54,14 +51,16 @@ namespace RevitWPFFW.core
 
         #endregion
 
-        public void ShowPageButtonImageToggle()
+        public static void TurnPageButtonImageOn()
         {
-            if (ShowPageButtonImage == _showPageImageOn)
-                ShowPageButtonImage = _showPageImageOff;
-            else
-                ShowPageButtonImage = _showPageImageOn;
+            Instance.ShowPagePushButton.LargeImage = _showPageImageOff;
+            Instance.ShowPagePushButton.ItemText = "Hide\nPane";
+        }
 
-            ShowPagePushButton.Image = ShowPageButtonImage;
+        public static void TurnPageButtonImageOff()
+        {
+            Instance.ShowPagePushButton.LargeImage = _showPageImageOn;
+            Instance.ShowPagePushButton.ItemText = "Show\nPane";
         }
     }
 }

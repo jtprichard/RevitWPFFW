@@ -6,14 +6,25 @@
              xmlns:local="clr-namespace:RevitWPFFW.ui"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="300">
+
+    <!-- Resource Dictionary Reference-->
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../App.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
     <Grid>
         <Grid.Background>
-            <SolidColorBrush Color="#FFC1A289"></SolidColorBrush>
+            <SolidColorBrush Color="{StaticResource PeachBackground}"></SolidColorBrush>
         </Grid.Background>
 
-        <TextBlock HorizontalAlignment="Center" 
-                   FontSize="24"
-                   FontWeight="Bold">Page 4 - Automated</TextBlock>
+        <TextBlock Style="{StaticResource LargeBoldTextBlockStyle}"
+                   HorizontalAlignment="Center" 
+                   Foreground="{StaticResource DarkGrayFontBrush}"
+                   >Page 4 - Automated</TextBlock>
 
     </Grid>
 </Page>

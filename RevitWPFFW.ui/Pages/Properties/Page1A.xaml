@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="RevitWPFFW.ui.Page1A"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RevitWPFFW.ui"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="300">
+
+    <!-- Resource Dictionary Reference-->
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../App.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="{StaticResource BlueBackground}"></SolidColorBrush>
+        </Grid.Background>
+
+        <StackPanel>
+            <TextBlock Style="{StaticResource MediumBoldTextBlockStyle}"
+                   HorizontalAlignment="Center" 
+                   Foreground="{StaticResource DarkGrayFontBrush}"
+                   >Page 1A</TextBlock>
+
+            <!-- ComboBox Sample -->
+            <!-- Binding uses same ViewModel as Base Page1-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+
+
+                <TextBlock Grid.Row="0" Grid.Column="0"
+                           Margin="20 0 0 0"
+                           Style="{StaticResource BaseTextBlockStyle}">
+                    ComboBox
+                </TextBlock>
+
+                <ComboBox Grid.Row="0" Grid.Column="1"
+                          Margin="20 0 20 0"
+                          ItemsSource="{Binding Combo1, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding Combo1Selection, UpdateSourceTrigger=PropertyChanged}"
+                          DisplayMemberPath="Value">
+                </ComboBox>
+                
+
+                <TextBlock Grid.Row="1" Grid.Column="0"
+                           Margin="20 0 0 0"
+                           Style="{StaticResource BaseTextBlockStyle}">
+                    Combo Result
+                </TextBlock>
+
+                <TextBox Grid.Row="1" Grid.Column="1"
+                         Margin="20 0 20 0"
+                         IsEnabled="False"
+                         Text="{Binding Combo1SelectionText, UpdateSourceTrigger=PropertyChanged}"/>
+
+            </Grid>
+
+        </StackPanel>
+
+            
+    </Grid>
+</UserControl>

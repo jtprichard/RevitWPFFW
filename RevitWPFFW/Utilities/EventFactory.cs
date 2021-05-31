@@ -20,7 +20,9 @@ namespace RevitWPFFW
         /// <param name="a"></param>
         internal static void Startup(UIControlledApplication a)
         {
-
+            //Store UIControlledApplication for use
+            _ = new RevitControlledApplication(a);
+            
             //Register dockable panes on applicaiton initialization
             a.ControlledApplication.ApplicationInitialized += DockablePaneRegisters;
 
@@ -68,6 +70,17 @@ namespace RevitWPFFW
         {
             //Instantiating the class automatically creates a static document for reference
             _ = new RevitDocument(args.Document);
+
+            //Hide Dockable Pane on Startup
+            var dpid = new DockablePaneId(DockablePaneIdentifier.GetMainPaneIdentifier());
+            var dp = RevitControlledApplication.GetCurrentApplication().GetDockablePane(dpid);
+
+            if (dp.IsShown())
+                dp.Hide();
+
+            //Initialize WPF ViewModels for Initial Properties
+            MainPageViewModel.Initialize();
+
         }
 
         /// <summary>

@@ -19,26 +19,13 @@ namespace RevitWPFFW.ui
     /// <summary>
     /// Interaction logic for Page1.xaml
     /// </summary>
-    public partial class Page1 : Page
+    public partial class Page1A : UserControl
     {
-        public Page1()
+        public Page1A()
         {
             InitializeComponent();
             DataContext = Page1ViewModel.Instance;
 
-        }
-
-        /// <summary>
-        /// Control Expansion for Page 1B Control Reference
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ExpandButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (Page1BControl.Height == 0)
-                Page1BControl.Height = Double.NaN + 20;
-            else
-                Page1BControl.Height = 0;
         }
     }
 }

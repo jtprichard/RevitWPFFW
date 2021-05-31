@@ -8,16 +8,34 @@ namespace RevitWPFFW.core
     public class MainPageViewModel:BaseViewModel
     {
         #region Private Fields
-        private static MainPageViewModel _currentVM;
+        private static MainPageViewModel _instance = null;
+        private static bool _docInitialized = false;
+
         private PageType _currentPage = PageType.Page1;
 
         #endregion
 
         #region Public Properties
-        public static MainPageViewModel CurrentVM
+        /// <summary>
+        /// Instance of Main Page View Model
+        /// If no instance exists, create a new one
+        /// If the VM has not been initialized and the document is opened, initialize it
+        /// </summary>
+        public static MainPageViewModel Instance
         {
-            get { return _currentVM; }
+            get
+            {
+                if (_instance == null)
+                    _instance = new MainPageViewModel();
+                else if (!_docInitialized && RevitDocument.GetCurrentDocument() != null)
+                    _instance.InitializeViewModel();
+                return _instance;
+            }
         }
+
+        /// <summary>
+        /// Access to the Current Page
+        /// </summary>
         public PageType CurrentPage
         {
             get
@@ -43,14 +61,22 @@ namespace RevitWPFFW.core
         /// </summary>
         public MainPageViewModel()
         {
+            //Commands must be initialized at construction
             Page1Command = new RelayCommand(Page1CommandMethod);
             Page2Command = new RelayCommand(Page2CommandMethod);
             Page3Command = new RelayCommand(Page3CommandMethod);
-            _currentVM = this;
         }
         #endregion
 
         #region Private Methods
+
+        private void InitializeViewModel()
+        {
+            //Initialize any main page properties here
+
+            _docInitialized = true;
+        }
+
         /// <summary>
         /// Changes Current Page to Page 1
         /// </summary>
@@ -90,11 +116,27 @@ namespace RevitWPFFW.core
 
         #region Public Methods
         /// <summary>
+        /// Initialize Properties in View Models to Default Values
+        /// </summary>
+        public static void Initialize()
+        {
+            if (!_docInitialized && _instance != null)
+            {
+                //Initialize This View Model
+                _instance.InitializeViewModel();
+
+                //Initialize Other View Models
+                Page1ViewModel.Initialize();
+            }
+
+        }
+
+        /// <summary>
         /// Allows external call to switch to Page 1
         /// </summary>
         public static void SwitchToPage1()
         {
-            _currentVM.CurrentPage = PageType.Page1;
+            _instance.CurrentPage = PageType.Page1;
         }
 
         /// <summary>
@@ -102,7 +144,7 @@ namespace RevitWPFFW.core
         /// </summary>
         public static void SwitchToPage2()
         {
-            _currentVM.CurrentPage = PageType.Page2;
+            _instance.CurrentPage = PageType.Page2;
         }
 
         /// <summary>
@@ -110,7 +152,7 @@ namespace RevitWPFFW.core
         /// </summary>
         public static void SwitchToPage3()
         {
-            _currentVM.CurrentPage = PageType.Page3;
+            _instance.CurrentPage = PageType.Page3;
         }
 
         /// <summary>
@@ -119,7 +161,7 @@ namespace RevitWPFFW.core
         /// </summary>
         public static void SwitchToPage4()
         {
-            _currentVM.CurrentPage = PageType.Page4;
+            _instance.CurrentPage = PageType.Page4;
         }
 
         /// <summary>
@@ -128,7 +170,7 @@ namespace RevitWPFFW.core
         /// </summary>
         public static void SwitchPageOffPage4()
         {
-            if (_currentVM.CurrentPage == PageType.Page4)
+            if (_instance.CurrentPage == PageType.Page4)
                 SwitchToPage1();
         }
 
