@@ -36,7 +36,20 @@ namespace RevitWPFFW.ui
             //register pane
             uiApp.RegisterDockablePane(dpid, paneTitle, mainPage);
 
+            //Register Project WPF Event Handler for WPF Transaction Commands
+            RegisterWrappedCommands();
+
             return Result.Succeeded;
+        }
+
+        /// <summary>
+        /// Register Project WPF Event Handler for WPF Transaction Commands
+        /// </summary>
+        private void RegisterWrappedCommands()
+        {
+            RevitWPFEventHandler rEvent = new RevitWPFEventHandler();
+            ProjectEventWrapper.SetEventHandler(rEvent);
+
         }
     }
 }

@@ -21,10 +21,28 @@
             <SolidColorBrush Color="{StaticResource LavenderBackground}"></SolidColorBrush>
         </Grid.Background>
 
-        <TextBlock Style="{StaticResource LargeBoldTextBlockStyle}"
+        <StackPanel>
+
+            <TextBlock Style="{StaticResource LargeBoldTextBlockStyle}"
                    HorizontalAlignment="Center" 
                    Foreground="{StaticResource DarkGrayFontBrush}"
                    >Page 2</TextBlock>
+
+            <Separator VerticalAlignment="top"
+                       BorderBrush="{StaticResource MainBorderBrush}"
+                       Margin="20 10"
+                       Height="20"
+                       BorderThickness="20"/>
+
+            <!-- Trigger transaction command in Revit -->
+            
+            <Button Style="{StaticResource RoundedButton}"                 
+                    FontSize="18"
+                    Width="200"
+                    Content="Transaction Trigger"
+                    Command="{Binding TransactionCommand}"/>
+
+        </StackPanel>
 
     </Grid>
 </Page>

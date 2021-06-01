@@ -56,19 +56,26 @@
     <Compile Include="Commands\Monitor Selection\MonitorSelectionCommand.cs" />
     <Compile Include="Commands\SampleRevitCommand.cs" />
     <Compile Include="Commands\ShowDockablePaneCommand.cs" />
+    <Compile Include="Commands\WPF Wrapped\BaseCommand.cs" />
+    <Compile Include="Commands\WPF Wrapped\TransactionCommand.cs" />
     <Compile Include="Data\CheckBoxData.cs" />
     <Compile Include="Data\Combo1Data.cs" />
     <Compile Include="Enumerations\ViewModels\CheckBoxEnum.cs" />
     <Compile Include="Enumerations\ViewModels\Combo1Enum.cs" />
     <Compile Include="Enumerations\ViewModels\PageType.cs" />
+    <Compile Include="Event Handlers\WPFEventHandler.cs" />
     <Compile Include="PaneIdentifiers\DockablePaneIdentifier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Revit WPF Wrapper\ProjectEventWrapper.cs" />
+    <Compile Include="Revit WPF Wrapper\RevitEventWrapper.cs" />
+    <Compile Include="Revit WPF Wrapper\WPFEventCommandArgs.cs" />
     <Compile Include="RevitControlledApplication.cs" />
     <Compile Include="RevitDocument.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
     <Compile Include="ViewModels\Base\RelayCommand.cs" />
     <Compile Include="ViewModels\Project\MainPageViewModel.cs" />
     <Compile Include="ViewModels\Project\Page1BViewModel.cs" />
+    <Compile Include="ViewModels\Project\Page2ViewModel.cs" />
     <Compile Include="ViewModels\Project\Page1ViewModel.cs" />
     <Compile Include="ViewModels\Revit Ribbon\RevitRibbonViewModel.cs" />
   </ItemGroup>

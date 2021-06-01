@@ -90,4 +90,33 @@
 
     </Style>
 
+
+    <!-- Template style for rounded button. -->
+    <Style x:Key="RoundedButton" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource DarkGrayFontBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <!--<Setter Property="FontFamily" Value="{StaticResource OpenSansLite}" />-->
+        <Setter Property="FontSize" Value="{StaticResource RegularFontSize}" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Margin" Value="0" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{StaticResource ButtonBackgroundBrush}"
+                            CornerRadius="5"
+                            BorderThickness="1"
+                            Padding="5"
+                            BorderBrush="{StaticResource BlueBorderBrush}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                        </ContentPresenter>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
 </ResourceDictionary>

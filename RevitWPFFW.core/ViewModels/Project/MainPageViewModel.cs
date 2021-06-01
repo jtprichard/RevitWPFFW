@@ -127,6 +127,7 @@ namespace RevitWPFFW.core
 
                 //Initialize Other View Models
                 Page1ViewModel.Initialize();
+                Page2ViewModel.Initialize();
             }
 
         }
