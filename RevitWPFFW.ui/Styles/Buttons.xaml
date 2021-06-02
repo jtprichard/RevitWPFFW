@@ -13,7 +13,7 @@
     <Style x:Key="MainButton" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}" />
         <Setter Property="Foreground" Value="{StaticResource DarkGrayFontBrush}" />
-        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderThickness" Value="1" />
         <!--<Setter Property="FontFamily" Value="{StaticResource OpenSansLite}" />-->
         <Setter Property="FontSize" Value="{StaticResource RegularFontSize}" />
         <Setter Property="Padding" Value="1" />
@@ -56,7 +56,7 @@
                     <!-- Event triggers for styled animation. -->
                     <ControlTemplate.Triggers>
 
-                        <!-- Change background when mouse hover over button. -->
+                        <!-- Change background when mouse hovers over the button. -->
                         <EventTrigger RoutedEvent="MouseEnter">
                             <BeginStoryboard>
                                 <Storyboard>
@@ -69,7 +69,7 @@
                         </EventTrigger>
 
 
-                        <!-- Change background when mouse leave button. -->
+                        <!-- Change background when mouse leaves the button. -->
                         <EventTrigger RoutedEvent="MouseLeave">
                             <BeginStoryboard>
                                 <Storyboard>

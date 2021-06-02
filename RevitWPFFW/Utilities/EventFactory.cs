@@ -133,7 +133,6 @@ namespace RevitWPFFW
                 Utilities.RemovePanelFromTab(foundTab, foundPanel);
                 Utilities.RemoveTabFromRibbon(foundTab);
             }
-
         }
 
         #endregion

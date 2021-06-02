@@ -1,14 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace RevitWPFFW.core
 {
+    /// <summary>
+    /// Stores a static copy of the Event Handler
+    /// For use in multiple commands
+    /// </summary>
     public static class ProjectEventWrapper
     {
-        public static RevitWPFEventHandler Command { get; private set; }
+        /// <summary>
+        /// Command to Raise
+        /// </summary>
+        public static RevitWPFEventHandler Command;
 
         public static void SetEventHandler(RevitWPFEventHandler eh)
         {

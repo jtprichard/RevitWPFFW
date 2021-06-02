@@ -18,7 +18,7 @@
 
     <Grid>
         <Grid.Background>
-            <SolidColorBrush Color="{StaticResource GreenBackground}"></SolidColorBrush>
+            <SolidColorBrush Color="{StaticResource MainBackground}"></SolidColorBrush>
         </Grid.Background>
 
         <TextBlock Style="{StaticResource LargeBoldTextBlockStyle}"

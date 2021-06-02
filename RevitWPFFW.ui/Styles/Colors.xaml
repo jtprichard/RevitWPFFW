@@ -5,11 +5,8 @@
              xmlns:local="clr-namespace:RevitWPFFW.ui"
              xmlns:System="clr-namespace:System;assembly=mscorlib">
 
-    <Color x:Key="MainBackground">#2f2c37</Color>
+    <Color x:Key="MainBackground">White</Color>
     <SolidColorBrush x:Key="MainBackgroundBrush" Color="{StaticResource MainBackground}"/>
-
-    <Color x:Key="MainLightBackground">#3d3947</Color>
-    <SolidColorBrush x:Key="MainLightBackgroundBrush" Color="{StaticResource MainLightBackground}"/>
 
     <Color x:Key="ButtonBackground">#ddd</Color>
     <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="{StaticResource ButtonBackground}"/>
@@ -32,7 +29,7 @@
     <Color x:Key="PeachBackground">#FFC1A289</Color>
     <SolidColorBrush x:Key="PeachBackgroundBrush" Color="{StaticResource PeachBackground}"/>
 
-    <Color x:Key="MainBorders">#3a3742</Color>
+    <Color x:Key="MainBorders">#ddd</Color>
     <SolidColorBrush x:Key="MainBorderBrush" Color="{StaticResource MainBorders}"/>
 
     <Color x:Key="BlueBorder">#FF0732A2</Color>

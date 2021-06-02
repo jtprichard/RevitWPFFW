@@ -63,7 +63,7 @@
     <Compile Include="Enumerations\ViewModels\CheckBoxEnum.cs" />
     <Compile Include="Enumerations\ViewModels\Combo1Enum.cs" />
     <Compile Include="Enumerations\ViewModels\PageType.cs" />
-    <Compile Include="Event Handlers\WPFEventHandler.cs" />
+    <Compile Include="Event Handlers\RevitWPFEventHandler.cs" />
     <Compile Include="PaneIdentifiers\DockablePaneIdentifier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Revit WPF Wrapper\ProjectEventWrapper.cs" />

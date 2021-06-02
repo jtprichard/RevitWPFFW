@@ -15,7 +15,9 @@ namespace RevitWPFFW.core
     {
         /// <summary>
         /// The Execute override void must be present in all methods wrapped by the RevitEventWrapper.
-        /// This defines what the method will do when raised externally.
+        /// Execution takes string argument with defines method to be called
+        /// Method currently does not allow for property arguments to be passed
+        /// To be developed
         /// </summary>
         public override void Execute(UIApplication uiApp, string args)
         {

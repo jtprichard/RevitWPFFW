@@ -18,7 +18,7 @@
     
     <Grid>
         <Grid.Background>
-            <SolidColorBrush Color="{StaticResource LavenderBackground}"></SolidColorBrush>
+            <SolidColorBrush Color="{StaticResource MainBackground}"></SolidColorBrush>
         </Grid.Background>
 
         <StackPanel>
@@ -37,8 +37,8 @@
             <!-- Trigger transaction command in Revit -->
             
             <Button Style="{StaticResource RoundedButton}"                 
-                    FontSize="18"
-                    Width="200"
+                    FontSize="12"
+                    Width="150"
                     Content="Transaction Trigger"
                     Command="{Binding TransactionCommand}"/>
 
