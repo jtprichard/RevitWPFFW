@@ -32,8 +32,6 @@ namespace RevitWPFFW.core
             {
                 if (_instance == null)
                     _instance = new Page1ViewModel();
-                else if (!_docInitialized && RevitDocument.GetCurrentDocument() != null)
-                    _instance.InitializeViewModel();
                 return _instance;
             }
         }
