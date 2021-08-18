@@ -121,7 +121,7 @@ namespace RevitWPFFW.ui
                 btnData.ToolTipImage = ResourceImage.GetIcon(TooltipImageName);
 
             if (null != SmallIconImageName)
-                btnData.Image = ResourceImage.GetIcon(IconImageName);
+                btnData.Image = ResourceImage.GetIcon(SmallIconImageName);
 
             if (null != AvailabilityClassName)
                 btnData.AvailabilityClassName = AvailabilityClassName;
