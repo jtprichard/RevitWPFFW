@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+	<!--DELETE ALL "ALL CAPS" INSTRUCTIONS AFTER UPDATING (INCLUDING THIS ONE!)	-->
+
+	<!--Unload Installer project, right click, then edit the project properties-->
+
+	<!--Give product a unique ID-->
+	<!--Insert new GUID here for every upgrade-->
+	<?define ProductCode = "{0C82A625-3024-4B62-BADB-3327E3D847EA}"?>
+
+	<!--Fixed Upgrade ID-->
+	<!--INSERT NEW GUID HERE INITIALLY-->
+	<?define UpgradeCode = "{E4E089A7-AF78-41FA-857B-476BC968B603}"?>
+
+	<!--Define Main Product-->
+	<Product Id="$(var.ProductCode)"
+	         Name="!(loc.ProductName)"
+	         Language="!(loc.Language)"
+	         Version="$(var.BuildVersion)"
+	         Manufacturer= "!(loc.Company)"
+	         UpgradeCode="$(var.UpgradeCode)">
+
+		<!--Provide package details-->
+		<Package InstallerVersion="200"
+		         Compressed="yes"
+		         InstallScope="perMachine"
+		         Manufacturer="!(loc.Company)"
+		         Description="!(loc.Description)"
+		         Keywords="!(loc.Keywords)"
+		         Comments="!(loc.Comments)"
+				 Languages="!(loc.Language)"
+		         />
+
+		<!--Downgrade Error Message-->
+		<MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeErrorMessage)"/>
+
+		<!--Include .cab file into .msi file-->
+		<MediaTemplate
+			EmbedCab="yes"/>
+
+		<!--Define main app icon-->
+		<!--REFERENCE ICON IN MAIN PROJECT FOLDER-->
+		<Icon Id="Icon.ico" SourceFile="$(var.RevitWPFFW.ProjectDir)\pb_icon.ico"/>
+
+		<!--Use the icon.ico icon for this installer (shows up in Add/Remove Programs)-->
+		<Property Id="ARPPRODUCTICON">Icon.ico</Property>
+
+		<!--Help/Support website (shows in the add/remove programs-->
+		<Property Id="ARPURLINFOABOUT">http://www.performancebim.com</Property>
+
+		<!--Create a basic UI for the installer-->
+		<UIRef Id="WixUI_Minimal"/>
+
+		<!--Change the installer ui background images-->
+		<!--Bitmap Image Sizes: background.bmp is 493 x 312  / banner.bmp is 493 x 58-->
+		<!--License is in rft format-->
+		<WixVariable Id="WixUIDialogBmp" Value="$(var.ProjectDir)\Assets\background.bmp"/>
+		<WixVariable Id="WixUIBannerBmp" Value="$(var.ProjectDir)\Assets\banner.bmp"/>
+		<WixVariable Id="WixUILicenseRtf" Value="$(var.ProjectDir)\Assets\license.rtf"/>
+
+
+		<!--Define components, shortcuts, files, etc... for installer-->
+		<!--CHANGE PRODUCT TITLE INFORMATION HERE-->
+		<Feature Id="ProductFeature" Title="RevitWPFFW" Level="1">
+
+			<!--Reference to Components.wxs component list hard coded-->
+			<ComponentGroupRef Id="ProductComponents" />
+
+			<!--This line used for HEAT element - currently not working-->
+			<!--<ComponentGroupRef Id="PublishedComponents" />-->
+
+		</Feature>
+	</Product>
+
+
+</Wix>
