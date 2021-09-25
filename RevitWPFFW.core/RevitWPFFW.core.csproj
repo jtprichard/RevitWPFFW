@@ -72,7 +72,9 @@
     <Compile Include="Revit WPF Wrapper\RevitEventWrapper.cs" />
     <Compile Include="Revit WPF Wrapper\WPFEventCommandArgs.cs" />
     <Compile Include="RevitControlledApplication.cs" />
+    <None Include="RevitDocument - ORIGINAL.cs" />
     <Compile Include="RevitDocument.cs" />
+    <Compile Include="ViewModels.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
     <Compile Include="ViewModels\Base\RelayCommand.cs" />
     <Compile Include="ViewModels\Project\MainPageViewModel.cs" />

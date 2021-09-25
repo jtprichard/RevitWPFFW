@@ -56,7 +56,7 @@ namespace RevitWPFFW.core
         /// <summary>
         /// Default Constructor
         /// </summary>
-        private Page1BViewModel() {}
+        internal Page1BViewModel() {}
         #endregion
 
         #region Private Methods

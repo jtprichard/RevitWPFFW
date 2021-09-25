@@ -1,6 +1,7 @@
 ﻿using System;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.ApplicationServices;
+using Autodesk.Revit.UI.Events;
 using Autodesk.Windows;
 using Autodesk.Revit.DB.Events;
 using RevitWPFFW.core;
@@ -22,15 +23,22 @@ namespace RevitWPFFW
         {
             //Store UIControlledApplication for use
             _ = new RevitControlledApplication(a);
-            
+
             //Register dockable panes on applicaiton initialization
             a.ControlledApplication.ApplicationInitialized += DockablePaneRegisters;
 
+            a.ViewActivated += OnViewActivated;
+
             //Register document opened properties
-            a.ControlledApplication.DocumentOpened += new EventHandler<DocumentOpenedEventArgs>(OnDocumentOpened);
+            a.ControlledApplication.DocumentOpened += OnDocumentOpened;
 
             //Register Event Handler to monitor selections
-            a.ControlledApplication.ApplicationInitialized += new EventHandler<ApplicationInitializedEventArgs>(MonitorSelectionInitialized);
+            //a.ControlledApplication.ApplicationInitialized += MonitorSelectionInitialized;
+        }
+
+        private static void OnViewActivated(object sender, ViewActivatedEventArgs e)
+        {
+            RevitDocument.SetCurrentDocument(e.Document);
         }
 
 
@@ -68,8 +76,8 @@ namespace RevitWPFFW
         private static void OnDocumentOpened(object sender, DocumentOpenedEventArgs args)
         // Document Opened Events
         {
-            //Instantiating the class automatically creates a static document for reference
-            _ = new RevitDocument(args.Document);
+            //Instantiate new RevitDocument object and associated ViewModels for reference
+            RevitDocument.SetCurrentDocument(args.Document);
 
             //Hide Dockable Pane on Startup
             var dpid = new DockablePaneId(DockablePaneIdentifier.GetMainPaneIdentifier());

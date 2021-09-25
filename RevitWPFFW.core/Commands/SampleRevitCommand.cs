@@ -29,6 +29,8 @@ namespace RevitWPFFW.core
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
 
+            var testdocs = RevitDocument.GetCurrentDocument();
+            
             TaskDialog.Show("Test Command", RevitRibbonViewModel.Instance.RibbonComboBox);
             
             return Result.Succeeded;

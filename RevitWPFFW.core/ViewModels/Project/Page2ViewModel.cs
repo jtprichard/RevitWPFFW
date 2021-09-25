@@ -41,7 +41,7 @@ namespace RevitWPFFW.core
         /// <summary>
         /// Default Constructor
         /// </summary>
-        private Page2ViewModel()
+        internal Page2ViewModel()
         {
             //Commands must be initialized at construction
             TransactionCommand = new RelayCommand(TransactionCommandMethod);
