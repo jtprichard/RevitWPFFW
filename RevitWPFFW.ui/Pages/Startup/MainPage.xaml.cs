@@ -19,7 +19,7 @@ namespace RevitWPFFW.ui
         {
             InitializeComponent();
             //DataContext = MainPageViewModel.Instance;
-            DataContext = RevitDocument.GetCurrentViewModels().MainViewModel;
+            DataContext = RevitDocument.CurrentViewModels.MainViewModel;
         }
         #endregion
 

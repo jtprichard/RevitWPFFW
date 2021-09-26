@@ -7,8 +7,8 @@ namespace RevitWPFFW.core
     public class Page1ViewModel : BaseViewModel
     {
         #region Private Fields
-        private static Page1ViewModel _instance = null;
-        private static bool _docInitialized = false;
+        //private static Page1ViewModel _instance = null;
+        //private static bool _docInitialized = false;
 
         private string _textbox1;
 
@@ -21,20 +21,20 @@ namespace RevitWPFFW.core
         #endregion
 
         #region Public Properties
-        /// <summary>
-        /// Instance of Page View Model
-        /// If no instance exists, create a new one
-        /// If the VM has not been initialized and the document is opened, initialize it
-        /// </summary>
-        public static Page1ViewModel Instance
-        {
-            get
-            {
-                if (_instance == null)
-                    _instance = new Page1ViewModel();
-                return _instance;
-            }
-        }
+        ///// <summary>
+        ///// Instance of Page View Model
+        ///// If no instance exists, create a new one
+        ///// If the VM has not been initialized and the document is opened, initialize it
+        ///// </summary>
+        //public static Page1ViewModel Instance
+        //{
+        //    get
+        //    {
+        //        if (_instance == null)
+        //            _instance = new Page1ViewModel();
+        //        return _instance;
+        //    }
+        //}
 
         /// <summary>
         /// Property for Page 1 TextBox1
@@ -106,10 +106,14 @@ namespace RevitWPFFW.core
         #endregion
 
         #region Constructor
+
         /// <summary>
         /// Default Constructor
         /// </summary>
-        public Page1ViewModel() {}
+        public Page1ViewModel()
+        {
+            InitializeViewModel();
+        }
         #endregion
 
         #region Private Methods
@@ -124,7 +128,7 @@ namespace RevitWPFFW.core
             this.Combo1 = PopulateCombo1();
             this.Combo1Selection = Combo1[0];
 
-            _docInitialized = true;
+            //_docInitialized = true;
         }
 
         /// <summary>
@@ -132,7 +136,8 @@ namespace RevitWPFFW.core
         /// </summary>
         private void PopulateTextBox1()
         {
-            _instance.TextBox1 = "Text 1 :";
+            //_instance.TextBox1 = "Text 1 :";
+            TextBox1 = "Text 1 :";
         }
 
         /// <summary>
@@ -140,7 +145,8 @@ namespace RevitWPFFW.core
         /// </summary>
         private void PopulateTextBox2()
         {
-            _instance.TextBox2 = "Text 2";
+            //_instance.TextBox2 = "Text 2";
+            TextBox2 = "Text 2";
         }
 
         /// <summary>
@@ -161,18 +167,26 @@ namespace RevitWPFFW.core
         #endregion
 
         #region Public Methods
-        /// <summary>
-        /// Public Method to Initialize Page ViewModel
-        /// </summary>
-        internal static void Initialize()
-        {
-            if (!_docInitialized && _instance != null)
-            {
-                _instance.InitializeViewModel();
+        ///// <summary>
+        ///// Public Method to Initialize Page ViewModel
+        ///// </summary>
+        //internal void Initialize()
+        //{
+        //    //if (!_docInitialized && _instance != null)
+        //    if(!_docInitialized)
+        //    {
+        //        //_instance.InitializeViewModel();
+        //        InitializeViewModel();
 
-                //Initialize Sub Views
-                Page1BViewModel.Initialize();
-            }
+        //        //Initialize Sub Views
+        //        Page1BViewModel.Initialize();
+        //    }
+        //}
+
+        public void Refresh()
+        {
+            OnPropertyChanged("");
+            OnPropertyChanged("TextBox1");
         }
 
         #endregion

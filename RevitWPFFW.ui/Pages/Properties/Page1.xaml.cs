@@ -24,7 +24,7 @@ namespace RevitWPFFW.ui
         public Page1()
         {
             InitializeComponent();
-            DataContext = RevitDocument.GetCurrentViewModels().Page1ViewModel;
+            DataContext = RevitDocument.CurrentViewModels.Page1ViewModel;
 
         }
 

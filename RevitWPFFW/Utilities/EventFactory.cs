@@ -87,7 +87,7 @@ namespace RevitWPFFW
                 dp.Hide();
 
             //Initialize WPF ViewModels for Initial Properties
-            MainPageViewModel.Initialize();
+            //MainPageViewModel.Initialize();
 
         }
 

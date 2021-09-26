@@ -32,12 +32,14 @@ namespace RevitWPFFW.core
             //Perform Tests on Selection Elements
             if (elementIds.Count() > 0)
             {
-                MainPageViewModel.SwitchToPage4();
+                //MainPageViewModel.SwitchToPage4();
+                RevitDocument.CurrentViewModels.MainViewModel.SwitchToPage4();
             }
 
             else
             {
-                MainPageViewModel.SwitchPageOffPage4();
+                //MainPageViewModel.SwitchPageOffPage4();
+                RevitDocument.CurrentViewModels.MainViewModel.SwitchPageOffPage4();
             }
 
             return false;

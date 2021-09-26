@@ -8,7 +8,7 @@ namespace RevitWPFFW.core
     public class MainPageViewModel:BaseViewModel
     {
         #region Private Fields
-        private static MainPageViewModel _instance = null;
+        //private static MainPageViewModel _instance = null;
         private static bool _docInitialized = false;
 
         private PageType _currentPage = PageType.Page1;
@@ -21,15 +21,15 @@ namespace RevitWPFFW.core
         /// If no instance exists, create a new one
         /// If the VM has not been initialized and the document is opened, initialize it
         /// </summary>
-        public static MainPageViewModel Instance
-        {
-            get
-            {
-                if (_instance == null)
-                    _instance = new MainPageViewModel();
-                return _instance;
-            }
-        }
+        //public static MainPageViewModel Instance
+        //{
+        //    get
+        //    {
+        //        if (_instance == null)
+        //            _instance = new MainPageViewModel();
+        //        return _instance;
+        //    }
+        //}
 
         /// <summary>
         /// Access to the Current Page
@@ -63,6 +63,8 @@ namespace RevitWPFFW.core
             Page1Command = new RelayCommand(Page1CommandMethod);
             Page2Command = new RelayCommand(Page2CommandMethod);
             Page3Command = new RelayCommand(Page3CommandMethod);
+
+            InitializeViewModel();
         }
         #endregion
 
@@ -116,60 +118,85 @@ namespace RevitWPFFW.core
         /// <summary>
         /// Initialize Properties in View Models to Default Values
         /// </summary>
-        public static void Initialize()
+        //public static void Initialize()
+        public void Initialize()
         {
-            if (!_docInitialized && _instance != null)
+            //if (!_docInitialized && _instance != null)
+            if(!_docInitialized)
             {
                 //Initialize This View Model
-                _instance.InitializeViewModel();
+                //_instance.InitializeViewModel();
+                InitializeViewModel();
+                
 
                 //Initialize Other View Models
-                Page1ViewModel.Initialize();
+                //Page1ViewModel.Initialize();
                 Page2ViewModel.Initialize();
             }
 
         }
 
+        public void Refresh()
+        {
+            //_instance.OnPropertyChanged("CurrentPage");
+            //var tempPage = CurrentPage;
+            //CurrentPage = tempPage;
+            SwitchToPage2();
+            
+
+            //OnPropertyChanged("CurrentPage");
+        }
+
         /// <summary>
         /// Allows external call to switch to Page 1
         /// </summary>
-        public static void SwitchToPage1()
+        //public static void SwitchToPage1()
+        public void SwitchToPage1()
         {
-            _instance.CurrentPage = PageType.Page1;
+            //_instance.CurrentPage = PageType.Page1;
+            CurrentPage = PageType.Page1;
         }
 
         /// <summary>
         /// Allows external call to switch to Page 2
         /// </summary>
-        public static void SwitchToPage2()
+        //public static void SwitchToPage2()
+        public void SwitchToPage2()
         {
-            _instance.CurrentPage = PageType.Page2;
+            //_instance.CurrentPage = PageType.Page2;
+            CurrentPage = PageType.Page2;
         }
 
         /// <summary>
         /// Allows external call to switch to Page 3
         /// </summary>
-        public static void SwitchToPage3()
+        //public static void SwitchToPage3()
+        public void SwitchToPage3()
         {
-            _instance.CurrentPage = PageType.Page3;
+            //_instance.CurrentPage = PageType.Page3;
+            CurrentPage = PageType.Page3;
         }
 
         /// <summary>
         /// Allows external call to switch to Page 4
         /// Page 4 currently set up for monitor selection
         /// </summary>
-        public static void SwitchToPage4()
+        //public static void SwitchToPage4()
+        public void SwitchToPage4()
         {
-            _instance.CurrentPage = PageType.Page4;
+            //_instance.CurrentPage = PageType.Page4;
+            CurrentPage = PageType.Page4;
         }
 
         /// <summary>
         /// Selection Monitoring call to move away from Page 4
         /// When no selection is made
         /// </summary>
-        public static void SwitchPageOffPage4()
+        //public static void SwitchPageOffPage4()
+        public void SwitchPageOffPage4()
         {
-            if (_instance.CurrentPage == PageType.Page4)
+            //if (_instance.CurrentPage == PageType.Page4)
+            if(CurrentPage == PageType.Page4)
                 SwitchToPage1();
         }
 

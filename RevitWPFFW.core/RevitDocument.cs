@@ -32,15 +32,21 @@ namespace RevitWPFFW.core
         /// <summary>
         /// The current Revit document
         /// </summary>
-        private Document CurrentDocument { get; set; }
+        private Document Document { get; set; }
         /// <summary>
         /// The current ViewModel
         /// </summary>
-        private ViewModels CurrentViewModels { get; set; }
+        private ViewModels ViewModels { get; set; }
         /// <summary>
         /// The Document Hashcode
         /// </summary>
         private int DocumentHashCode { get; }
+
+        public static ViewModels CurrentViewModels
+        {
+            get { return GetCurrentViewModels(); }
+            set { _currentViewModels = value; }
+        }
 
         #endregion
 
@@ -53,8 +59,8 @@ namespace RevitWPFFW.core
         private RevitDocument(Document doc)
         {
             //Assign document and new viewmodels
-            CurrentDocument = doc;
-            CurrentViewModels = new ViewModels();
+            Document = doc;
+            ViewModels = new ViewModels();
 
             //Store the hashcode for the document to retrieve it from the list later
             DocumentHashCode = doc.GetHashCode();
@@ -68,7 +74,7 @@ namespace RevitWPFFW.core
 
             //Set the static document and viewmodel objects to the new RevitDocument object
             _document = doc;
-            _currentViewModels = CurrentViewModels;
+            CurrentViewModels = ViewModels;
         }
 
         #endregion
@@ -104,7 +110,7 @@ namespace RevitWPFFW.core
         /// </summary>
         private void SetCurrentDocument()
         {
-            _document = this.CurrentDocument;
+            _document = this.Document;
         }
 
         /// <summary>
@@ -112,7 +118,8 @@ namespace RevitWPFFW.core
         /// </summary>
         private void SetCurrentViewModels()
         {
-            _currentViewModels = this.CurrentViewModels;
+            CurrentViewModels = this.ViewModels;
+            CurrentViewModels.MainViewModel.Refresh();
         }
 
         /// <summary>
@@ -131,7 +138,7 @@ namespace RevitWPFFW.core
         /// Returns teh current ViewModels objects
         /// </summary>
         /// <returns></returns>
-        public static ViewModels GetCurrentViewModels()
+        private static ViewModels GetCurrentViewModels()
         {
             if (_currentViewModels == null)
                 _currentViewModels = new ViewModels();
