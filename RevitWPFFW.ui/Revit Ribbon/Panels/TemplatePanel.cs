@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using Autodesk.Revit.UI;
 using RevitWPFFW.core;
 using RevitWPFFW.res;
@@ -55,9 +56,9 @@ namespace RevitWPFFW.ui
                 Panel = panel,
                 Tooltip = "Tooltip Sample",
                 CommandNamespacePath = ShowDockablePaneCommand.GetPath(),
-                IconImageName = "blank_button.png",
-                TooltipImageName = "blank_button.png",
-                SmallIconImageName = "blank_button_16x16.png",
+                IconImageName = ImageNames.BlankButton,
+                TooltipImageName = ImageNames.BlankButton,
+                SmallIconImageName = ImageNames.BlankButtonSmall,
                 LongDescription = "This is a long description for the ToolTip",
                 AvailabilityClassName = AvailabilityProj.GetPath()
             };
@@ -79,9 +80,9 @@ namespace RevitWPFFW.ui
                 Panel = panel,
                 Tooltip = "Tooltip Sample",
                 CommandNamespacePath = SampleRevitCommand.GetPath(),
-                IconImageName = "blank_button.png",
-                TooltipImageName = "blank_button.png",
-                SmallIconImageName = "blank_button_16x16.png",
+                IconImageName = ImageNames.BlankButton,
+                TooltipImageName = ImageNames.BlankButton,
+                SmallIconImageName = ImageNames.BlankButtonSmall,
                 LongDescription = "This is a long description for the ToolTip",
                 AvailabilityClassName = AvailabilityProj.GetPath()
             });
@@ -92,9 +93,9 @@ namespace RevitWPFFW.ui
                 Panel = panel,
                 Tooltip = "Tooltip Sample",
                 CommandNamespacePath = SampleRevitCommand.GetPath(),
-                IconImageName = "blank_button.png",
-                TooltipImageName = "blank_button.png",
-                SmallIconImageName = "blank_button_16x16.png",
+                IconImageName = ImageNames.BlankButton,
+                TooltipImageName = ImageNames.BlankButton,
+                SmallIconImageName = ImageNames.BlankButtonSmall,
                 LongDescription = "This is a long description for the ToolTip",
                 AvailabilityClassName = AvailabilityProj.GetPath()
             });
@@ -105,9 +106,9 @@ namespace RevitWPFFW.ui
                 Panel = panel,
                 Tooltip = "Tooltip Sample",
                 CommandNamespacePath = SampleRevitCommand.GetPath(),
-                IconImageName = "blank_button.png",
-                TooltipImageName = "blank_button.png",
-                SmallIconImageName = "blank_button_16x16.png",
+                IconImageName = ImageNames.BlankButton,
+                TooltipImageName = ImageNames.BlankButton,
+                SmallIconImageName = ImageNames.BlankButtonSmall,
                 LongDescription = "This is a long description for the ToolTip",
                 AvailabilityClassName = AvailabilityProj.GetPath()
             });
@@ -131,8 +132,8 @@ namespace RevitWPFFW.ui
             //Add Textbox Properties
             textBox.ToolTip = "Tooltip Sample";
             textBox.LongDescription = "This is a long description for the ToolTip";
-            textBox.Image = ResourceImage.GetIcon("checkmark_16x16.png");
-            textBox.ToolTipImage = ResourceImage.GetIcon("blank_button_16x16.png");
+            textBox.Image = ResourceImage.GetIcon(ImageNames.CheckMarkSmall);
+            textBox.ToolTipImage = ResourceImage.GetIcon(ImageNames.BlankButtonSmall);
             textBox.PromptText = "Prompt";
             textBox.Width = 150;
             textBox.ShowImageAsButton = true;
@@ -152,7 +153,7 @@ namespace RevitWPFFW.ui
             comboBox.ItemText = "Combo Box";
             comboBox.ToolTip = "Tooltip Sample";
             comboBox.LongDescription = "This is a long description for the ToolTip";
-            comboBox.Image = ResourceImage.GetIcon("blank_button_16x16.png");
+            comboBox.Image = ResourceImage.GetIcon(ImageNames.BlankButtonSmall);
 
             //Create a list of ComboBox Members
             var comboMemberData = new List<ComboBoxMemberData>();
@@ -160,37 +161,37 @@ namespace RevitWPFFW.ui
             //Create ComboBox Members
             comboMemberData.Add(new ComboBoxMemberData("Select1", "Selection 1")
             {
-                Image = ResourceImage.GetIcon("blank_button_16x16.png"),
+                Image = ResourceImage.GetIcon(ImageNames.BlankButtonSmall),
                 GroupName = "Group 1"
             });
 
             comboMemberData.Add(new ComboBoxMemberData("Select2", "Selection 2")
             {
-                Image = ResourceImage.GetIcon("blank_button_16x16.png"),
+                Image = ResourceImage.GetIcon(ImageNames.BlankButtonSmall),
                 GroupName = "Group 1"
             });
 
             comboMemberData.Add(new ComboBoxMemberData("Select3", "Selection 3")
             {
-                Image = ResourceImage.GetIcon("blank_button_16x16.png"),
+                Image = ResourceImage.GetIcon(ImageNames.BlankButtonSmall),
                 GroupName = "Group 1"
             });
 
             comboMemberData.Add(new ComboBoxMemberData("Select4", "Selection 4")
             {
-                Image = ResourceImage.GetIcon("blank_button_16x16.png"),
+                Image = ResourceImage.GetIcon(ImageNames.BlankButtonSmall),
                 GroupName = "Group 1"
             });
 
             comboMemberData.Add(new ComboBoxMemberData("SelectA", "Selection A")
             {
-                Image = ResourceImage.GetIcon("blank_button_16x16.png"),
+                Image = ResourceImage.GetIcon(ImageNames.BlankButtonSmall),
                 GroupName = "Group 2"
             });
 
             comboMemberData.Add(new ComboBoxMemberData("SelectB", "Selection B")
             {
-                Image = ResourceImage.GetIcon("blank_button_16x16.png"),
+                Image = ResourceImage.GetIcon(ImageNames.BlankButtonSmall),
                 GroupName = "Group 2"
             });
 
@@ -224,9 +225,9 @@ namespace RevitWPFFW.ui
                 Panel = panel,
                 Tooltip = "Tooltip Sample",
                 CommandNamespacePath = SampleRevitCommand.GetPath(),
-                IconImageName = "blank_button_16x16.png",
-                TooltipImageName = "blank_button.png",
-                SmallIconImageName = "blank_button_16x16.png",
+                IconImageName = ImageNames.BlankButtonSmall,
+                TooltipImageName = ImageNames.BlankButton,
+                SmallIconImageName = ImageNames.BlankButtonSmall,
                 LongDescription = "This is a long description for the ToolTip",
                 AvailabilityClassName = AvailabilityProj.GetPath()
             };
@@ -238,9 +239,9 @@ namespace RevitWPFFW.ui
                 Panel = panel,
                 Tooltip = "Tooltip Sample",
                 CommandNamespacePath = SampleRevitCommand.GetPath(),
-                IconImageName = "blank_button_16x16.png",
-                TooltipImageName = "blank_button.png",
-                SmallIconImageName = "blank_button_16x16.png",
+                IconImageName = ImageNames.BlankButtonSmall,
+                TooltipImageName = ImageNames.BlankButton,
+                SmallIconImageName = ImageNames.BlankButtonSmall,
                 LongDescription = "This is a long description for the ToolTip",
                 AvailabilityClassName = AvailabilityProj.GetPath()
             };
@@ -252,9 +253,9 @@ namespace RevitWPFFW.ui
                 Panel = panel,
                 Tooltip = "Tooltip Sample",
                 CommandNamespacePath = SampleRevitCommand.GetPath(),
-                IconImageName = "blank_button_16x16.png",
-                TooltipImageName = "blank_button.png",
-                SmallIconImageName = "blank_button_16x16.png",
+                IconImageName = ImageNames.BlankButtonSmall,
+                TooltipImageName = ImageNames.BlankButton,
+                SmallIconImageName = ImageNames.BlankButtonSmall,
                 LongDescription = "This is a long description for the ToolTip",
                 AvailabilityClassName = AvailabilityProj.GetPath()
             };

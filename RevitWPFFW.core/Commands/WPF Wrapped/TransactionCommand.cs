@@ -19,7 +19,7 @@ namespace RevitWPFFW.core
         public override void Execute()
         {
 
-            using (Transaction tx = new Transaction(RevitDocument.GetCurrentDocument()))
+            using (Transaction tx = new Transaction(RevitDocument.CurrentDocument))
             {
                 tx.Start("Transaction Name");
 

@@ -15,7 +15,7 @@ namespace RevitWPFFW.core
         /// <summary>
         /// Current Document
         /// </summary>
-        private static Document _document;
+        private static Document _currentDocument;
         /// <summary>
         /// Current set of viewmodels
         /// </summary>
@@ -42,6 +42,11 @@ namespace RevitWPFFW.core
         /// </summary>
         private int DocumentHashCode { get; }
 
+        public static Document CurrentDocument
+        {
+            get { return GetCurrentDocument(); }
+            set { _currentDocument = value; }
+        }
         public static ViewModels CurrentViewModels
         {
             get { return GetCurrentViewModels(); }
@@ -60,7 +65,7 @@ namespace RevitWPFFW.core
         {
             //Assign document and new viewmodels
             Document = doc;
-            ViewModels = new ViewModels();
+            ViewModels = new ViewModels("From Constructor");
 
             //Store the hashcode for the document to retrieve it from the list later
             DocumentHashCode = doc.GetHashCode();
@@ -73,8 +78,10 @@ namespace RevitWPFFW.core
             _documents.Add(this);
 
             //Set the static document and viewmodel objects to the new RevitDocument object
-            _document = doc;
+            _currentDocument = doc;
             CurrentViewModels = ViewModels;
+            SetCurrentViewModels();
+
         }
 
         #endregion
@@ -110,7 +117,7 @@ namespace RevitWPFFW.core
         /// </summary>
         private void SetCurrentDocument()
         {
-            _document = this.Document;
+            _currentDocument = this.Document;
         }
 
         /// <summary>
@@ -119,6 +126,7 @@ namespace RevitWPFFW.core
         private void SetCurrentViewModels()
         {
             CurrentViewModels = this.ViewModels;
+            ViewModels.SetCurrentViewModels(CurrentViewModels);
             CurrentViewModels.MainViewModel.Refresh();
         }
 
@@ -126,22 +134,22 @@ namespace RevitWPFFW.core
         /// Returns the current Revit document
         /// </summary>
         /// <returns></returns>
-        public static Document GetCurrentDocument()
+        private static Document GetCurrentDocument()
         {
-            if (_document == null)
+            if (_currentDocument == null)
                 return null;
 
-            return _document;
+            return _currentDocument;
         }
 
         /// <summary>
-        /// Returns teh current ViewModels objects
+        /// Returns the current ViewModels objects
         /// </summary>
         /// <returns></returns>
         private static ViewModels GetCurrentViewModels()
         {
             if (_currentViewModels == null)
-                _currentViewModels = new ViewModels();
+                _currentViewModels = new ViewModels("From GetCurrentViewModels");
             
             return _currentViewModels;
         }

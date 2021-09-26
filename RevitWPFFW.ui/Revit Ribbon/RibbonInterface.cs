@@ -59,6 +59,7 @@ namespace RevitWPFFW.ui
 
             //Create Ribbon Panels from Static Classes for Each Panel
             _ = new TemplatePanel().Create(uiapp, tabName);
+            _ = new TestRibbonPanel().Create(uiapp, tabName);
 
         }
 

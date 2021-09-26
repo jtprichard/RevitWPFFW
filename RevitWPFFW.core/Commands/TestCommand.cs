@@ -1,11 +1,14 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
+
+
 
 namespace RevitWPFFW.core
 {
@@ -15,8 +18,9 @@ namespace RevitWPFFW.core
     /// <seealso cref="Autodesk.Revit.UI.IExternalCommand"/>
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]
-    public class SampleRevitCommand : IExternalCommand
+    public class TestCommand : IExternalCommand
     {
+        Document _doc;
         #region Command Execution
         /// <summary>
         /// Executes the specified command data
@@ -28,11 +32,30 @@ namespace RevitWPFFW.core
         /// <exception cref="System.NotImplementedException"></exception>
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
+            //Get UI Document
+            var uidoc = commandData.Application.ActiveUIDocument;
+            var uiapp = uidoc.Application;
 
-            var testdocs = RevitDocument.CurrentDocument;
-            
-            TaskDialog.Show("Test Command", RevitRibbonViewModel.Instance.RibbonComboBox);
-            
+            //Get Document
+            var doc = uidoc.Document;
+            _doc = doc;
+
+            Element ele;
+
+            using (Transaction t = new Transaction(doc, "TestCommand"))
+            {
+                t.Start();
+
+                var currentRevitDocument = RevitDocument.CurrentDocument;
+                var currentMainViewModel = ViewModels.CurrentViewModels;
+
+                MainPageViewModel.Refresh2();
+
+
+                t.Commit();
+
+            }
+   
             return Result.Succeeded;
         }
 
@@ -51,7 +74,7 @@ namespace RevitWPFFW.core
         public static string GetPath()
         {
             //return constructed namespace path
-            return typeof(SampleRevitCommand).Namespace + "." + nameof(SampleRevitCommand);
+            return typeof(TestCommand).Namespace + "." + nameof(TestCommand);
         }
 
         #endregion

@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Diagnostics;
+using System.Windows.Input;
 
 namespace RevitWPFFW.core
 {
@@ -13,9 +14,14 @@ namespace RevitWPFFW.core
 
         private PageType _currentPage = PageType.Page1;
 
+        private string _documentData = "";
+
+        private static int _counter = 0;
+
         #endregion
 
         #region Public Properties
+
         /// <summary>
         /// Instance of Main Page View Model
         /// If no instance exists, create a new one
@@ -30,6 +36,13 @@ namespace RevitWPFFW.core
         //        return _instance;
         //    }
         //}
+
+        //PROPERTY FOR TESTING
+        public string DocumentData
+        {
+            get { return _documentData; }
+            set { _documentData = value; OnPropertyChanged("DocumentData"); }
+        }
 
         /// <summary>
         /// Access to the Current Page
@@ -57,12 +70,15 @@ namespace RevitWPFFW.core
         /// <summary>
         /// Default Constructor
         /// </summary>
-        public MainPageViewModel()
+        public MainPageViewModel(string docData)
         {
             //Commands must be initialized at construction
             Page1Command = new RelayCommand(Page1CommandMethod);
             Page2Command = new RelayCommand(Page2CommandMethod);
             Page3Command = new RelayCommand(Page3CommandMethod);
+
+            _counter++;
+            DocumentData = docData + " Counter: " + _counter;
 
             InitializeViewModel();
         }
@@ -145,6 +161,12 @@ namespace RevitWPFFW.core
             
 
             //OnPropertyChanged("CurrentPage");
+        }
+
+        public static void Refresh2()
+        {
+            var curVM = RevitDocument.CurrentViewModels.MainViewModel;
+            curVM.SwitchToPage3();
         }
 
         /// <summary>

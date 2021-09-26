@@ -19,7 +19,8 @@ namespace RevitWPFFW.ui
         {
             InitializeComponent();
             //DataContext = MainPageViewModel.Instance;
-            DataContext = RevitDocument.CurrentViewModels.MainViewModel;
+            //DataContext = RevitDocument.CurrentViewModels.MainViewModel;
+            DataContext = ViewModels.CurrentViewModels;
         }
         #endregion
 
@@ -45,7 +46,7 @@ namespace RevitWPFFW.ui
             data.InitialState = new DockablePaneState
             {
                 DockPosition = DockPosition.Right,
-                MinimumWidth = 200,
+                MinimumWidth = 300,
                 MinimumHeight = 200,
             };
         }
