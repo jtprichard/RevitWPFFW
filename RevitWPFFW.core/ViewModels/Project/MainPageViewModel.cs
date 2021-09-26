@@ -165,7 +165,7 @@ namespace RevitWPFFW.core
 
         public static void Refresh2()
         {
-            var curVM = RevitDocument.CurrentViewModels.MainViewModel;
+            var curVM = ViewModels.MainPageViewModel;
             curVM.SwitchToPage3();
         }
 

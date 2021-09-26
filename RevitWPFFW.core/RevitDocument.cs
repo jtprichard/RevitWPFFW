@@ -66,6 +66,7 @@ namespace RevitWPFFW.core
             //Assign document and new viewmodels
             Document = doc;
             ViewModels = new ViewModels("From Constructor");
+            ViewModels.SetMainPageViewModel(new MainPageViewModel("From Document Creation"));
 
             //Store the hashcode for the document to retrieve it from the list later
             DocumentHashCode = doc.GetHashCode();
@@ -81,6 +82,7 @@ namespace RevitWPFFW.core
             _currentDocument = doc;
             CurrentViewModels = ViewModels;
             SetCurrentViewModels();
+
 
         }
 
@@ -127,7 +129,9 @@ namespace RevitWPFFW.core
         {
             CurrentViewModels = this.ViewModels;
             ViewModels.SetCurrentViewModels(CurrentViewModels);
-            CurrentViewModels.MainViewModel.Refresh();
+            //ViewModels.MainPageViewModel.Refresh();
+            ViewModels.MainPageViewModel.SwitchToPage4();
+            ViewModels.MainPageViewModel.SwitchToPage1();
         }
 
         /// <summary>

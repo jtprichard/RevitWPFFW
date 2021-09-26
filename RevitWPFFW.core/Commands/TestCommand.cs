@@ -47,9 +47,9 @@ namespace RevitWPFFW.core
                 t.Start();
 
                 var currentRevitDocument = RevitDocument.CurrentDocument;
-                var currentMainViewModel = ViewModels.CurrentViewModels;
+                var currentMainViewModel = ViewModels.MainPageViewModel;
 
-                MainPageViewModel.Refresh2();
+                currentMainViewModel.SwitchToPage2();
 
 
                 t.Commit();

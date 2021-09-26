@@ -33,13 +33,13 @@ namespace RevitWPFFW.core
             if (elementIds.Count() > 0)
             {
                 //MainPageViewModel.SwitchToPage4();
-                RevitDocument.CurrentViewModels.MainViewModel.SwitchToPage4();
+                ViewModels.MainPageViewModel.SwitchToPage4();
             }
 
             else
             {
                 //MainPageViewModel.SwitchPageOffPage4();
-                RevitDocument.CurrentViewModels.MainViewModel.SwitchPageOffPage4();
+                ViewModels.MainPageViewModel.SwitchPageOffPage4();
             }
 
             return false;
