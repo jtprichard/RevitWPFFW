@@ -18,6 +18,9 @@ namespace RevitWPFFW.core
         private Combo1Data _selectedCombo1;
         
 
+        //FOR TESTING
+        private string _documentData;
+
         #endregion
 
         #region Public Properties
@@ -35,6 +38,13 @@ namespace RevitWPFFW.core
         //        return _instance;
         //    }
         //}
+
+        //FOR TESTING
+        public string DocumentData
+        {
+            get { return _documentData; }
+            set { _documentData = value; OnPropertyChanged("DocumentData"); }
+        }
 
         /// <summary>
         /// Property for Page 1 TextBox1
@@ -110,8 +120,9 @@ namespace RevitWPFFW.core
         /// <summary>
         /// Default Constructor
         /// </summary>
-        public Page1ViewModel()
+        public Page1ViewModel(string docData)
         {
+            DocumentData = docData;
             InitializeViewModel();
         }
         #endregion

@@ -46,10 +46,19 @@ namespace RevitWPFFW.core
             {
                 t.Start();
 
-                var currentRevitDocument = RevitDocument.CurrentDocument;
-                var currentMainViewModel = ViewModels.MainPageViewModel;
+                var currentDocument = RevitDocument.CurrentDocument;
+                var documents = RevitDocument.Documents;
 
-                currentMainViewModel.SwitchToPage2();
+                var currentMainViewModel = ViewModels.MainPageViewModel;
+                var currentViewModels = ViewModels.CurrentViewModels;
+
+                //currentMainViewModel.SwitchToPage1();
+                currentMainViewModel.Refresh();
+
+                //if(currentMainViewModel.CurrentPage == PageType.Page1)
+                //    currentMainViewModel.SwitchToPage2();
+                //else
+                //    currentMainViewModel.SwitchToPage1();
 
 
                 t.Commit();

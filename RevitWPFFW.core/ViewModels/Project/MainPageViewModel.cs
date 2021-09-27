@@ -155,19 +155,16 @@ namespace RevitWPFFW.core
         public void Refresh()
         {
             //_instance.OnPropertyChanged("CurrentPage");
-            //var tempPage = CurrentPage;
-            //CurrentPage = tempPage;
-            SwitchToPage2();
+            var tempPage = CurrentPage;
+            CurrentPage = tempPage;
+            
+            
+            //SwitchToPage1();
             
 
             //OnPropertyChanged("CurrentPage");
         }
 
-        public static void Refresh2()
-        {
-            var curVM = ViewModels.MainPageViewModel;
-            curVM.SwitchToPage3();
-        }
 
         /// <summary>
         /// Allows external call to switch to Page 1
