@@ -27,6 +27,12 @@
                    Foreground="{StaticResource DarkGrayFontBrush}"
                    >Page 1A</TextBlock>
 
+            <TextBlock HorizontalAlignment="Center"
+                       x:Name="DocumentText"
+                       Text="{Binding Path=DocumentData, UpdateSourceTrigger=PropertyChanged}">
+
+            </TextBlock>
+
             <!-- ComboBox Sample -->
             <!-- Binding uses same ViewModel as Base Page1-->
             <Grid>

@@ -1,43 +1,44 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
+using System.Linq;
 
 namespace RevitWPFFW.core
 {
     public class Page1ViewModel : BaseViewModel
     {
         #region Private Fields
-        //private static Page1ViewModel _instance = null;
-        //private static bool _docInitialized = false;
+        private static Page1ViewModel _currentViewModel = null;
+        private static bool _docInitialized = false;
+        private static IList<Page1ViewModel> _viewModels;
 
+        private int _documentHashCode;
+
+        //Sample control fields
         private string _textbox1;
-
         private string _textbox2;
-
         private ObservableCollection<Combo1Data> _combo1Items;
         private Combo1Data _selectedCombo1;
         
-
         //FOR TESTING
         private string _documentData;
 
         #endregion
 
         #region Public Properties
-        ///// <summary>
-        ///// CurrentViewModel of Page View Model
-        ///// If no instance exists, create a new one
-        ///// If the VM has not been initialized and the document is opened, initialize it
-        ///// </summary>
-        //public static Page1ViewModel CurrentViewModel
-        //{
-        //    get
-        //    {
-        //        if (_instance == null)
-        //            _instance = new Page1ViewModel();
-        //        return _instance;
-        //    }
-        //}
+        /// <summary>
+        /// CurrentViewModel of Page View Model
+        /// If no instance exists, create a new one
+        /// </summary>
+        public static Page1ViewModel CurrentViewModel
+        {
+            get
+            {
+                if (_currentViewModel == null)
+                    _currentViewModel = new Page1ViewModel(0);
+                return _currentViewModel;
+            }
+        }
 
         //FOR TESTING
         public string DocumentData
@@ -45,6 +46,20 @@ namespace RevitWPFFW.core
             get { return _documentData; }
             set { _documentData = value; OnPropertyChanged("DocumentData"); }
         }
+
+        /// <summary>
+        /// Document hash code for current viewmodel
+        /// </summary>
+        public int DocumentHashCode
+        {
+            get { return _documentHashCode; }
+            set { _documentHashCode = value; OnPropertyChanged("DocumentHashCode"); }
+        }
+
+        /// <summary>
+        /// Static list of viewmodels
+        /// </summary>
+        public static IList<Page1ViewModel> ViewModels => _viewModels;
 
         /// <summary>
         /// Property for Page 1 TextBox1
@@ -115,31 +130,65 @@ namespace RevitWPFFW.core
 
         #endregion
 
-        #region Constructor
 
+        #region Constructor
         /// <summary>
         /// Default Constructor
         /// </summary>
-        public Page1ViewModel(string docData)
+        public Page1ViewModel(int documentHashCode)
         {
-            DocumentData = docData;
-            InitializeViewModel();
+            DocumentData = "Document Hashcode: " + documentHashCode.ToString();
+            DocumentHashCode = documentHashCode;
+
+            //Initialize viewmodel
+            Initialize();
+
+            //If list of viewmodels is null, create a new list
+            if (_viewModels == null)
+                _viewModels = new List<Page1ViewModel>();
+
+            //Add viewmodel to list of viewmodels
+            _viewModels.Add(this);
         }
         #endregion
 
         #region Private Methods
         /// <summary>
+        /// Test and Initialize Page Viewmodel
+        /// </summary>
+        private void Initialize()
+        {
+            //Test for document initialization here.
+            //Required if viewmodel data is coming from the Revit document
+            if (DocumentHashCode != 0)
+                InitializeViewModel();
+        }
+
+        /// <summary>
         /// Initialize the View Model Properties
         /// </summary>
         private void InitializeViewModel()
         {
+            //Inititalize and Populate Properties Here
             PopulateTextBox1();
             PopulateTextBox2();
 
-            this.Combo1 = PopulateCombo1();
-            this.Combo1Selection = Combo1[0];
+            Combo1 = PopulateCombo1();
+            Combo1Selection = Combo1[0];
 
-            //_docInitialized = true;
+            //Initialize sub viewmodels
+            //Note if you do this here, be sure it is updated in the RevitDocument or below in the SetCurrentViewmodel method
+            //Page1BViewModel.SetCurrentViewModel(DocumentHashCode);
+
+            _docInitialized = true;
+        }
+
+        /// <summary>
+        /// Sets the current static viewmodel to this viewmodel
+        /// </summary>
+        private void SetCurrentViewModel()
+        {
+            _currentViewModel = this;
         }
 
         /// <summary>
@@ -178,26 +227,21 @@ namespace RevitWPFFW.core
         #endregion
 
         #region Public Methods
-        ///// <summary>
-        ///// Public Method to Initialize Page ViewModel
-        ///// </summary>
-        //internal void Initialize()
-        //{
-        //    //if (!_docInitialized && _instance != null)
-        //    if(!_docInitialized)
-        //    {
-        //        //_instance.InitializeViewModel();
-        //        InitializeViewModel();
-
-        //        //Initialize Sub Views
-        //        Page1BViewModel.Initialize();
-        //    }
-        //}
-
-        public void Refresh()
+        /// <summary>
+        /// Sets the current static viewmodel to the viewmodel associated with the document hashcode provided
+        /// </summary>
+        /// <param name="hashCode">Document hashcode as integer</param>
+        public static void SetCurrentViewModel(int hashCode)
         {
-            OnPropertyChanged("");
-            OnPropertyChanged("TextBox1");
+            if (_viewModels == null)
+                _ = new Page1ViewModel(-1);
+
+            var retrievedViewModel = _viewModels.FirstOrDefault(x => x.DocumentHashCode == hashCode);
+
+            if (retrievedViewModel == null)
+                retrievedViewModel = new Page1ViewModel(hashCode);
+
+            retrievedViewModel.SetCurrentViewModel();
         }
 
         #endregion

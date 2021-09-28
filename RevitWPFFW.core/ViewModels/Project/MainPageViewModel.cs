@@ -1,22 +1,21 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 
 namespace RevitWPFFW.core
 {
     /// <summary>
     /// View Model for WPF Main Page
+    /// See warnings below regarding creating additional instances of this viewmodel
     /// </summary>
     public class MainPageViewModel:BaseViewModel
     {
         #region Private Fields
-        //private static MainPageViewModel _instance = null;
-        private static bool _docInitialized = false;
+        private static MainPageViewModel _currentViewModel = null;
+        private static IList<MainPageViewModel> _viewModels;
 
         private PageType _currentPage = PageType.Page1;
-
-        private string _documentData = "";
-
-        private static int _counter = 0;
+        private int _documentHashCode;
 
         #endregion
 
@@ -25,39 +24,44 @@ namespace RevitWPFFW.core
         /// <summary>
         /// CurrentViewModel of Main Page View Model
         /// If no instance exists, create a new one
-        /// If the VM has not been initialized and the document is opened, initialize it
         /// </summary>
-        //public static MainPageViewModel CurrentViewModel
-        //{
-        //    get
-        //    {
-        //        if (_instance == null)
-        //            _instance = new MainPageViewModel();
-        //        return _instance;
-        //    }
-        //}
-
-        //PROPERTY FOR TESTING
-        public string DocumentData
+        public static MainPageViewModel CurrentViewModel
         {
-            get { return _documentData; }
-            set { _documentData = value; OnPropertyChanged("DocumentData"); }
+            get
+            {
+                if (_currentViewModel == null)
+                    _currentViewModel = new MainPageViewModel(0);
+                return _currentViewModel;
+            }
         }
+
+        /// <summary>
+        /// Stores the document hash code for times when multiple
+        /// instances are required.  See warnings regarding multiple instances.
+        /// </summary>
+        public int DocumentHashCode
+        {
+            get { return _documentHashCode; }
+            set { _documentHashCode = value; OnPropertyChanged("DocumentHashCode"); }
+        }
+
+        /// <summary>
+        /// Stores a list of instantiated viewmodels
+        /// </summary>
+        public static IList<MainPageViewModel> ViewModels => _viewModels;
 
         /// <summary>
         /// Access to the Current Page
         /// </summary>
         public PageType CurrentPage
         {
-            get
-            {
-                return _currentPage;
-            }
+            get { return _currentPage; }
             set
             {
                 _currentPage = value;
                 OnPropertyChanged("CurrentPage");
             }
+
         }
         public ICommand Page1Command { get; set; }
         public ICommand Page2Command { get; set; }
@@ -70,27 +74,45 @@ namespace RevitWPFFW.core
         /// <summary>
         /// Default Constructor
         /// </summary>
-        public MainPageViewModel(string docData)
+        public MainPageViewModel(int  documentHashCode)
         {
+            //Store document hash code
+            DocumentHashCode = documentHashCode;
+
+            //If list of viewmodels is null, create a new list
+            if (_viewModels == null)
+                _viewModels = new List<MainPageViewModel>();
+
             //Commands must be initialized at construction
             Page1Command = new RelayCommand(Page1CommandMethod);
             Page2Command = new RelayCommand(Page2CommandMethod);
             Page3Command = new RelayCommand(Page3CommandMethod);
 
-            _counter++;
-            DocumentData = docData + " Counter: " + _counter;
+            //Initialize Method
+            Initialize();
 
-            InitializeViewModel();
+            //Add viewmodel to list of viewmodels
+            _viewModels.Add(this);
         }
         #endregion
 
         #region Private Methods
 
-        private void InitializeViewModel()
+        /// <summary>
+        /// Initialize the current viewmodel and other viewmodels
+        /// </summary>
+        private void Initialize()
         {
             //Initialize any main page properties here
 
-            _docInitialized = true;
+        }
+
+        /// <summary>
+        /// Set the current static viewmodel to this one
+        /// </summary>
+        private void SetCurrentViewModel()
+        {
+            _currentViewModel = this;
         }
 
         /// <summary>
@@ -131,92 +153,81 @@ namespace RevitWPFFW.core
         #endregion
 
         #region Public Methods
+
         /// <summary>
-        /// Initialize Properties in View Models to Default Values
+        /// Refresh the viewmodel's current page
         /// </summary>
-        //public static void Initialize()
-        public void Initialize()
+        public static void Refresh()
         {
-            //if (!_docInitialized && _instance != null)
-            if(!_docInitialized)
-            {
-                //Initialize This View Model
-                //_instance.InitializeViewModel();
-                InitializeViewModel();
-                
-
-                //Initialize Other View Models
-                //Page1ViewModel.Initialize();
-                Page2ViewModel.Initialize();
-            }
-
+            var tempPage = CurrentViewModel.CurrentPage;
+            CurrentViewModel.CurrentPage = tempPage;
         }
-
-        public void Refresh()
-        {
-            //_instance.OnPropertyChanged("CurrentPage");
-            var tempPage = CurrentPage;
-            CurrentPage = tempPage;
-            
-            
-            //SwitchToPage1();
-            
-
-            //OnPropertyChanged("CurrentPage");
-        }
-
 
         /// <summary>
         /// Allows external call to switch to Page 1
         /// </summary>
-        //public static void SwitchToPage1()
-        public void SwitchToPage1()
+        public static void SwitchToPage1()
         {
-            //_instance.CurrentPage = PageType.Page1;
-            CurrentPage = PageType.Page1;
+            CurrentViewModel.CurrentPage = PageType.Page1;
         }
 
         /// <summary>
         /// Allows external call to switch to Page 2
         /// </summary>
-        //public static void SwitchToPage2()
-        public void SwitchToPage2()
+        public static void SwitchToPage2()
         {
             //_instance.CurrentPage = PageType.Page2;
-            CurrentPage = PageType.Page2;
+            CurrentViewModel.CurrentPage = PageType.Page2;
         }
 
         /// <summary>
         /// Allows external call to switch to Page 3
         /// </summary>
-        //public static void SwitchToPage3()
-        public void SwitchToPage3()
+        public static void SwitchToPage3()
         {
-            //_instance.CurrentPage = PageType.Page3;
-            CurrentPage = PageType.Page3;
+            CurrentViewModel.CurrentPage = PageType.Page3;
         }
 
         /// <summary>
         /// Allows external call to switch to Page 4
         /// Page 4 currently set up for monitor selection
         /// </summary>
-        //public static void SwitchToPage4()
-        public void SwitchToPage4()
+        public static void SwitchToPage4()
         {
-            //_instance.CurrentPage = PageType.Page4;
-            CurrentPage = PageType.Page4;
+            CurrentViewModel.CurrentPage = PageType.Page4;
         }
 
         /// <summary>
         /// Selection Monitoring call to move away from Page 4
         /// When no selection is made
         /// </summary>
-        //public static void SwitchPageOffPage4()
-        public void SwitchPageOffPage4()
+        public static void SwitchPageOffPage4()
         {
-            //if (_instance.CurrentPage == PageType.Page4)
-            if(CurrentPage == PageType.Page4)
+            if(CurrentViewModel.CurrentPage == PageType.Page4)
                 SwitchToPage1();
+        }
+
+        /// <summary>
+        /// Sets the viewmodel to the document hash code provided.
+        /// WARNING!!!!!!!
+        /// Changing the static instance of the main view model requires you to
+        /// create a new instance of the Main Page WPF form.  This function is not built into
+        /// this class, so a method will need to be called from outside of this namespace to the
+        /// UI namespace to refresh the WPF form and thus update the new viewmodel to the form.
+        /// </summary>
+        /// <param name="hashCode"></param>
+        public static void SetCurrentViewModel(int hashCode)
+        {
+            if (_viewModels == null)
+                _ = new MainPageViewModel(0);
+
+            var retrievedViewModel = _viewModels.FirstOrDefault(x => x.DocumentHashCode == hashCode);
+
+            if (retrievedViewModel == null)
+                retrievedViewModel = new MainPageViewModel(hashCode);
+
+            retrievedViewModel.SetCurrentViewModel();
+
         }
 
         #endregion

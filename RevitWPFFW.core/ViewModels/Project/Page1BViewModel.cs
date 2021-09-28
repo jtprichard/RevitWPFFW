@@ -1,37 +1,68 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
-using System.Windows.Input;
 
 namespace RevitWPFFW.core
 {
+    /// <summary>
+    /// View Model for WPF Page
+    /// </summary>
     public class Page1BViewModel : BaseViewModel
     {
         #region Private Fields
-        private static Page1BViewModel _instance = null;
+        private static Page1BViewModel _currentViewModel = null;
         private static bool _docInitialized = false;
+        private static IList<Page1BViewModel> _viewModels;
 
+        private int _documentHashCode;
+
+        //Sample control fields
         private ObservableCollection<CheckBoxData> _checkBoxItems;
-
         private string _checkBoxSelectedItems;
-        
+
+        //FOR TESTING
+        private string _documentData;
+
         #endregion
 
         #region Public Properties
         /// <summary>
         /// CurrentViewModel of Page View Model
         /// If no instance exists, create a new one
-        /// If the VM has not been initialized and the document is opened, initialize it
         /// </summary>
-        public static Page1BViewModel Instance
+        public static Page1BViewModel CurrentViewModel
         {
             get
             {
-                if (_instance == null)
-                    _instance = new Page1BViewModel();
-                return _instance;
+                if (_currentViewModel == null)
+                    _currentViewModel = new Page1BViewModel(0);
+                return _currentViewModel;
             }
         }
+
+        //FOR TESTING
+        public string DocumentData
+        {
+            get { return _documentData; }
+            set { _documentData = value; OnPropertyChanged("DocumentData"); }
+        }
+
+        /// <summary>
+        /// Document hash code for current viewmodel
+        /// </summary>
+        public int DocumentHashCode
+        {
+            get { return _documentHashCode; }
+            set { _documentHashCode = value; OnPropertyChanged("DocumentHashCode"); }
+        }
+
+        /// <summary>
+        /// Static list of viewmodels
+        /// </summary>
+        public static IList<Page1BViewModel> ViewModels => _viewModels;
+
         /// <summary>
         /// Checkbox Items
         /// </summary>
@@ -52,25 +83,59 @@ namespace RevitWPFFW.core
 
         #endregion
 
+
         #region Constructor
         /// <summary>
         /// Default Constructor
         /// </summary>
-        internal Page1BViewModel() {}
+        internal Page1BViewModel(int documentHashCode)
+        {
+            DocumentData = "Document Hashcode: " + documentHashCode.ToString();
+            DocumentHashCode = documentHashCode;
+
+            //Initialize the viewmodel
+            Initialize();
+
+            //If list of viewmodels is null, create a new list
+            if (_viewModels == null)
+                _viewModels = new List<Page1BViewModel>();
+
+            //Add viewmodel to list of viewmodels
+            _viewModels.Add(this);
+        }
         #endregion
 
         #region Private Methods
+        /// <summary>
+        /// Test and Initialize Page ViewModel
+        /// </summary>
+        private void Initialize()
+        {
+            //Test for document initialization here.
+            //Required if viewmodel data is coming from the Revit document
+            if (DocumentHashCode != 0)
+                InitializeViewModel();
+        }
+
         /// <summary>
         /// Initialize the View Model Properties
         /// </summary>
         private void InitializeViewModel()
         {
-
+            //Inititalize and Populate Properties Here
             this.CheckBoxItems = PopulateCheckBoxes();
             UpdateTextBoxString();
 
             _docInitialized = true;
 
+        }
+
+        /// <summary>
+        /// Sets the current static viewmodel to this viewmodel
+        /// </summary>
+        private void SetCurrentViewModel()
+        {
+            _currentViewModel = this;
         }
 
         /// <summary>
@@ -123,22 +188,31 @@ namespace RevitWPFFW.core
         #endregion
 
         #region Public Methods
-        /// <summary>
-        /// Public Method to Initialize Page ViewModelB
-        /// </summary>
-        internal static void Initialize()
-        {
-            if (!_docInitialized && _instance != null)
-                _instance.InitializeViewModel();
-        }
 
         /// <summary>
         /// Update checkbox string from property change in Data
         /// </summary>
         internal static void UpdateTextBoxString()
         {
-            if(_instance != null)
-                _instance.CheckBoxSelectedItems = _instance.GetCheckBoxItemsString();
+            if(_currentViewModel != null)
+                _currentViewModel.CheckBoxSelectedItems = _currentViewModel.GetCheckBoxItemsString();
+        }
+
+        /// <summary>
+        /// Sets the current static viewmodel to the viewmodel associated with the document hashcode provided
+        /// </summary>
+        /// <param name="hashCode">Document hashcode as integer</param>
+        public static void SetCurrentViewModel(int hashCode)
+        {
+            if (_viewModels == null)
+                _ = new Page1BViewModel(-1);
+
+            var retrievedViewModel = _viewModels.FirstOrDefault(x => x.DocumentHashCode == hashCode);
+
+            if (retrievedViewModel == null)
+                retrievedViewModel = new Page1BViewModel(hashCode);
+
+            retrievedViewModel.SetCurrentViewModel();
         }
 
         #endregion

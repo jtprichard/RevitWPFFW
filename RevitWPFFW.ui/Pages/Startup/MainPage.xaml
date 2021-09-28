@@ -28,18 +28,11 @@
                     <!-- Break Page into Navigation and Bound Referenced Page -->
                     <Grid.RowDefinitions>
                         <RowDefinition Height="20"/>
-                        <RowDefinition Height="20"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                <TextBox HorizontalAlignment="Center"
-                             x:Name="DocumentText"
-                             Text="{Binding Path=DocumentData, UpdateSourceTrigger=PropertyChanged}">
-
-                </TextBox>
-
                     <!-- Top Navigation Bar -->
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
@@ -62,7 +55,7 @@
 
                     </Grid>
 
-                    <Border Grid.Row="2">
+                    <Border Grid.Row="1">
                         <Frame x:Name="MainPageFrame"
                                 Content="{Binding CurrentPage, Converter={StaticResource MainPageConverter}}"
                                 NavigationUIVisibility="Hidden"

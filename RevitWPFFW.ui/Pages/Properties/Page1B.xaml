@@ -27,6 +27,12 @@
                    Foreground="{StaticResource DarkGrayFontBrush}"
                    >Page 1B</TextBlock>
 
+            <TextBlock HorizontalAlignment="Center"
+                       x:Name="DocumentText"
+                       Text="{Binding Path=DocumentData, UpdateSourceTrigger=PropertyChanged}">
+
+            </TextBlock>
+
             <!-- Checkbox Sample -->
             <ItemsControl Grid.Row="0" ItemsSource="{Binding Path=CheckBoxItems}"
                       Padding="15 10 10 10">

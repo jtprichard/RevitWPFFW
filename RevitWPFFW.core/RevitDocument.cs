@@ -6,7 +6,7 @@ using Autodesk.Revit.DB;
 namespace RevitWPFFW.core
 {
     /// <summary>
-    /// Keeps a copy of the current Revit Document and DocumentViewModels for reference
+    /// Keeps a copy of the current Revit Document for reference
     /// </summary>
     public class RevitDocument
     {
@@ -16,10 +16,7 @@ namespace RevitWPFFW.core
         /// Current Document
         /// </summary>
         private static Document _currentDocument;
-        /// <summary>
-        /// Current set of viewmodels
-        /// </summary>
-        private static ViewModels _currentViewModels;
+
         /// <summary>
         /// List of all documents in current Revit session
         /// </summary>
@@ -33,26 +30,24 @@ namespace RevitWPFFW.core
         /// The current Revit document
         /// </summary>
         private Document Document { get; set; }
-        /// <summary>
-        /// The current ViewModel
-        /// </summary>
-        private ViewModels DocumentViewModels { get; set; }
+
         /// <summary>
         /// The Document Hashcode
         /// </summary>
         private int DocumentHashCode { get; }
 
+        /// <summary>
+        /// Static current document
+        /// </summary>
         public static Document CurrentDocument
         {
             get { return GetCurrentDocument(); }
             set { _currentDocument = value; }
         }
-        public static ViewModels CurrentViewModels
-        {
-            get { return GetCurrentViewModels(); }
-            set { _currentViewModels = value; }
-        }
 
+        /// <summary>
+        /// Static list of documents
+        /// </summary>
         public static IList<RevitDocument> Documents => _documents;
 
         #endregion
@@ -71,9 +66,6 @@ namespace RevitWPFFW.core
             //Store the hashcode for the document to retrieve it from the list later
             DocumentHashCode = doc.GetHashCode();
 
-            DocumentViewModels = new ViewModels("RevitDocument Constructor", DocumentHashCode.ToString());
-            //DocumentViewModels.SetMainPageViewModel(new MainPageViewModel("From Document Creation"));
-
             //If the static list of documents is empty, create one
             if (_documents == null)
                 _documents = new List<RevitDocument>();
@@ -83,9 +75,9 @@ namespace RevitWPFFW.core
 
             //Set the static document and viewmodel objects to the new RevitDocument object
             _currentDocument = doc;
-            CurrentViewModels = DocumentViewModels;
-            SetCurrentViewModels();
 
+            //Set the current viewmodels for the document
+            SetCurrentViewModels();
 
         }
 
@@ -110,7 +102,6 @@ namespace RevitWPFFW.core
 
             retrievedDoc.SetCurrentDocument();
             retrievedDoc.SetCurrentViewModels();
-
         }
 
         #endregion
@@ -126,25 +117,18 @@ namespace RevitWPFFW.core
         }
 
         /// <summary>
-        /// Set the static instance of the Viewmodels
+        /// Set the viewmodels associated with the document
         /// </summary>
         private void SetCurrentViewModels()
         {
-            CurrentViewModels = this.DocumentViewModels;
-            DocumentViewModels.SetCurrentViewModels(CurrentViewModels);
-
+            //Update all viewmodels here
+            Page1ViewModel.SetCurrentViewModel(DocumentHashCode);
+            Page1BViewModel.SetCurrentViewModel(DocumentHashCode);
+            Page2ViewModel.SetCurrentViewModel(DocumentHashCode);
 
             //NOTE!!!!
             //Viewmodel will not update without a page refresh.
-
-            //Testing for option 2
-            Page2ViewModel.SetCurrentViewModel(DocumentHashCode);
-
-            
-
-            //DocumentViewModels.MainPageViewModel.Refresh();
-            //ViewModels.MainPageViewModel.SwitchToPage4();
-            //ViewModels.MainPageViewModel.SwitchToPage1();
+            MainPageViewModel.Refresh();
         }
 
         /// <summary>
@@ -157,18 +141,6 @@ namespace RevitWPFFW.core
                 return null;
 
             return _currentDocument;
-        }
-
-        /// <summary>
-        /// Returns the current DocumentViewModels objects
-        /// </summary>
-        /// <returns></returns>
-        private static ViewModels GetCurrentViewModels()
-        {
-            if (_currentViewModels == null)
-                _currentViewModels = new ViewModels("RevitDocument GetCurrentViewModels", "None");
-            
-            return _currentViewModels;
         }
 
         #endregion
