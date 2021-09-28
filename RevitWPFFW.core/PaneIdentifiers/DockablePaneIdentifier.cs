@@ -16,7 +16,7 @@ namespace RevitWPFFW.core
         private static DockablePaneIdentifier _instance = null;
 
         /// <summary>
-        /// Instance of Dockable Pane Indentifier
+        /// CurrentViewModel of Dockable Pane Indentifier
         /// Creates instance if none exists
         /// </summary>
         private static DockablePaneIdentifier Instance

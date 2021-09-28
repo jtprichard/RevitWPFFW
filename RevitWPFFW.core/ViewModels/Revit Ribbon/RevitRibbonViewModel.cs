@@ -19,9 +19,9 @@ namespace RevitWPFFW.core
 
         #endregion
 
-        #region Public Instance Property
+        #region Public CurrentViewModel Property
         /// <summary>
-        /// Instance of Ribbon
+        /// CurrentViewModel of Ribbon
         /// Creates instance if none exists
         /// </summary>
         public static RevitRibbonViewModel Instance

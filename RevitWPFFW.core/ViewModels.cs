@@ -49,7 +49,7 @@ namespace RevitWPFFW.core
         //public MainPageViewModel MainViewModel { get; private set; }
         public Page1BViewModel Page1BViewModel { get; private set; }
         public Page1ViewModel Page1ViewModel { get; private set; }
-        public Page2ViewModel Page2ViewModel { get; private set; }
+        //public Page2ViewModel Page2ViewModel { get; private set; }
 
         public ViewModels(string mainVMInfo, string docHash)
         {
@@ -57,13 +57,13 @@ namespace RevitWPFFW.core
             //MainViewModel = new MainPageViewModel(testData);
             Page1ViewModel = new Page1ViewModel(data);
             Page1BViewModel = new Page1BViewModel();
-            Page2ViewModel = new Page2ViewModel();
+            //Page2ViewModel = new Page2ViewModel();
         }
 
         public void SetCurrentViewModels(ViewModels viewModels)
         {
             CurrentViewModels = viewModels;
-            MainPageViewModel.Refresh();
+            //MainPageViewModel.Refresh();
         }
 
         public void SetMainPageViewModel(MainPageViewModel vm)

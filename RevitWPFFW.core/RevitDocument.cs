@@ -133,6 +133,15 @@ namespace RevitWPFFW.core
             CurrentViewModels = this.DocumentViewModels;
             DocumentViewModels.SetCurrentViewModels(CurrentViewModels);
 
+
+            //NOTE!!!!
+            //Viewmodel will not update without a page refresh.
+
+            //Testing for option 2
+            Page2ViewModel.SetCurrentViewModel(DocumentHashCode);
+
+            
+
             //DocumentViewModels.MainPageViewModel.Refresh();
             //ViewModels.MainPageViewModel.SwitchToPage4();
             //ViewModels.MainPageViewModel.SwitchToPage1();

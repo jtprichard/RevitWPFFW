@@ -18,7 +18,7 @@ namespace RevitWPFFW.ui
         public MainPage()
         {
             InitializeComponent();
-            //DataContext = MainPageViewModel.Instance;
+            //DataContext = MainPageViewModel.CurrentViewModel;
             //DataContext = RevitDocument.CurrentViewModels.MainViewModel;
             DataContext = ViewModels.MainPageViewModel;
         }

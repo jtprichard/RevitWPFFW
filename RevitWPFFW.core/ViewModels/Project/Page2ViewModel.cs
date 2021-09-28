@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace RevitWPFFW.core
@@ -7,27 +10,48 @@ namespace RevitWPFFW.core
     public class Page2ViewModel : BaseViewModel
     {
         #region Private Fields
-        private static Page2ViewModel _instance = null;
+        private static Page2ViewModel _currentViewModel = null;
         private static bool _docInitialized = false;
-        
+
+        //FOR TESTING
+        private string _documentData;
+        private int _documentHashCode;
+        private static IList<Page2ViewModel> _viewModels;
+
 
         #endregion
 
         #region Public Properties
         /// <summary>
-        /// Instance of Page View Model
+        /// CurrentViewModel of Page View Model
         /// If no instance exists, create a new one
         /// If the VM has not been initialized and the document is opened, initialize it
         /// </summary>
-        public static Page2ViewModel Instance
+        public static Page2ViewModel CurrentViewModel
         {
             get
             {
-                if (_instance == null)
-                    _instance = new Page2ViewModel();
-                return _instance;
+                if (_currentViewModel == null)
+                    _currentViewModel = new Page2ViewModel(-2);
+                return _currentViewModel;
             }
         }
+
+        //FOR TESTING
+        public string DocumentData
+        {
+            get { return _documentData; }
+            set { _documentData = value; OnPropertyChanged("DocumentData"); }
+        }
+
+        public int DocumentHashCode
+        {
+            get { return _documentHashCode; }
+            set { _documentHashCode = value; OnPropertyChanged("DocumentHashCode"); }
+        }
+
+        public static IList<Page2ViewModel> ViewModels => _viewModels;
+        
 
         /// <summary>
         /// Command to trigger Revit Transaction Command
@@ -41,10 +65,18 @@ namespace RevitWPFFW.core
         /// <summary>
         /// Default Constructor
         /// </summary>
-        internal Page2ViewModel()
+        public Page2ViewModel(int documentHashCode)
         {
+            DocumentData = documentHashCode.ToString();
+            DocumentHashCode = documentHashCode;
+
             //Commands must be initialized at construction
             TransactionCommand = new RelayCommand(TransactionCommandMethod);
+
+            if (_viewModels == null)
+                _viewModels = new List<Page2ViewModel>();
+
+            _viewModels.Add(this);
 
         }
         #endregion
@@ -74,6 +106,11 @@ namespace RevitWPFFW.core
 
         }
 
+        private void SetCurrentViewModel()
+        {
+            _currentViewModel = this;
+        }
+
 
         #endregion
 
@@ -83,11 +120,33 @@ namespace RevitWPFFW.core
         /// </summary>
         internal static void Initialize()
         {
-            if (!_docInitialized && _instance != null)
+            if (!_docInitialized && _currentViewModel != null)
             {
-                _instance.InitializeViewModel();
+                _currentViewModel.InitializeViewModel();
+                _currentViewModel.OnPropertyChanged("");
 
             }
+        }
+
+        public static void SetCurrentViewModel(int hashCode)
+        {
+            if (_viewModels == null)
+                _ = new Page2ViewModel(-1);
+
+            var retrievedViewModel = _viewModels.FirstOrDefault(x => x.DocumentHashCode == hashCode);
+
+            if (retrievedViewModel == null)
+                retrievedViewModel = new Page2ViewModel(hashCode);
+
+            retrievedViewModel.SetCurrentViewModel();
+
+
+        }
+
+        public static void Refresh()
+        {
+            //_currentViewModel.OnPropertyChanged("DocumentData");
+            _currentViewModel.DocumentData = "Refreshed";
         }
 
         #endregion

@@ -52,8 +52,16 @@ namespace RevitWPFFW.core
                 var currentMainViewModel = ViewModels.MainPageViewModel;
                 var currentViewModels = ViewModels.CurrentViewModels;
 
+
+                var currentPage2ViewModel = Page2ViewModel.CurrentViewModel;
+                var page2ViewModels = Page2ViewModel.ViewModels;
+
+                Page2ViewModel.Refresh();
+
+                page2ViewModels[1].DocumentData = "Overridden";
+
                 //currentMainViewModel.SwitchToPage1();
-                currentMainViewModel.Refresh();
+                //currentMainViewModel.Refresh();
 
                 //if(currentMainViewModel.CurrentPage == PageType.Page1)
                 //    currentMainViewModel.SwitchToPage2();

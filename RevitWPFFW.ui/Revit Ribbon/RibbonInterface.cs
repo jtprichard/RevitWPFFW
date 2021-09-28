@@ -16,7 +16,7 @@ namespace RevitWPFFW.ui
 
         #region Properties
         /// <summary>
-        /// Instance of Ribbon
+        /// CurrentViewModel of Ribbon
         /// Creates instance if none exists
         /// </summary>
         public static RibbonInterface Instance

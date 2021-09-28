@@ -28,6 +28,12 @@
                    Foreground="{StaticResource DarkGrayFontBrush}"
                    >Page 2</TextBlock>
 
+            <TextBlock HorizontalAlignment="Center"
+                       x:Name="DocumentText"
+                       Text="{Binding Path=DocumentData, UpdateSourceTrigger=PropertyChanged}">
+
+            </TextBlock>
+
             <Separator VerticalAlignment="top"
                        BorderBrush="{StaticResource MainBorderBrush}"
                        Margin="20 10"

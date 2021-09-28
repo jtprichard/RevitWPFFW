@@ -83,8 +83,8 @@ namespace RevitWPFFW
             var dpid = new DockablePaneId(DockablePaneIdentifier.GetMainPaneIdentifier());
             var dp = RevitControlledApplication.GetCurrentApplication().GetDockablePane(dpid);
 
-            if (dp.IsShown())
-                dp.Hide();
+            //if (dp.IsShown())
+            //    dp.Hide();
 
             //Initialize WPF ViewModels for Initial Properties
             //MainPageViewModel.Initialize();

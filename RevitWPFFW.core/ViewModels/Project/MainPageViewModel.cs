@@ -23,11 +23,11 @@ namespace RevitWPFFW.core
         #region Public Properties
 
         /// <summary>
-        /// Instance of Main Page View Model
+        /// CurrentViewModel of Main Page View Model
         /// If no instance exists, create a new one
         /// If the VM has not been initialized and the document is opened, initialize it
         /// </summary>
-        //public static MainPageViewModel Instance
+        //public static MainPageViewModel CurrentViewModel
         //{
         //    get
         //    {
