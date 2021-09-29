@@ -28,23 +28,26 @@ namespace RevitWPFFW.ui
         /// <param name="uiApp">UIControlled Application</param>
         /// <param name="tabName">Tab Name</param>
         /// <returns></returns>
-        internal RibbonPanel Create(UIControlledApplication uiApp, string tabName)
+        internal RibbonPanel Create(UIControlledApplication uiApp, string tabName, string helpFilePath)
         {
             //Panel Name
             string panelName = "TEMPLATE PANEL";
-            
+
+            //Create Default Contextual Help Object
+            var contextualHelp = new RevitContextualHelpData(helpFilePath, ContextualHelpType.ChmFile);
+
             //Create Panel
             RibbonPanel rp = uiApp.CreateRibbonPanel(tabName, panelName);
 
             //Add Buttons and Controls
-            AddControls(rp);
+            AddControls(rp, contextualHelp);
 
             return rp;
         }
         #endregion
 
         #region Controls Templates Location
-        private void AddControls(RibbonPanel panel)
+        private void AddControls(RibbonPanel panel, RevitContextualHelpData contextualHelp)
         {
             #region Pushbutton Template
             //Add a Pushbutton
@@ -60,7 +63,8 @@ namespace RevitWPFFW.ui
                 TooltipImageName = ImageNames.BlankButton,
                 SmallIconImageName = ImageNames.BlankButtonSmall,
                 LongDescription = "This is a long description for the ToolTip",
-                AvailabilityClassName = AvailabilityProj.GetPath()
+                AvailabilityClassName = AvailabilityProj.GetPath(),
+                ContextualHelpData = new RevitContextualHelpData(contextualHelp, "Introduction")
             };
             var sampleButton = RevitPushButton.Create(buttonData);
 
@@ -117,7 +121,8 @@ namespace RevitWPFFW.ui
             RevitPushButtonData splitButton = new RevitPushButtonData()
             {
                 Label = "Split\nButton",
-                Panel = panel
+                Panel = panel,
+                ContextualHelpData = new RevitContextualHelpData(contextualHelp, "Introduction")
             };
 
             RevitSplitButton.Create(splitButton, splitButtons);
@@ -138,6 +143,7 @@ namespace RevitWPFFW.ui
             textBox.Width = 150;
             textBox.ShowImageAsButton = true;
             //textBox.SelectTextOnFocus = true;
+            textBox.SetContextualHelp(new RevitContextualHelpData(contextualHelp,"Introduction").ContextualHelp);
 
             //Event Handler for Pressing Enter
             textBox.EnterPressed += new EventHandler<TextBoxEnterPressedEventArgs>(ProcessTextBox);
@@ -154,6 +160,7 @@ namespace RevitWPFFW.ui
             comboBox.ToolTip = "Tooltip Sample";
             comboBox.LongDescription = "This is a long description for the ToolTip";
             comboBox.Image = ResourceImage.GetIcon(ImageNames.BlankButtonSmall);
+            comboBox.SetContextualHelp(new RevitContextualHelpData(contextualHelp, "Introduction").ContextualHelp);
 
             //Create a list of ComboBox Members
             var comboMemberData = new List<ComboBoxMemberData>();
@@ -229,7 +236,8 @@ namespace RevitWPFFW.ui
                 TooltipImageName = ImageNames.BlankButton,
                 SmallIconImageName = ImageNames.BlankButtonSmall,
                 LongDescription = "This is a long description for the ToolTip",
-                AvailabilityClassName = AvailabilityProj.GetPath()
+                AvailabilityClassName = AvailabilityProj.GetPath(),
+                ContextualHelpData = new RevitContextualHelpData(contextualHelp, "Introduction")
             };
             var stackBtnData1 = stackRvtBtnData1.Create();
 
@@ -243,7 +251,8 @@ namespace RevitWPFFW.ui
                 TooltipImageName = ImageNames.BlankButton,
                 SmallIconImageName = ImageNames.BlankButtonSmall,
                 LongDescription = "This is a long description for the ToolTip",
-                AvailabilityClassName = AvailabilityProj.GetPath()
+                AvailabilityClassName = AvailabilityProj.GetPath(),
+                ContextualHelpData = new RevitContextualHelpData(contextualHelp, "Introduction")
             };
             var stackBtnData2 = stackRvtBtnData2.Create();
 
@@ -257,7 +266,8 @@ namespace RevitWPFFW.ui
                 TooltipImageName = ImageNames.BlankButton,
                 SmallIconImageName = ImageNames.BlankButtonSmall,
                 LongDescription = "This is a long description for the ToolTip",
-                AvailabilityClassName = AvailabilityProj.GetPath()
+                AvailabilityClassName = AvailabilityProj.GetPath(),
+                ContextualHelpData = new RevitContextualHelpData(contextualHelp, "Introduction")
             };
             var stackBtnData3 = stackRvtBtnData3.Create();
 

@@ -55,36 +55,42 @@
 
                 <TextBlock Grid.Row="0" Grid.Column="0"
                            Margin="20 0 0 0"
-                           Style="{StaticResource BaseTextBlockStyle}">
+                           Style="{StaticResource BaseTextBlockStyle}"
+                           ToolTip="Text Label Tooltip">
                     Text Label 1
                 </TextBlock>
 
                 <TextBox Grid.Row="0" Grid.Column="1"
                          Margin="20 0 20 0"
-                         Text="{Binding TextBox1, UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding TextBox1, UpdateSourceTrigger=PropertyChanged}"
+                         ToolTip="Type text in here"/>
 
 
                 <TextBlock Grid.Row="1" Grid.Column="0"
                            Margin="20 0 0 0"
-                           Style="{StaticResource BaseTextBlockStyle}">
+                           Style="{StaticResource BaseTextBlockStyle}"
+                           ToolTip="Text Label Tooltip">
                     Text Label 2
                 </TextBlock>
 
                 <TextBox Grid.Row="1" Grid.Column="1"
                          Margin="20 0 20 0"
-                         Text="{Binding TextBox2, UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding TextBox2, UpdateSourceTrigger=PropertyChanged}"
+                         ToolTip="Type text in here"/>
 
 
                 <TextBlock Grid.Row="2" Grid.Column="0"
                            Margin="20 0 0 0"
-                           Style="{StaticResource BaseTextBlockStyle}">
+                           Style="{StaticResource BaseTextBlockStyle}"
+                           ToolTip="Showing Text Combined">
                     Text Combined
                 </TextBlock>
 
                 <TextBox Grid.Row="2" Grid.Column="1"
                          Margin="20 0 20 0"
                          IsEnabled="False"
-                         Text="{Binding TextBox3, UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding TextBox3, UpdateSourceTrigger=PropertyChanged}"
+                         ToolTip="Showing Text Combined"/>
             </Grid>
 
             <!-- Page 1A Reference -->
@@ -94,7 +100,8 @@
                        Height="20"
                        BorderThickness="20"/>
 
-            <Expander Header="Page 1A WPF Expander">
+            <Expander Header="Page 1A WPF Expander"
+                      ToolTip="Expand the next section">
                 <Grid Background="#FFE5E5E5">
                     <local:Page1A/>
                 </Grid>
@@ -122,7 +129,8 @@
                 <Button Style="{StaticResource ExpanderButton}"
                         Grid.Row="0"
                         x:Name="ExpandButton"
-                        Click="ExpandButton_Click">
+                        Click="ExpandButton_Click"
+                        ToolTip="Expand the next section">
                     Page 1B Expand with Button
                 </Button>
                 <Border x:Name="Page1BControl"

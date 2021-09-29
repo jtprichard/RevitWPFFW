@@ -24,11 +24,11 @@ namespace RevitWPFFW
         public Result OnStartup(UIControlledApplication uiApp)
         {            
             //Initialize Fields
-            string tabName = "REVIT TEMPLATE";
+            string tabName = "PB TEMPLATE";
 
             //Initialize ribbon panels
             var ri = RibbonInterface.Instance;
-            ri.Initialize(uiApp, tabName);
+            ri.Initialize(uiApp, tabName, SupportFileSettings.GetHelpFilePath(uiApp.ControlledApplication));
             Ribbon = ri;
 
             //Initialize Selection Monitor Ribbon

@@ -48,7 +48,8 @@ namespace RevitWPFFW.ui
         /// </summary>
         /// <param name="uiapp">UIControlled Application</param>
         /// <param name="tabName">Revit Ribbon Tab Name</param>
-        public void Initialize(UIControlledApplication uiapp, string tabName)
+        /// <param name="helpFilePath">Help File Path as String</param>
+        public void Initialize(UIControlledApplication uiapp, string tabName, string helpFilePath)
         {
             //Initialize the Ribbon ViewModel to Store Ribbon Data
             _ = RevitRibbonViewModel.Instance;
@@ -58,7 +59,7 @@ namespace RevitWPFFW.ui
             TabName = tabName;
 
             //Create Ribbon Panels from Static Classes for Each Panel
-            _ = new TemplatePanel().Create(uiapp, tabName);
+            _ = new TemplatePanel().Create(uiapp, tabName, helpFilePath);
             _ = new TestRibbonPanel().Create(uiapp, tabName);
 
         }

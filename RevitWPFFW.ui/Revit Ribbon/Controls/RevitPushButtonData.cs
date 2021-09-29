@@ -74,6 +74,11 @@ namespace RevitWPFFW.ui
         /// </summary>
         public string AvailabilityClassName { get; set; }
 
+        /// <summary>
+        /// Gets or sets the ContextualHelp object information
+        /// </summary>
+        public RevitContextualHelpData ContextualHelpData { get; set; }
+
         #endregion
 
         #region Default Constructor
@@ -125,6 +130,9 @@ namespace RevitWPFFW.ui
 
             if (null != AvailabilityClassName)
                 btnData.AvailabilityClassName = AvailabilityClassName;
+
+            if (null != ContextualHelpData)
+                btnData.SetContextualHelp(ContextualHelpData.ContextualHelp);
 
             //return PushButtonData object
             return btnData;
