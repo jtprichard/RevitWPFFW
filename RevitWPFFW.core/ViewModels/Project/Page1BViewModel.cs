@@ -88,7 +88,7 @@ namespace RevitWPFFW.core
         /// <summary>
         /// Default Constructor
         /// </summary>
-        internal Page1BViewModel(int documentHashCode)
+        private Page1BViewModel(int documentHashCode)
         {
             DocumentData = "Document Hashcode: " + documentHashCode.ToString();
             DocumentHashCode = documentHashCode;
