@@ -27,13 +27,14 @@ namespace RevitWPFFW
             //Register dockable panes on applicaiton initialization
             a.ControlledApplication.ApplicationInitialized += DockablePaneRegisters;
 
+            //Register event handler to update document on view activated
             a.ViewActivated += OnViewActivated;
 
             //Register document opened properties
             a.ControlledApplication.DocumentOpened += OnDocumentOpened;
 
             //Register Event Handler to monitor selections
-            //a.ControlledApplication.ApplicationInitialized += MonitorSelectionInitialized;
+            a.ControlledApplication.ApplicationInitialized += MonitorSelectionInitialized;
         }
 
         private static void OnViewActivated(object sender, ViewActivatedEventArgs e)
@@ -51,6 +52,7 @@ namespace RevitWPFFW
             a.ControlledApplication.ApplicationInitialized -= DockablePaneRegisters;
             a.ControlledApplication.DocumentOpened -= OnDocumentOpened;
             a.ControlledApplication.ApplicationInitialized -= MonitorSelectionInitialized;
+            a.ViewActivated -= OnViewActivated;
         }
 
         #endregion
@@ -79,15 +81,12 @@ namespace RevitWPFFW
             //Instantiate new RevitDocument object and associated ViewModels for reference
             RevitDocument.SetCurrentDocument(args.Document);
 
-            //Hide Dockable Pane on Startup
             var dpid = new DockablePaneId(DockablePaneIdentifier.GetMainPaneIdentifier());
             var dp = RevitControlledApplication.GetCurrentApplication().GetDockablePane(dpid);
 
+            //Hide Dockable Pane on Startup
             //if (dp.IsShown())
             //    dp.Hide();
-
-            //Initialize WPF ViewModels for Initial Properties
-            //MainPageViewModel.Initialize();
 
         }
 

@@ -21,6 +21,7 @@ namespace RevitWPFFW.core
     public class TestCommand : IExternalCommand
     {
         Document _doc;
+
         #region Command Execution
         /// <summary>
         /// Executes the specified command data
@@ -45,16 +46,6 @@ namespace RevitWPFFW.core
             using (Transaction t = new Transaction(doc, "TestCommand"))
             {
                 t.Start();
-
-                var currentDocument = RevitDocument.CurrentDocument;
-                var documents = RevitDocument.Documents;
-
-                var currentMainViewModel = MainPageViewModel.CurrentViewModel;
-
-
-                var currentPage2ViewModel = Page2ViewModel.CurrentViewModel;
-                var page2ViewModels = Page2ViewModel.ViewModels;
-
 
 
                 t.Commit();
