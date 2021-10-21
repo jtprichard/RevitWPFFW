@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
+using PB.MVVMToolkit.ViewModel;
 
 namespace RevitWPFFW.core
 {
@@ -8,7 +9,7 @@ namespace RevitWPFFW.core
     /// View Model for WPF Main Page
     /// See warnings below regarding creating additional instances of this viewmodel
     /// </summary>
-    public class MainPageViewModel:BaseViewModel
+    public class MainPageViewModel: BaseViewModel
     {
         #region Private Fields
         private static MainPageViewModel _currentViewModel = null;

@@ -74,8 +74,9 @@
     <Compile Include="Revit WPF Wrapper\WPFEventCommandArgs.cs" />
     <Compile Include="RevitControlledApplication.cs" />
     <Compile Include="RevitDocument.cs" />
-    <Compile Include="ViewModels\Base\BaseViewModel.cs" />
-    <Compile Include="ViewModels\Base\RelayCommand.cs" />
+    <None Include="ViewModels\Base\BaseViewModel.cs" />
+    <None Include="ViewModels\Base\RelayCommand.cs" />
+    <Compile Include="ViewModels\Locator\ViewModelLocator.cs" />
     <Compile Include="ViewModels\Project\MainPageViewModel.cs" />
     <Compile Include="ViewModels\Project\Page1BViewModel.cs" />
     <Compile Include="ViewModels\Project\Page2ViewModel.cs" />
@@ -83,6 +84,10 @@
     <Compile Include="ViewModels\Revit Ribbon\RevitRibbonViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\MVVMToolkit\MVVMToolkit\PB.MVVMToolkit.csproj">
+      <Project>{5982a92c-47ba-4ead-bf1b-29555b08947c}</Project>
+      <Name>PB.MVVMToolkit</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RevitWPFFW.res\RevitWPFFW.res.csproj">
       <Project>{4abb7f68-520f-4956-8851-8ac0cd9bf9de}</Project>
       <Name>RevitWPFFW.res</Name>
@@ -91,5 +96,6 @@
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

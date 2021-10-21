@@ -3,13 +3,15 @@ using System.Windows;
 using System.Windows.Controls;
 using Autodesk.Revit.UI;
 using RevitWPFFW.core;
+using PB.MVVMToolkit.DialogServices;
+
 
 namespace RevitWPFFW.ui
 {
     /// <summary>
     /// Interaction logic for MainPage.xaml
     /// </summary>
-    public partial class MainPage : Page, IDisposable, IDockablePaneProvider
+    public partial class MainPage : MainPageBase, IDisposable, IDockablePaneProvider
     {
         #region Default Constructor
         /// <summary>
@@ -19,7 +21,12 @@ namespace RevitWPFFW.ui
         {
             InitializeComponent();
 
-            DataContext = MainPageViewModel.CurrentViewModel;
+            var manager = new DataTemplateManager();
+            //manager.RegisterDataTemplate<DialogYesNoViewModel, DialogYesNoView>();
+            //manager.RegisterDataTemplate<DialogOkCancelViewModel, DialogOkCancelView>();
+            //manager.RegisterDataTemplate<CustomDialogViewModel, CustomDialogView>();
+
+            //DataContext = MainPageViewModel.CurrentViewModel;
         }
         #endregion
 

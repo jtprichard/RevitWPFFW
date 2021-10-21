@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\MainPageValueConverter.cs" />
+    <Compile Include="DataTemplateManager.cs" />
     <Compile Include="Pages\Properties\Page1B.xaml.cs">
       <DependentUpon>Page1B.xaml</DependentUpon>
     </Compile>
@@ -98,6 +99,10 @@
     <Folder Include="Revit Ribbon\Utilities\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\MVVMToolkit\MVVMToolkit\PB.MVVMToolkit.csproj">
+      <Project>{5982a92c-47ba-4ead-bf1b-29555b08947c}</Project>
+      <Name>PB.MVVMToolkit</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RevitWPFFW.core\RevitWPFFW.core.csproj">
       <Project>{b0db87ba-a6fc-481c-bf58-da4b4f791c0f}</Project>
       <Name>RevitWPFFW.core</Name>

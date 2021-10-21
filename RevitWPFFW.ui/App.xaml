@@ -1,7 +1,9 @@
 ﻿<!-- App.xaml -->
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:RevitWPFFW.ui">
+                    xmlns:local="clr-namespace:RevitWPFFW.ui" 
+                    xmlns:ds="clr-namespace:PB.MVVMToolkit.DialogServices;assembly=PB.MVVMToolkit">
+
 
     <ResourceDictionary.MergedDictionaries>
         <!-- Styles. -->
@@ -13,6 +15,8 @@
         <!-- Converters. -->
         <ResourceDictionary Source="Converters/Converters.xaml" />
 
+
     </ResourceDictionary.MergedDictionaries>
+
 
 </ResourceDictionary>
