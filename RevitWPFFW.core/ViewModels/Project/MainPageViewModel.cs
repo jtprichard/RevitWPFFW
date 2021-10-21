@@ -31,7 +31,8 @@ namespace RevitWPFFW.core
             get
             {
                 if (_currentViewModel == null)
-                    _currentViewModel = new MainPageViewModel(0);
+                    _currentViewModel = new MainPageViewModel();
+                //_currentViewModel = new MainPageViewModel(0);
                 return _currentViewModel;
             }
         }
@@ -75,10 +76,11 @@ namespace RevitWPFFW.core
         /// <summary>
         /// Default Constructor
         /// </summary>
-        public MainPageViewModel(int  documentHashCode)
+        //public MainPageViewModel(int documentHashCode)
+        public MainPageViewModel()
         {
             //Store document hash code
-            DocumentHashCode = documentHashCode;
+            //DocumentHashCode = documentHashCode;
 
             //If list of viewmodels is null, create a new list
             if (_viewModels == null)
@@ -220,12 +222,18 @@ namespace RevitWPFFW.core
         public static void SetCurrentViewModel(int hashCode)
         {
             if (_viewModels == null)
-                _ = new MainPageViewModel(0);
+                _ = new MainPageViewModel();
+            //_ = new MainPageViewModel(0);
 
             var retrievedViewModel = _viewModels.FirstOrDefault(x => x.DocumentHashCode == hashCode);
 
             if (retrievedViewModel == null)
-                retrievedViewModel = new MainPageViewModel(hashCode);
+            {
+                retrievedViewModel = new MainPageViewModel();
+                retrievedViewModel.DocumentHashCode = hashCode;
+            }
+
+            //retrievedViewModel = new MainPageViewModel(hashCode);
 
             retrievedViewModel.SetCurrentViewModel();
 

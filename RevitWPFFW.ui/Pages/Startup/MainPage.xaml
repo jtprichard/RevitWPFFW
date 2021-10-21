@@ -21,7 +21,6 @@
             </ResourceDictionary.MergedDictionaries>
         
             <viewModels:ViewModelLocator x:Key="ViewModelLocator"/>
-            <viewModels:
             <ds:DialogService x:Key="DialogService" />
         </ResourceDictionary>
     </Page.Resources>
