@@ -1,0 +1,126 @@
+﻿<UserControl x:Class="RevitWPFFW.ui.CustomDialogView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Height="300" Width="400"
+        >
+
+    <!--<UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>-->
+
+    <!-- Resource Dictionary Reference-->
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../App.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!--<viewModels:ViewModelLocator x:Key="ViewModelLocator"/>-->
+            <!--<ds:DialogService x:Key="DialogService" />-->
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+
+    <Border BorderBrush="{StaticResource BlueBorderBrush}" BorderThickness="1">
+        <StackPanel Background="{StaticResource MainBackgroundBrush}">
+
+
+
+            <Grid Margin="10,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Margin="10 10 10 10">Item List:</TextBlock>
+
+                <Grid Row="1"  Margin="10 20 0 0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ListBox x:Name="ItemList" 
+                             Height="130"
+                             SelectionMode="Single" 
+                             ScrollViewer.VerticalScrollBarVisibility="Visible"
+                             ItemsSource="{Binding Path=ListItems, UpdateSourceTrigger=PropertyChanged}"
+                             DisplayMemberPath="Description"
+                             SelectedItem="{Binding Path=SelectedListItem, Mode=TwoWay}"
+                             >
+
+
+                        </ListBox>
+                        <Grid Column="1">
+                            <StackPanel HorizontalAlignment="Right" Margin="0,0,20,0">
+                                <Button Content="Add..." 
+                                    x:Name="AddItem" 
+                                    ToolTip="Add a new item"
+                                    Style="{StaticResource MainButton}"
+                                    Command="{Binding OpenDialogAddCommand}"
+                                    />
+                                <Button Content="Modify..." 
+                                    x:Name="ModifyItem" 
+                                    ToolTip="Edit an item name"
+                                    Style="{StaticResource MainButton}"
+                                    Command="{Binding OpenDialogEditCommand}"
+                                    />
+                                <Button Content="Delete"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    x:Name="DeleteItem" 
+                                    ToolTip="Delete the item"
+                                    Style="{StaticResource MainButton}"
+                                    Command="{Binding OpenDialogDeleteCommand}"/>
+
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+
+                <Grid  Row ="2" Margin="0,20,20,0" VerticalAlignment="Bottom">
+                    <WrapPanel Grid.ColumnSpan="2" 
+                           HorizontalAlignment="Right" 
+                           VerticalAlignment="Bottom"
+                           Margin="0,15,0,0">
+                        <Button Content="Ok"
+                            IsDefault="True" 
+                            Name="BtnDialogOk" 
+                            Style="{StaticResource MainButton}"
+                            Command="{Binding OkCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
+
+
+                        <Button Content="Cancel"
+                            IsCancel="True" 
+                            Name="BtnDialogCancel" 
+                            Style="{StaticResource MainButton}"
+                            Command="{Binding CancelCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
+
+
+                        <Button Content="Help"
+                            Name="BtnDialogHelp" 
+                            Style="{StaticResource MainButton}"/>
+
+                    </WrapPanel>
+                </Grid>
+
+            </Grid>
+
+        </StackPanel>
+    </Border>
+</UserControl>

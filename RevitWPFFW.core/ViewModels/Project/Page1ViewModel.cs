@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Windows;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using PB.MVVMToolkit.ViewModel;
+using System.Windows.Input;
 
 namespace RevitWPFFW.core
 {
@@ -39,6 +41,14 @@ namespace RevitWPFFW.core
                     _currentViewModel = new Page1ViewModel(0);
                 return _currentViewModel;
             }
+        }
+
+        private ICommand _openDialogCustomCommand = null;
+
+        public ICommand OpenDialogCustomCommand
+        {
+            get { return _openDialogCustomCommand; }
+            set { _openDialogCustomCommand = value; }
         }
 
         //FOR TESTING
@@ -138,6 +148,8 @@ namespace RevitWPFFW.core
         /// </summary>
         private Page1ViewModel(int documentHashCode)
         {
+            _openDialogCustomCommand = new RelayCommand(OnOpenDialogCustom);
+
             DocumentData = "Document Hashcode: " + documentHashCode.ToString();
             DocumentHashCode = documentHashCode;
 
@@ -154,6 +166,26 @@ namespace RevitWPFFW.core
         #endregion
 
         #region Private Methods
+        private void OnOpenDialogCustom(object parameter)
+        {
+            var vm = new CustomDialogViewModel();
+            vm.OkClicked += OptionOk;
+            vm.CancelClicked += OptionCancel;
+            vm.Owner = parameter as Window;
+            if (DialogService != null)
+                DialogService.ShowDialogModal(vm);
+        }
+
+        private void OptionOk(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OptionCancel(object sender, EventArgs e)
+        {
+
+        }
+
         /// <summary>
         /// Test and Initialize Page Viewmodel
         /// </summary>

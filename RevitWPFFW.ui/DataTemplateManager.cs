@@ -18,7 +18,9 @@ namespace RevitWPFFW.ui
             var template = CreateTemplate(viewModelType, viewType);
 
             var key = template.DataTemplateKey;
-            Application.Current.Resources.Add(key, template);
+            //Application.Current.Resources.Add(key, template);
+
+            MainPage.Instance.Resources.Add(key, template);
         }
 
         private DataTemplate CreateTemplate(Type viewModelType, Type viewType)

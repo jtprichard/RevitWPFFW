@@ -8,11 +8,12 @@
                     xmlns:ds="clr-namespace:PB.MVVMToolkit.DialogServices;assembly=PB.MVVMToolkit"
                     xmlns:local="clr-namespace:RevitWPFFW.ui"
                     mc:Ignorable="d" 
-                    d:DesignHeight="500" d:DesignWidth="400"
-                    DataContext="{Binding MainPageViewModel, Source={StaticResource ResourceKey=ViewModelLocator}}"
-                    DialogService="{Binding ., Source={StaticResource ResourceKey=DialogService}}"
->
-    
+                    d:DesignHeight="500" d:DesignWidth="400">
+    <!--DataContext="{Binding MainPageViewModel, Source={StaticResource ResourceKey=ViewModelLocator}}"
+                    DialogService="{Binding ., Source={StaticResource ds.DialogService}}"-->
+
+    <!--DataContext="{Binding MainPageViewModel, Source={StaticResource ResourceKey=ViewModelLocator}}"-->
+
     <!-- Resource Dictionary Reference-->
     <Page.Resources>
         <ResourceDictionary>
@@ -20,8 +21,8 @@
                 <ResourceDictionary Source="../../App.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         
-            <viewModels:ViewModelLocator x:Key="ViewModelLocator"/>
-            <ds:DialogService x:Key="DialogService" />
+            <!--<viewModels:ViewModelLocator x:Key="ViewModelLocator"/>-->
+            <!--<ds:DialogService x:Key="DialogService" />-->
         </ResourceDictionary>
     </Page.Resources>
 

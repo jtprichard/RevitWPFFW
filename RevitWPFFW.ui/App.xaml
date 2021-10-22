@@ -15,6 +15,7 @@
         <!-- Converters. -->
         <ResourceDictionary Source="Converters/Converters.xaml" />
 
+        <!--<ResourceDictionary Source="pack://application:,,,/PB.MVVMToolkit;component/Styles/Styles.xaml"></ResourceDictionary>-->
 
     </ResourceDictionary.MergedDictionaries>
 

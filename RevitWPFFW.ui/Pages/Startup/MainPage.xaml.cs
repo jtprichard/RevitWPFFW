@@ -13,6 +13,7 @@ namespace RevitWPFFW.ui
     /// </summary>
     public partial class MainPage : MainPageBase, IDisposable, IDockablePaneProvider
     {
+        public static MainPage Instance { get; private set; }
         #region Default Constructor
         /// <summary>
         /// Page Constructor
@@ -20,11 +21,13 @@ namespace RevitWPFFW.ui
         public MainPage()
         {
             InitializeComponent();
+            DataContext = new ViewModelLocator().MainPageViewModel;
+            DialogService = new DialogService();
+            Instance = this;
 
             var manager = new DataTemplateManager();
-            //manager.RegisterDataTemplate<DialogYesNoViewModel, DialogYesNoView>();
-            //manager.RegisterDataTemplate<DialogOkCancelViewModel, DialogOkCancelView>();
-            //manager.RegisterDataTemplate<CustomDialogViewModel, CustomDialogView>();
+
+            manager.RegisterDataTemplate<CustomDialogViewModel, CustomDialogView>();
 
             //DataContext = MainPageViewModel.CurrentViewModel;
         }

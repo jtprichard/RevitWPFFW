@@ -74,6 +74,13 @@
 
             </Grid>
 
+            <Button Name="EditComboList"
+                    Width="100"
+                    Height="30"
+                    Margin="0,20,0,0"
+                    Command="{Binding OpenDialogCustomCommand}"
+            >Edit Combo List</Button>
+
         </StackPanel>
 
             

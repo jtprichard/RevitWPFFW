@@ -61,6 +61,9 @@
   <ItemGroup>
     <Compile Include="Converters\MainPageValueConverter.cs" />
     <Compile Include="DataTemplateManager.cs" />
+    <Compile Include="Dialogs\CustomDialogView.xaml.cs">
+      <DependentUpon>CustomDialogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Properties\Page1B.xaml.cs">
       <DependentUpon>Page1B.xaml</DependentUpon>
     </Compile>
@@ -118,6 +121,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Converters\Converters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\CustomDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
