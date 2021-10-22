@@ -107,6 +107,9 @@ namespace RevitWPFFW.core
 
             //Add viewmodel to list of viewmodels
             _viewModels.Add(this);
+
+            //Set the current viewmodel
+            SetCurrentViewModel();
         }
         #endregion
 

@@ -5,14 +5,12 @@
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                     xmlns:views="clr-namespace:PB.MVVMToolkit.DialogServices;assembly=PB.MVVMToolkit"
                     xmlns:viewModels="clr-namespace:RevitWPFFW.core;assembly=RevitWPFFW.core"
+                    xmlns:viewModels2="clr-namespace:RevitWPFFW.core;assembly=RevitWPFFW.core"
+
                     xmlns:ds="clr-namespace:PB.MVVMToolkit.DialogServices;assembly=PB.MVVMToolkit"
                     xmlns:local="clr-namespace:RevitWPFFW.ui"
                     mc:Ignorable="d" 
                     d:DesignHeight="500" d:DesignWidth="400">
-    <!--DataContext="{Binding MainPageViewModel, Source={StaticResource ResourceKey=ViewModelLocator}}"
-                    DialogService="{Binding ., Source={StaticResource ds.DialogService}}"-->
-
-    <!--DataContext="{Binding MainPageViewModel, Source={StaticResource ResourceKey=ViewModelLocator}}"-->
 
     <!-- Resource Dictionary Reference-->
     <Page.Resources>
@@ -20,11 +18,23 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../App.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-        
-            <!--<viewModels:ViewModelLocator x:Key="ViewModelLocator"/>-->
-            <!--<ds:DialogService x:Key="DialogService" />-->
+
+            <ds:DialogService x:Key="DialogService"/>
+            <viewModels:ViewModelLocator x:Key="ViewModelLocator" />
+
+
         </ResourceDictionary>
     </Page.Resources>
+
+    <Page.DataContext>
+        <Binding Path="MainPageViewModel"  Source="{StaticResource ViewModelLocator}"></Binding>
+    </Page.DataContext>
+
+    <views:MainPageBase.DialogService>
+        <Binding Path="." Source="{StaticResource DialogService}"/>
+    </views:MainPageBase.DialogService>
+
+
 
     <Border BorderBrush="{StaticResource BlueBorderBrush}"
             BorderThickness="3">
@@ -65,12 +75,26 @@
 
                     </Grid>
 
-                    <Border Grid.Row="1">
-                        <Frame x:Name="MainPageFrame"
-                                Content="{Binding CurrentPage, Converter={StaticResource MainPageConverter}}"
-                                NavigationUIVisibility="Hidden"
-                       />
-                    </Border>
+                    <StackPanel Grid.Row="1">
+
+                        <Button Name="EditComboList"
+                                Width="100"
+                                Height="30"
+                                Margin="0,20,0,0"
+                                Command="{Binding OpenDialogCustomCommand}"
+                        >Edit Combo List</Button>
+
+                        <Border Grid.Row="1">
+                            <Frame x:Name="MainPageFrame"
+                                   Content="{Binding CurrentPage, Converter={StaticResource MainPageConverter}}"
+                                   NavigationUIVisibility="Hidden"
+                            />
+                        </Border>
+
+
+                </StackPanel>
+
+
 
                 </Grid>
         </Border>

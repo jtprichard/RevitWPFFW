@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using PB.MVVMToolkit.ViewModel;
 using System.Windows.Input;
+using PB.MVVMToolkit.DialogServices;
 
 namespace RevitWPFFW.core
 {
@@ -41,6 +42,11 @@ namespace RevitWPFFW.core
                     _currentViewModel = new Page1ViewModel(0);
                 return _currentViewModel;
             }
+        }
+
+        private new IDialogService DialogService
+        {
+            get { return MainPageViewModel.CurrentViewModel.DialogService ?? null; }
         }
 
         private ICommand _openDialogCustomCommand = null;

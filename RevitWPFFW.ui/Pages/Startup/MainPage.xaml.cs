@@ -21,8 +21,8 @@ namespace RevitWPFFW.ui
         public MainPage()
         {
             InitializeComponent();
-            DataContext = new ViewModelLocator().MainPageViewModel;
-            DialogService = new DialogService();
+            //DataContext = new ViewModelLocator().MainPageViewModel;
+            //DialogService = new DialogService();
             Instance = this;
 
             var manager = new DataTemplateManager();
