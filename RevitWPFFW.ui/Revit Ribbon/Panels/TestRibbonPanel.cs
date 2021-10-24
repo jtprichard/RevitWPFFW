@@ -52,7 +52,7 @@ namespace RevitWPFFW.ui
                 Label = "Test\nCommand",
                 Panel = panel,
                 Tooltip = "A Test Command",
-                CommandNamespacePath = TestCommand.GetPath(),
+                CommandNamespacePath = OpenDialogCommand.GetPath(),
                 IconImageName = ImageNames.TestIconShow,
                 TooltipImageName = ImageNames.TestIconTooltip,
                 SmallIconImageName = ImageNames.TestIconSmall,

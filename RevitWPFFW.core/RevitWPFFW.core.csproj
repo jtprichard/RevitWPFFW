@@ -79,8 +79,8 @@
     <Compile Include="RevitDocument.cs" />
     <None Include="ViewModels\Base\BaseViewModel.cs" />
     <None Include="ViewModels\Base\RelayCommand.cs" />
+    <Compile Include="Commands\OpenDialogCommand.cs" />
     <Compile Include="ViewModels\Dialogs\CustomDialogViewModel.cs" />
-    <Compile Include="ViewModels\Locator\ViewModelLocator.cs" />
     <Compile Include="ViewModels\Project\MainPageViewModel.cs" />
     <Compile Include="ViewModels\Project\Page1BViewModel.cs" />
     <Compile Include="ViewModels\Project\Page2ViewModel.cs" />

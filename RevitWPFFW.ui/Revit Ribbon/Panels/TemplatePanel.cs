@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Mime;
 using Autodesk.Revit.UI;
 using RevitWPFFW.core;
 using RevitWPFFW.res;
@@ -281,6 +280,28 @@ namespace RevitWPFFW.ui
                 PushButton stackBtn2 = stackedItems[1] as PushButton;
                 PushButton stackBtn3 = stackedItems[2] as PushButton;
             }
+
+            #endregion
+
+            #region Custom Dialog Call Template
+
+            //Add a Pushbutton to call a custom dialog
+            //Name is only required if future reference is needed
+            //Guid is generated if no name provided
+            var dialogButtonData = new RevitPushButtonData("Open_Custom_Dialog")
+            {
+                Label = "Custom\nDialog",
+                Panel = panel,
+                Tooltip = "Tooltip Sample",
+                CommandNamespacePath = OpenDialogCommand.GetPath(),
+                IconImageName = ImageNames.BlankButton,
+                TooltipImageName = ImageNames.BlankButton,
+                SmallIconImageName = ImageNames.BlankButtonSmall,
+                LongDescription = "This is a long description for the ToolTip",
+                AvailabilityClassName = AvailabilityProj.GetPath(),
+                ContextualHelpData = new RevitContextualHelpData(contextualHelp, "Introduction")
+            };
+            var customDialogButton = RevitPushButton.Create(dialogButtonData);
 
             #endregion
 

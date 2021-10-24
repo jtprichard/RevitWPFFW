@@ -179,7 +179,7 @@ namespace RevitWPFFW.core
             vm.CancelClicked += OptionCancel;
             vm.Owner = parameter as Window;
             if (DialogService != null)
-                DialogService.ShowDialogModal(vm);
+                DialogService.ShowDialog(vm);
         }
 
         private void OptionOk(object sender, EventArgs e)

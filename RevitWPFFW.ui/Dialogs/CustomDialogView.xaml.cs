@@ -1,4 +1,4 @@
-﻿using System.Windows.Controls;
+﻿using PB.MVVMToolkit.DialogServices;
 
 
 namespace RevitWPFFW.ui
@@ -6,7 +6,7 @@ namespace RevitWPFFW.ui
     /// <summary>
     /// Interaction logic for CustomDialogView.xaml
     /// </summary>
-    public partial class CustomDialogView : UserControl
+    public partial class CustomDialogView : BaseDialogWindow
     {
         public CustomDialogView()
         {

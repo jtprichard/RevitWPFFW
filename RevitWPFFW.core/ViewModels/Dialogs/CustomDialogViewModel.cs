@@ -9,7 +9,7 @@ using PB.MVVMToolkit.Dialogs;
 
 namespace RevitWPFFW.core
 {
-    public class CustomDialogViewModel : DialogViewModelBase
+    public class CustomDialogViewModel : BaseDialogViewModel
     {
         #region Event Handlers
 

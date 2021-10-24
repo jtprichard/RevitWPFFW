@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
 using System.Windows.Input;
+using PB.MVVMToolkit.DialogServices;
 using PB.MVVMToolkit.ViewModel;
 
 namespace RevitWPFFW.core
@@ -49,6 +49,8 @@ namespace RevitWPFFW.core
             set { _documentHashCode = value; OnPropertyChanged("DocumentHashCode"); }
         }
 
+        public DialogService DialogService { get; }
+
         /// <summary>
         /// Stores a list of instantiated viewmodels
         /// </summary>
@@ -86,12 +88,9 @@ namespace RevitWPFFW.core
         /// <summary>
         /// Default Constructor
         /// </summary>
-        //public MainPageViewModel(int documentHashCode)
         public MainPageViewModel()
         {
             _openDialogCustomCommand = new RelayCommand(OnOpenDialogCustom);
-            //Store document hash code
-            //DocumentHashCode = documentHashCode;
 
             //If list of viewmodels is null, create a new list
             if (_viewModels == null)
@@ -111,6 +110,32 @@ namespace RevitWPFFW.core
             //Set the current viewmodel
             SetCurrentViewModel();
         }
+
+        public MainPageViewModel(DialogService dialogService)
+        {
+            this.DialogService = dialogService;
+
+            _openDialogCustomCommand = new RelayCommand(OnOpenDialogCustom);
+
+            //If list of viewmodels is null, create a new list
+            if (_viewModels == null)
+                _viewModels = new List<MainPageViewModel>();
+
+            //Commands must be initialized at construction
+            Page1Command = new RelayCommand(Page1CommandMethod);
+            Page2Command = new RelayCommand(Page2CommandMethod);
+            Page3Command = new RelayCommand(Page3CommandMethod);
+
+            //Initialize Method
+            Initialize();
+
+            //Add viewmodel to list of viewmodels
+            _viewModels.Add(this);
+
+            //Set the current viewmodel
+            SetCurrentViewModel();
+
+        }
         #endregion
 
         #region Private Methods
@@ -120,9 +145,8 @@ namespace RevitWPFFW.core
             var vm = new CustomDialogViewModel();
             vm.OkClicked += OptionOk;
             vm.CancelClicked += OptionCancel;
-            vm.Owner = parameter as Window;
-            if (DialogService != null)
-                DialogService.ShowDialogModal(vm);
+            if(DialogService != null)
+                DialogService.ShowDialog(vm);
         }
 
         private void OptionOk(object sender, EventArgs e)
@@ -213,7 +237,6 @@ namespace RevitWPFFW.core
         /// </summary>
         public static void SwitchToPage2()
         {
-            //_instance.CurrentPage = PageType.Page2;
             CurrentViewModel.CurrentPage = PageType.Page2;
         }
 
@@ -257,7 +280,6 @@ namespace RevitWPFFW.core
         {
             if (_viewModels == null)
                 _ = new MainPageViewModel();
-            //_ = new MainPageViewModel(0);
 
             var retrievedViewModel = _viewModels.FirstOrDefault(x => x.DocumentHashCode == hashCode);
 
@@ -266,8 +288,6 @@ namespace RevitWPFFW.core
                 retrievedViewModel = new MainPageViewModel();
                 retrievedViewModel.DocumentHashCode = hashCode;
             }
-
-            //retrievedViewModel = new MainPageViewModel(hashCode);
 
             retrievedViewModel.SetCurrentViewModel();
 
