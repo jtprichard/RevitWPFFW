@@ -44,10 +44,6 @@ namespace RevitWPFFW.core
             }
         }
 
-        private new IDialogService DialogService
-        {
-            get { return MainPageViewModel.CurrentViewModel.DialogService ?? null; }
-        }
 
         private ICommand _openDialogCustomCommand = null;
 

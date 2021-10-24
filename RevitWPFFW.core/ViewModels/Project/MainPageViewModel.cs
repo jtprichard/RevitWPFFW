@@ -34,7 +34,6 @@ namespace RevitWPFFW.core
             {
                 if (_currentViewModel == null)
                     _currentViewModel = new MainPageViewModel();
-                //_currentViewModel = new MainPageViewModel(0);
                 return _currentViewModel;
             }
         }
@@ -48,8 +47,6 @@ namespace RevitWPFFW.core
             get { return _documentHashCode; }
             set { _documentHashCode = value; OnPropertyChanged("DocumentHashCode"); }
         }
-
-        public DialogService DialogService { get; }
 
         /// <summary>
         /// Stores a list of instantiated viewmodels
@@ -111,31 +108,6 @@ namespace RevitWPFFW.core
             SetCurrentViewModel();
         }
 
-        public MainPageViewModel(DialogService dialogService)
-        {
-            this.DialogService = dialogService;
-
-            _openDialogCustomCommand = new RelayCommand(OnOpenDialogCustom);
-
-            //If list of viewmodels is null, create a new list
-            if (_viewModels == null)
-                _viewModels = new List<MainPageViewModel>();
-
-            //Commands must be initialized at construction
-            Page1Command = new RelayCommand(Page1CommandMethod);
-            Page2Command = new RelayCommand(Page2CommandMethod);
-            Page3Command = new RelayCommand(Page3CommandMethod);
-
-            //Initialize Method
-            Initialize();
-
-            //Add viewmodel to list of viewmodels
-            _viewModels.Add(this);
-
-            //Set the current viewmodel
-            SetCurrentViewModel();
-
-        }
         #endregion
 
         #region Private Methods

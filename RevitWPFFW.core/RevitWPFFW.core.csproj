@@ -77,8 +77,6 @@
     <Compile Include="Revit WPF Wrapper\WPFEventCommandArgs.cs" />
     <Compile Include="RevitControlledApplication.cs" />
     <Compile Include="RevitDocument.cs" />
-    <None Include="ViewModels\Base\BaseViewModel.cs" />
-    <None Include="ViewModels\Base\RelayCommand.cs" />
     <Compile Include="Commands\OpenDialogCommand.cs" />
     <Compile Include="ViewModels\Dialogs\CustomDialogViewModel.cs" />
     <Compile Include="ViewModels\Project\MainPageViewModel.cs" />

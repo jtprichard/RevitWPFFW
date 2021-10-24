@@ -2,6 +2,7 @@ using System;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
+using PB.MVVMToolkit.DialogServices;
 
 
 namespace RevitWPFFW.core
@@ -27,7 +28,7 @@ namespace RevitWPFFW.core
         /// <exception cref="System.NotImplementedException"></exception>
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            var dialogService = MainPageViewModel.CurrentViewModel.DialogService;
+            var dialogService = DialogService.Instance;
             
             var vm = new CustomDialogViewModel();
             vm.OkClicked += OptionOk;

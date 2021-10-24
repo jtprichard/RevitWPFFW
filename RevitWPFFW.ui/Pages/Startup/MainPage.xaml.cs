@@ -3,7 +3,6 @@ using System.Windows;
 using System.Windows.Controls;
 using Autodesk.Revit.UI;
 using RevitWPFFW.core;
-using PB.MVVMToolkit.DialogServices;
 
 
 namespace RevitWPFFW.ui
@@ -20,8 +19,10 @@ namespace RevitWPFFW.ui
         public MainPage()
         {
             InitializeComponent();
-            var dialogService = DialogRegistration.Registration.GetServices(this);
-            DataContext = new MainPageViewModel(dialogService);
+            //Register the dialog models and viewmodels
+            DialogRegistration.SetServices(this);
+            //Assign datacontext
+            DataContext = new MainPageViewModel();
 
         }
         #endregion
