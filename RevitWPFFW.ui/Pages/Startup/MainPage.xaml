@@ -44,13 +44,16 @@
                         </Grid.RowDefinitions>
 
                         <Button Grid.Column="0" Grid.Row="0" 
-                        Command="{Binding Page1Command}"
+                                Command="{Binding Page1Command}"
+                                Style="{StaticResource ButtonRevitPropertyBox}"
                         >Page 1</Button>
                         <Button Grid.Column="1" Grid.Row="0" 
-                        Command="{Binding Page2Command}"
+                                Style="{StaticResource ButtonRevitPropertyBox}"
+                                Command="{Binding Page2Command}"
                         >Page 2</Button>
                         <Button Grid.Column="2" Grid.Row="0" 
-                        Command="{Binding Page3Command}"
+                                Style="{StaticResource ButtonRevitPropertyBox}"
+                                Command="{Binding Page3Command}"
                         >Page 3</Button>
 
 
