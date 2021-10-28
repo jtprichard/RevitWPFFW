@@ -16,61 +16,60 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid>
-        <Grid.Background>
-            <SolidColorBrush Color="{StaticResource MainBackground}"></SolidColorBrush>
-        </Grid.Background>
+    <StackPanel Background="{StaticResource MainBackgroundBrush}">
+        <Grid>
+            <StackPanel>
+                <TextBlock Style="{StaticResource MediumBoldTextBlockStyle}"
+                       HorizontalAlignment="Center" 
+                       Foreground="{StaticResource DarkGrayFontBrush}"
+                       >Page 1B</TextBlock>
 
-        <StackPanel>
-            <TextBlock Style="{StaticResource MediumBoldTextBlockStyle}"
-                   HorizontalAlignment="Center" 
-                   Foreground="{StaticResource DarkGrayFontBrush}"
-                   >Page 1B</TextBlock>
+                <TextBlock HorizontalAlignment="Center"
+                           x:Name="DocumentText"
+                           Text="{Binding Path=DocumentData, UpdateSourceTrigger=PropertyChanged}">
 
-            <TextBlock HorizontalAlignment="Center"
-                       x:Name="DocumentText"
-                       Text="{Binding Path=DocumentData, UpdateSourceTrigger=PropertyChanged}">
-
-            </TextBlock>
-
-            <!-- Checkbox Sample -->
-            <ItemsControl Grid.Row="0" ItemsSource="{Binding Path=CheckBoxItems}"
-                      Padding="15 10 10 10">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <CheckBox Content="{Binding Value}" IsChecked="{Binding IsSelected}"
-                              HorizontalAlignment="Left"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-            
-            <!-- Checkbox Result Sample -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <TextBlock Grid.Row="0" Grid.Column="0"
-                           Margin="20 0 0 0"
-                           Style="{StaticResource BaseTextBlockStyle}">
-                    CheckBox Results
                 </TextBlock>
 
-                <TextBox Grid.Row="0" Grid.Column="1"
-                         Margin="20 0 20 0"
-                         IsEnabled="False"
-                         TextWrapping="Wrap"
-                         Text="{Binding CheckBoxSelectedItems, UpdateSourceTrigger=PropertyChanged}"/>
+                <!-- Checkbox Sample -->
+                <ItemsControl Grid.Row="0" 
+                              ItemsSource="{Binding Path=CheckBoxItems}"
+                              Padding="15 10 10 10">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Content="{Binding Value}" 
+                                      IsChecked="{Binding IsSelected}"
+                                      HorizontalAlignment="Left"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                
+                <!-- Checkbox Result Sample -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-            </Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-        </StackPanel>
+                    <TextBlock Grid.Row="0" Grid.Column="0"
+                               Margin="20 0 0 0"
+                               Style="{StaticResource BaseTextBlockStyle}">
+                        CheckBox Results
+                    </TextBlock>
 
-            
-    </Grid>
+                    <TextBox Grid.Row="0" Grid.Column="1"
+                             Margin="20 0 20 0"
+                             IsEnabled="False"
+                             TextWrapping="Wrap"
+                             Style="{StaticResource DefaultTextBox}"
+                             Text="{Binding CheckBoxSelectedItems, UpdateSourceTrigger=PropertyChanged}"/>
+
+                </Grid>
+
+            </StackPanel>
+        </Grid>
+    </StackPanel>
 </UserControl>

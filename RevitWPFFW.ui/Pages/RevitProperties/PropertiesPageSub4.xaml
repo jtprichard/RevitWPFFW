@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="RevitWPFFW.ui.PropertiesPageSub4"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignWidth="400">
+
+    <!-- Resource Dictionary Reference-->
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../App.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <StackPanel Background="{StaticResource MainBackgroundBrush}">
+
+        <!--Focus Point Label-->
+        <Border Style="{StaticResource RevitHeaderBorder}">
+            <Grid VerticalAlignment="Stretch" Height="auto" Background="{StaticResource MainBorderBrush}">
+                <TextBlock Style="{StaticResource RevitPropertyHeaderBlock}"  
+                           Text="Focus Point"/>
+            </Grid>
+        </Border>
+
+        <!--Focus Point Data -->
+        <Grid>
+
+            <!--Definitions-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".75*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!--Table Data-->
+            <Border Grid.Row="0"
+                    Grid.Column="0" 
+                    Style="{StaticResource RevitPropertyGridBorder}">
+                <TextBlock Style="{StaticResource RevitPropertyDescriptionBlock}"
+                           Text="Calculation Type" />
+            </Border>
+
+            <Border Grid.Row="0"  
+                    Grid.Column="1" 
+                    Style="{StaticResource RevitPropertyValueBorder}">
+
+                <ComboBox Style="{StaticResource DefaultComboBox}"
+                          SelectedIndex="0"
+                          x:Name="FocusPointCombo"
+                          ItemsSource="{Binding Path=FocusPointItems, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding Path=SelectedFocusPoint, UpdateSourceTrigger=PropertyChanged}"
+                          DisplayMemberPath="Name"
+                          ToolTip="Select the focuspoint to use to place the seats">
+
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+
+            </Border>
+
+
+            <!--A dummy box to take focus temporarily-->
+            <TextBox x:Name="DummyText"
+                 Visibility="Hidden"/>
+        </Grid>
+
+
+
+    </StackPanel>
+</UserControl>

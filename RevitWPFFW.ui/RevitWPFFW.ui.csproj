@@ -82,11 +82,26 @@
     <Compile Include="Pages\Properties\Page3.xaml.cs">
       <DependentUpon>Page3.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Startup\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Revit Ribbon\Controls\RevitContextualHelpData.cs" />
+    <Compile Include="Pages\RevitProperties\PropertiesPage.xaml.cs">
+	    <DependentUpon>PropertiesPage.xaml</DependentUpon>
+	</Compile>
+	  <Compile Include="Pages\RevitProperties\PropertiesPageSub1.xaml.cs" >
+		  <DependentUpon>PropertiesPageSub1.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Include="Pages\RevitProperties\PropertiesPageSub2.xaml.cs">
+		  <DependentUpon>PropertiesPageSub2.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Include="Pages\RevitProperties\PropertiesPageSub3.xaml.cs">
+		  <DependentUpon>PropertiesPageSub3.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Include="Pages\RevitProperties\PropertiesPageSub4.xaml.cs">
+		  <DependentUpon>PropertiesPageSub4.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Include="Pages\Startup\MainPage.xaml.cs">
+		  <DependentUpon>MainPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Include="Properties\AssemblyInfo.cs" />
+	  <Compile Include="Revit Ribbon\Controls\RevitContextualHelpData.cs" />
     <Compile Include="Revit Ribbon\Controls\RevitPushButton.cs" />
     <Compile Include="Revit Ribbon\Controls\RevitPushButtonData.cs" />
     <Compile Include="Revit Ribbon\Controls\RevitSplitButton.cs" />
@@ -152,6 +167,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\RevitProperties\PropertiesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\RevitProperties\PropertiesPageSub1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\RevitProperties\PropertiesPageSub2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\RevitProperties\PropertiesPageSub3.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\RevitProperties\PropertiesPageSub4.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\Startup\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -159,18 +194,6 @@
     <Page Include="Styles\ButtonExpander.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\Buttons.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\Colors.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\Fonts.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

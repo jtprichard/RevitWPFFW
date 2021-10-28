@@ -4,8 +4,7 @@
                     xmlns:System="clr-namespace:System;assembly=mscorlib">
     
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="Colors.xaml" />
-        <ResourceDictionary Source="Fonts.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PB.MVVMToolkit;component/Styles/Styles.xaml"></ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
 
 

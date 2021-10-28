@@ -21,7 +21,6 @@ namespace RevitWPFFW.core
         //Sample control fields
         private string _textbox1;
         private string _textbox2;
-        private ObservableCollection<Combo1Data> _combo1Items;
         private Combo1Data _selectedCombo1;
         
         //FOR TESTING
@@ -114,31 +113,33 @@ namespace RevitWPFFW.core
             set { OnPropertyChanged("TextBox3"); }
         }
 
+        private ObservableCollection<ListItem> _comboItems;
         /// <summary>
         /// Combobox 1 Data
         /// </summary>
-        public ObservableCollection<Combo1Data> Combo1
+        public ObservableCollection<ListItem> ComboItems
         {
-            get { return _combo1Items; }
-            set { _combo1Items = value; OnPropertyChanged("Combo1"); }
+            get { return _comboItems; }
+            set { _comboItems = value; OnPropertyChanged(nameof(ComboItems)); }
         }
 
+        private ListItem _selectedComboItem;
         /// <summary>
         /// Selected ComboBox Item
         /// </summary>
-        public Combo1Data Combo1Selection
+        public ListItem SelectedComboItem
         {
-            get { return _selectedCombo1; }
-            set { _selectedCombo1 = value; OnPropertyChanged("Combo1Selection"); OnPropertyChanged("Combo1SelectionText"); }
+            get { return _selectedComboItem; }
+            set { _selectedComboItem = value; OnPropertyChanged(nameof(SelectedComboItem)); OnPropertyChanged(nameof(ComboSelectionText)); }
         }
 
         /// <summary>
         /// Displays Combobox selection string
         /// </summary>
-        public string Combo1SelectionText
+        public string ComboSelectionText
         {
-            get { return Combo1Selection != null ? Combo1Selection.Value : ""; }
-            set { OnPropertyChanged("Combo1SelectionText"); }
+            get { return SelectedComboItem != null ? SelectedComboItem.Description : ""; }
+            set { OnPropertyChanged(nameof(ComboSelectionText)); }
         }
 
         #endregion
@@ -180,6 +181,9 @@ namespace RevitWPFFW.core
 
         private void OptionOk(object sender, EventArgs e)
         {
+            ComboItems = (sender as CustomDialogViewModel).ListItems;
+            SelectedComboItem = ComboItems.Last();
+
 
         }
 
@@ -208,8 +212,8 @@ namespace RevitWPFFW.core
             PopulateTextBox1();
             PopulateTextBox2();
 
-            Combo1 = PopulateCombo1();
-            Combo1Selection = Combo1[0];
+            ComboItems = PopulateCombo1();
+            SelectedComboItem = ComboItems[0];
 
             //Initialize sub viewmodels
             //Note if you do this here, be sure it is updated in the RevitDocument or below in the SetCurrentViewmodel method
@@ -248,14 +252,9 @@ namespace RevitWPFFW.core
         /// Private Method to populate ComboBox 1
         /// </summary>
         /// <returns></returns>
-        private ObservableCollection<Combo1Data> PopulateCombo1()
+        private ObservableCollection<ListItem> PopulateCombo1()
         {
-            ObservableCollection<Combo1Data> items = new ObservableCollection<Combo1Data>();
-
-            items.Add(new Combo1Data { ComboEnum = Combo1Enum.ComboEnum1, Value = "Value 1" });
-            items.Add(new Combo1Data { ComboEnum = Combo1Enum.ComboEnum2, Value = "Value 2" });
-            items.Add(new Combo1Data { ComboEnum = Combo1Enum.ComboEnum3, Value = "Value 3" });
-
+            var items = ListItem.Populate();
             return items;
         }
 

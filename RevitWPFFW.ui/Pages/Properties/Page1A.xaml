@@ -16,73 +16,78 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid>
-        <Grid.Background>
-            <SolidColorBrush Color="{StaticResource MainBackground}"></SolidColorBrush>
-        </Grid.Background>
 
-        <StackPanel>
-            <TextBlock Style="{StaticResource MediumBoldTextBlockStyle}"
-                   HorizontalAlignment="Center" 
-                   Foreground="{StaticResource DarkGrayFontBrush}"
-                   >Page 1A</TextBlock>
+    <StackPanel Background="{StaticResource MainBackgroundBrush}">
+        <Grid>
 
-            <TextBlock HorizontalAlignment="Center"
-                       x:Name="DocumentText"
-                       Text="{Binding Path=DocumentData, UpdateSourceTrigger=PropertyChanged}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource MediumBoldTextBlockStyle}"
+                       HorizontalAlignment="Center" 
+                       Foreground="{StaticResource DarkGrayFontBrush}"
+                       >Page 1A</TextBlock>
 
-            </TextBlock>
+                <TextBlock HorizontalAlignment="Center"
+                           x:Name="DocumentText"
+                           Text="{Binding Path=DocumentData, UpdateSourceTrigger=PropertyChanged}">
 
-            <!-- ComboBox Sample -->
-            <!-- Binding uses same ViewModel as Base Page1-->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="20"/>
-                    <RowDefinition Height="20"/>
-                </Grid.RowDefinitions>
-
-
-                <TextBlock Grid.Row="0" Grid.Column="0"
-                           Margin="20 0 0 0"
-                           Style="{StaticResource BaseTextBlockStyle}">
-                    ComboBox
                 </TextBlock>
 
-                <ComboBox Grid.Row="0" Grid.Column="1"
-                          Margin="20 0 20 0"
-                          ItemsSource="{Binding Combo1, UpdateSourceTrigger=PropertyChanged}"
-                          SelectedItem="{Binding Combo1Selection, UpdateSourceTrigger=PropertyChanged}"
-                          DisplayMemberPath="Value">
-                </ComboBox>
-                
+                <!-- ComboBox Sample -->
+                <!-- Binding uses same ViewModel as Base Page1-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="1" Grid.Column="0"
-                           Margin="20 0 0 0"
-                           Style="{StaticResource BaseTextBlockStyle}">
-                    Combo Result
-                </TextBlock>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
 
-                <TextBox Grid.Row="1" Grid.Column="1"
-                         Margin="20 0 20 0"
-                         IsEnabled="False"
-                         Text="{Binding Combo1SelectionText, UpdateSourceTrigger=PropertyChanged}"/>
 
-            </Grid>
+                    <TextBlock Grid.Row="0" 
+                               Grid.Column="0"
+                               Margin="20 5 0 0"
+                               Style="{StaticResource BaseTextBlockStyle}">
+                        ComboBox
+                    </TextBlock>
 
-            <Button Name="EditComboList"
-                    Width="100"
-                    Height="30"
-                    Margin="0,20,0,0"
-                    Command="{Binding OpenDialogCustomCommand}"
-            >Edit Combo List</Button>
+                    <ComboBox Grid.Row="0" 
+                              Grid.Column="1"
+                              Margin="20 5 20 0"
+                              Style="{StaticResource DefaultComboBox}"
+                              ItemsSource="{Binding ComboItems, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding SelectedComboItem, UpdateSourceTrigger=PropertyChanged}"
+                              DisplayMemberPath="Description">
+                    </ComboBox>
+                    
 
-        </StackPanel>
+                    <TextBlock Grid.Row="1" 
+                               Grid.Column="0"
+                               Margin="20 5 0 0"
+                               Style="{StaticResource BaseTextBlockStyle}">
+                        Combo Result
+                    </TextBlock>
 
-            
-    </Grid>
+                    <TextBox Grid.Row="1" 
+                             Grid.Column="1"
+                             Margin="20 5 20 0"
+                             IsEnabled="False"
+                             Style="{StaticResource DefaultTextBox}"
+                             Text="{Binding ComboSelectionText, UpdateSourceTrigger=PropertyChanged}"/>
+
+                </Grid>
+
+                <Button Name="EditComboList"
+                        Width="100"
+                        Height="30"
+                        Margin="0,20,0,0"
+                        Style="{StaticResource NormalButton}"
+                        Command="{Binding OpenDialogCustomCommand}"
+                >Edit Combo List</Button>
+
+            </StackPanel>
+        </Grid>
+    </StackPanel>
 </UserControl>

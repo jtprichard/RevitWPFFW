@@ -15,67 +15,61 @@
         </ResourceDictionary>
     </Page.Resources>
 
+    <Page.Style>
+        <StaticResource ResourceKey="DefaultPage"/>
+    </Page.Style>
 
-    <Border BorderBrush="{StaticResource BlueBorderBrush}"
-            BorderThickness="3">
+    <Border Style="{StaticResource DefaultPageBorder}">
 
-        <Border BorderBrush="{StaticResource MainBorderBrush}"
-                BorderThickness="5">
+        <!-- Primary Page Grid -->
+        <Grid Background="{StaticResource MainBackgroundBrush}">
 
-                <!-- Primary Page Grid -->
-                <Grid Background="{StaticResource MainBackgroundBrush}">
+            <!-- Break Page into Navigation and Bound Referenced Page -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-                    <!-- Break Page into Navigation and Bound Referenced Page -->
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="20"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+            <!-- Top Navigation Bar -->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-                    <!-- Top Navigation Bar -->
-                    <Grid Grid.Row="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="20"/>
-                        </Grid.RowDefinitions>
+                <Button Grid.Column="0" Grid.Row="0" 
+                        Command="{Binding Page1Command}"
+                        Style="{StaticResource RevitPropertyButton}"
+                        ToolTip="A tooltip for Page 1"
+                >Page 1</Button>
+                <Button Grid.Column="1" Grid.Row="0" 
+                        Style="{StaticResource RevitPropertyButton}"
+                        Command="{Binding Page2Command}"
+                        ToolTip="A tooltip for Page 2 Properties Window"
+                >Page 2</Button>
+                <Button Grid.Column="2" Grid.Row="0" 
+                        Style="{StaticResource RevitPropertyButton}"
+                        Command="{Binding Page3Command}"
+                        ToolTip="A tooltip for Page 3"
+                >Page 3</Button>
+            </Grid>
 
-                        <Button Grid.Column="0" Grid.Row="0" 
-                                Command="{Binding Page1Command}"
-                                Style="{StaticResource ButtonRevitPropertyBox}"
-                        >Page 1</Button>
-                        <Button Grid.Column="1" Grid.Row="0" 
-                                Style="{StaticResource ButtonRevitPropertyBox}"
-                                Command="{Binding Page2Command}"
-                        >Page 2</Button>
-                        <Button Grid.Column="2" Grid.Row="0" 
-                                Style="{StaticResource ButtonRevitPropertyBox}"
-                                Command="{Binding Page3Command}"
-                        >Page 3</Button>
+            <StackPanel Grid.Row="1">
 
+                <Border Grid.Row="1">
+                    <Frame x:Name="MainPageFrame"
+                           Content="{Binding CurrentPage, Converter={StaticResource MainPageConverter}}"
+                           NavigationUIVisibility="Hidden"
+                    />
+                </Border>
 
-</Grid>
-                    <!--Style="{StaticResource MainButton}">-->
-
-                <StackPanel Grid.Row="1">
-
-                        <Border Grid.Row="1">
-                            <Frame x:Name="MainPageFrame"
-                                   Content="{Binding CurrentPage, Converter={StaticResource MainPageConverter}}"
-                                   NavigationUIVisibility="Hidden"
-                            />
-                        </Border>
-
-
-                </StackPanel>
-
-
-
-                </Grid>
-        </Border>
-
+            </StackPanel>
+        </Grid>
     </Border>
+
 </Page>

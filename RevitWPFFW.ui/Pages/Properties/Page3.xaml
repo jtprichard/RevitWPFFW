@@ -16,15 +16,14 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid>
-        <Grid.Background>
-            <SolidColorBrush Color="{StaticResource MainBackground}"></SolidColorBrush>
-        </Grid.Background>
+    <Page.Style>
+        <StaticResource ResourceKey="DefaultPage"/>
+    </Page.Style>
 
+    <Grid>
         <TextBlock Style="{StaticResource LargeBoldTextBlockStyle}"
                    HorizontalAlignment="Center" 
                    Foreground="{StaticResource DarkGrayFontBrush}"
                    >Page 3</TextBlock>
-
     </Grid>
 </Page>

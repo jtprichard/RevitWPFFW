@@ -16,10 +16,14 @@
         </ResourceDictionary>
     </Page.Resources>
 
+    <Page.Style>
+        <StaticResource ResourceKey="DefaultPage"/>
+    </Page.Style>
+
     <Grid>
-        <Grid.Background>
+        <!--<Grid.Background>
             <SolidColorBrush Color="{StaticResource MainBackground}"></SolidColorBrush>
-        </Grid.Background>
+        </Grid.Background>-->
 
         <StackPanel>
             <TextBlock Style="{StaticResource LargeBoldTextBlockStyle}"
@@ -126,7 +130,7 @@
                 </Grid.RowDefinitions>
 
 
-                <Button Style="{StaticResource ExpanderButton}"
+                <Button Style="{StaticResource RevitPropertyButton}"
                         Grid.Row="0"
                         x:Name="ExpandButton"
                         Click="ExpandButton_Click"
@@ -140,10 +144,6 @@
                 </Border>
                 
             </Grid>
-
-
         </StackPanel>
-
-
     </Grid>
 </Page>

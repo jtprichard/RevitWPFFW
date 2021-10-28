@@ -1,0 +1,136 @@
+﻿<UserControl x:Class="RevitWPFFW.ui.PropertiesPageSub2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignWidth="400">
+    <!-- Resource Dictionary Reference-->
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../App.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <StackPanel Background="{StaticResource MainBackgroundBrush}">
+
+        <!--Seating Block Label-->
+        <Border Style="{StaticResource RevitHeaderBorder}">
+            <Grid VerticalAlignment="Stretch" Height="auto" Background="{StaticResource MainBorderBrush}">
+                <TextBlock Style="{StaticResource RevitPropertyHeaderBlock}"  
+                       Text="Seat Family"/>
+            </Grid>
+        </Border>
+
+        <!--Seating Family Data-->
+        <Grid>
+
+            <!--Definitions-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".75*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!--Seat Family-->
+            <Border Grid.Column="0" 
+                    Grid.Row="0" 
+                    Style="{StaticResource RevitPropertyGridBorder}">
+                <TextBlock Style="{StaticResource RevitPropertyDescriptionBlock}"
+                           Text="Seat Family Name" />
+            </Border>
+
+            <Border Grid.Row="0"
+                    Grid.Column="1"  
+                    Style="{StaticResource RevitPropertyValueBorder}">
+
+                <ComboBox Style="{StaticResource DefaultComboBox}"
+                          x:Name="BlockNameCombo" 
+                          ItemsSource="{Binding Path=SeatFamilyItems, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding Path=SelectedSeatFamily, UpdateSourceTrigger=PropertyChanged}"
+                          DisplayMemberPath="FamilyName"
+                          ToolTip="Choose the seat family to use">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+            </Border>
+
+            <!--Seat Widths-->
+            <Border Grid.Row="1"
+                    Grid.Column="0" 
+                    Style="{StaticResource RevitPropertyGridBorder}">
+                <TextBlock Style="{StaticResource RevitPropertyDescriptionBlock}"
+                           Text="Widths" />
+            </Border>
+
+            <Border Grid.Row="1"  
+                    Grid.Column="1" 
+                    Style="{StaticResource RevitPropertyValueBorder}">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width=".25*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"  
+                               Text="{Binding SeatTypesString, UpdateSourceTrigger=PropertyChanged}"
+                               x:Name="WidthString"
+                               Style="{StaticResource RevitPropertyDataBlock}"
+                               ToolTip="Selected seat widths"/>
+
+                    <Button Grid.Column="1"  
+                            Content="Edit..."
+                            x:Name="SeatWidthsButton" 
+                            Style="{StaticResource RevitPropertyButton}"
+                            ToolTip="Edit the seat widths to use when placing seats"/>
+
+                </Grid>
+
+            </Border>
+
+            <!--Seat Type Properties Expansion-->
+            <!--<Border Grid.Row="2" 
+                    Grid.Column="1" 
+                    Height="0" 
+                    x:Name="PropertiesPageBorder">
+                <local:SeatTypePropertiesPage/>
+            </Border>-->
+
+
+            <!--Additional Gap-->
+            <Border Grid.Row="3"
+                    Grid.Column="0" 
+                    Style="{StaticResource RevitPropertyGridBorder}">
+                <TextBlock Style="{StaticResource RevitPropertyDescriptionBlock}"
+                           Text="Additional Gap" />
+            </Border>
+
+            <Border Grid.Row="3"  
+                    Grid.Column="1" 
+                    Style="{StaticResource RevitPropertyValueBorder}">
+
+                <TextBox Style="{StaticResource RevitPropertyTextBox}"
+                         x:Name="AddGapText"
+                         Text="{Binding Path=AddGapDisplay, UpdateSourceTrigger=LostFocus}"
+                         ToolTip="The additional gap to add between seats">
+                </TextBox>
+
+            </Border>
+
+        </Grid>
+
+
+    </StackPanel>
+</UserControl>

@@ -6,12 +6,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <!-- Styles. -->
-        <!--<ResourceDictionary Source="Styles/Colors.xaml"/>
-        <ResourceDictionary Source="Styles/Fonts.xaml"/>
-        <ResourceDictionary Source="Styles/Buttons.xaml"/>-->
-
         <ResourceDictionary Source="pack://application:,,,/PB.MVVMToolkit;component/Styles/Styles.xaml"></ResourceDictionary>
-        <ResourceDictionary Source="Styles/ButtonExpander.xaml"/>
 
         <!-- Converters. -->
         <ResourceDictionary Source="Converters/Converters.xaml" />

@@ -28,7 +28,7 @@ namespace RevitWPFFW.ui
                 case PageType.Page2:
                     return new Page2();
                 case PageType.Page3:
-                    return new Page3();
+                    return new PropertiesPage();
                 case PageType.Page4:
                     return new Page4();
                 default:

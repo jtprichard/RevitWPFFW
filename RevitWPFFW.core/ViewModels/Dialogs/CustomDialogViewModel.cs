@@ -74,7 +74,7 @@ namespace RevitWPFFW.core
 
         #region Private Fields
 
-        private readonly ObservableCollection<Combo1Data> _originalItemList = null;
+        private readonly ObservableCollection<ListItem> _originalItemList = null;
 
         #endregion
 
@@ -120,11 +120,11 @@ namespace RevitWPFFW.core
             this.cancelCommand = new RelayCommand(OnCancelClicked);
 
             //Populate the list and select the first item as default
-            PopulateListItems(Page1ViewModel.CurrentViewModel.Combo1);
+            PopulateListItems(Page1ViewModel.CurrentViewModel.ComboItems);
             SelectedListItem = ListItems[0];
 
             //Store the original item list to confirm at the end
-            _originalItemList = Page1ViewModel.CurrentViewModel.Combo1;
+            _originalItemList = Page1ViewModel.CurrentViewModel.ComboItems;
         }
 
         #endregion
@@ -234,11 +234,11 @@ namespace RevitWPFFW.core
         /// Populate the list at startup
         /// </summary>
         /// <param name="listItems"></param>
-        private void PopulateListItems(ObservableCollection<Combo1Data> comboItems)
+        private void PopulateListItems(ObservableCollection<ListItem> comboItems)
         {
             var items = new ObservableCollection<ListItem>();
             foreach (var item in comboItems)
-                items.Add(new ListItem(item.Value));
+                items.Add(new ListItem(item.Description));
 
             ListItems = items;
         }
@@ -278,7 +278,7 @@ namespace RevitWPFFW.core
                 return true;
             for(int i = 0; i< ListItems.Count; i++)
             {
-                if (ListItems[i].Description != _originalItemList[i].Value)
+                if (ListItems[i].Description != _originalItemList[i].Description)
                     return true;
             }
 
