@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using Autodesk.Revit.UI;
+using PB.MVVMToolkit;
 using RevitWPFFW.core;
 
 
@@ -18,9 +19,14 @@ namespace RevitWPFFW.ui
         /// </summary>
         public MainPage()
         {
+            //Dummy reference to class in MVVMToolkit to ensure styles reference at startup
+            ReferenceClass.Reference();
+
             InitializeComponent();
+
             //Register the dialog models and viewmodels
             DialogRegistration.SetServices(this);
+
             //Assign datacontext
             DataContext = new MainPageViewModel();
 
