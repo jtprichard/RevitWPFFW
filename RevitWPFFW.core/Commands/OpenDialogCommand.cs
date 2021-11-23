@@ -42,15 +42,24 @@ namespace RevitWPFFW.core
         #endregion
 
         #region Private Methods
-
+        /// <summary>
+        /// Method actions when dialog OK is clicked
+        /// </summary>
+        /// <param name="sender">Dialog object</param>
+        /// <param name="e">Event arguments from dialog</param>
         private void OptionOk(object sender, EventArgs e)
         {
-
+            //Perform actions based on Ok being clicked on the dialog
         }
 
+        /// <summary>
+        /// Method actions when dialog Cancel is clicked
+        /// </summary>
+        /// <param name="sender">Dialog object</param>
+        /// <param name="e">Event arguments from dialog</param>
         private void OptionCancel(object sender, EventArgs e)
         {
-
+            //Perform actions based on Cancel being clicked on the dialog
         }
         #endregion
 
