@@ -41,16 +41,16 @@
 
 		<!--Define main app icon-->
 		<!--REFERENCE ICON IN MAIN PROJECT FOLDER-->
-		<Icon Id="Icon.ico" SourceFile="$(var.RevitWPFFW.ProjectDir)\pb_icon.ico"/>
+		<Icon Id="Icon.ico" SourceFile="$(var.PB.RevitWPFFW.ProjectDir)\pb_icon.ico"/>
 
 		<!--Use the icon.ico icon for this installer (shows up in Add/Remove Programs)-->
 		<Property Id="ARPPRODUCTICON">Icon.ico</Property>
 
-		<!--Help/Support website (shows in the add/remove programs-->
-		<Property Id="ARPURLINFOABOUT">http://www.performancebim.com</Property>
+		<!--Get reference to properties file-->
+		<PropertyRef Id="ARPURLINFOABOUT"/>
 
-		<!--Create a basic UI for the installer-->
-		<UIRef Id="WixUI_Minimal"/>
+		<!--Installer UI is Customized Version of WIX FeatureTree-->
+		<UIRef Id="PB_WixUI_FeatureTree"/>
 
 		<!--Change the installer ui background images-->
 		<!--Bitmap Image Sizes: background.bmp is 493 x 312  / banner.bmp is 493 x 58-->
@@ -62,15 +62,27 @@
 
 		<!--Define components, shortcuts, files, etc... for installer-->
 		<!--CHANGE PRODUCT TITLE INFORMATION HERE-->
-		<Feature Id="ProductFeature" Title="RevitWPFFW" Level="1">
+		<!--Features for REVIT v2020-->
+		<Feature Id="PRODUCT2020" Title="Performance Seating v2020" Level="1">
 
-			<!--Reference to Components.wxs component list hard coded-->
-			<ComponentGroupRef Id="ProductComponents" />
-
-			<!--This line used for HEAT element - currently not working-->
-			<!--<ComponentGroupRef Id="PublishedComponents" />-->
+			<ComponentGroupRef Id="2020Components"/>
 
 		</Feature>
+
+		<!--Features for REVIT v2021-->
+		<Feature Id="PRODUCT2021" Title="Performance Seating v2021" Level="1">
+
+			<ComponentGroupRef Id="2021Components" />
+
+		</Feature>
+
+		<!--Features for REVIT v2022-->
+		<Feature Id="PRODUCT2022" Title="Performance Seating v2022" Level="1">
+
+			<ComponentGroupRef Id="2022Components" />
+
+		</Feature>
+
 	</Product>
 
 

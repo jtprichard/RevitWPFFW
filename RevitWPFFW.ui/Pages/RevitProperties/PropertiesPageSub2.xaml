@@ -20,7 +20,7 @@
         <Border Style="{StaticResource RevitHeaderBorder}">
             <Grid VerticalAlignment="Stretch" Height="auto" Background="{StaticResource MainBorderBrush}">
                 <TextBlock Style="{StaticResource RevitPropertyHeaderBlock}"  
-                       Text="Seat Family"/>
+                       Text="Properties Page Sub 2"/>
             </Grid>
         </Border>
 
@@ -29,7 +29,7 @@
 
             <!--Definitions-->
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width=".75*"/>
+                <ColumnDefinition Width=".5*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
@@ -45,7 +45,7 @@
                     Grid.Row="0" 
                     Style="{StaticResource RevitPropertyGridBorder}">
                 <TextBlock Style="{StaticResource RevitPropertyDescriptionBlock}"
-                           Text="Seat Family Name" />
+                           Text="Property 1" />
             </Border>
 
             <Border Grid.Row="0"
@@ -53,11 +53,11 @@
                     Style="{StaticResource RevitPropertyValueBorder}">
 
                 <ComboBox Style="{StaticResource DefaultComboBox}"
-                          x:Name="BlockNameCombo" 
-                          ItemsSource="{Binding Path=SeatFamilyItems, UpdateSourceTrigger=PropertyChanged}"
-                          SelectedItem="{Binding Path=SelectedSeatFamily, UpdateSourceTrigger=PropertyChanged}"
-                          DisplayMemberPath="FamilyName"
-                          ToolTip="Choose the seat family to use">
+                          x:Name="Property1NameCombo" 
+                          ItemsSource="{Binding Path=Path, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding Path=Path, UpdateSourceTrigger=PropertyChanged}"
+                          DisplayMemberPath="Description"
+                          ToolTip="Tooltip">
                     <ComboBox.ItemContainerStyle>
                         <Style TargetType="ComboBoxItem">
                             <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
@@ -71,7 +71,7 @@
                     Grid.Column="0" 
                     Style="{StaticResource RevitPropertyGridBorder}">
                 <TextBlock Style="{StaticResource RevitPropertyDescriptionBlock}"
-                           Text="Widths" />
+                           Text="Property 2" />
             </Border>
 
             <Border Grid.Row="1"  
@@ -85,28 +85,20 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0"  
-                               Text="{Binding SeatTypesString, UpdateSourceTrigger=PropertyChanged}"
-                               x:Name="WidthString"
+                               Text="{Binding Path=Path, UpdateSourceTrigger=PropertyChanged}"
+                               x:Name="Property2TextString"
                                Style="{StaticResource RevitPropertyDataBlock}"
-                               ToolTip="Selected seat widths"/>
+                               ToolTip="Tooltip"/>
 
                     <Button Grid.Column="1"  
                             Content="Edit..."
-                            x:Name="SeatWidthsButton" 
+                            x:Name="Property2Button" 
                             Style="{StaticResource RevitPropertyButton}"
-                            ToolTip="Edit the seat widths to use when placing seats"/>
+                            ToolTip="Tooltip"/>
 
                 </Grid>
 
             </Border>
-
-            <!--Seat Type Properties Expansion-->
-            <!--<Border Grid.Row="2" 
-                    Grid.Column="1" 
-                    Height="0" 
-                    x:Name="PropertiesPageBorder">
-                <local:SeatTypePropertiesPage/>
-            </Border>-->
 
 
             <!--Additional Gap-->
@@ -114,7 +106,7 @@
                     Grid.Column="0" 
                     Style="{StaticResource RevitPropertyGridBorder}">
                 <TextBlock Style="{StaticResource RevitPropertyDescriptionBlock}"
-                           Text="Additional Gap" />
+                           Text="Property 3" />
             </Border>
 
             <Border Grid.Row="3"  
@@ -122,15 +114,14 @@
                     Style="{StaticResource RevitPropertyValueBorder}">
 
                 <TextBox Style="{StaticResource RevitPropertyTextBox}"
-                         x:Name="AddGapText"
-                         Text="{Binding Path=AddGapDisplay, UpdateSourceTrigger=LostFocus}"
-                         ToolTip="The additional gap to add between seats">
+                         x:Name="Property3Text"
+                         Text="{Binding Path=Path, UpdateSourceTrigger=LostFocus}"
+                         ToolTip="Tooltip">
                 </TextBox>
 
             </Border>
 
         </Grid>
-
 
     </StackPanel>
 </UserControl>

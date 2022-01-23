@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+
+		<!--Product Components Group-->
+		<ComponentGroup Id="2022Components">
+
+			<!--AddIn-->
+			<ComponentRef Id="AddIn2022"/>
+			<ComponentRef Id="RevitMain2022"/>
+			<ComponentRef Id="RevitCore2022"/>
+			<ComponentRef Id="RevitRes2022"/>
+			<ComponentRef Id="RevitUI2022"/>
+
+		</ComponentGroup>
+
+		<!--Installed Files-->
+		<DirectoryRef Id="INSTALLFOLDER2022" FileSource="..\RevitWPFFW\bin\$(var.Configuration)">
+
+			<!--UPDATE GUIDS AND FILES TO COPY-->
+			<Component Id="AddIn2022" Guid="{C3118227-F157-4505-B4C8-ED498E1FA4EC}">
+				<File Id="AddInFile2022" Name="RevitWPFFW.addin" KeyPath="yes"></File>
+			</Component>
+
+			<Component Id="RevitMain2022" Guid="{02EF46C1-AEA0-4288-A80D-44CE8DAB72D1}">
+				<File Id="RevitMainFile2022" Name="RevitWPFFW.dll" KeyPath="yes"></File>
+			</Component>
+
+			<Component Id="RevitCore2022" Guid="{F601B031-0E0D-4F12-9F86-B0D61DDE6BFB}">
+				<File Id="RevitCoreFile2022" Name="RevitWPFFW.core.dll" KeyPath="yes"></File>
+			</Component>
+
+			<Component Id="RevitRes2022" Guid="{628EE074-7D1D-4804-8EDB-53E2BB4B620C}">
+				<File Id="RevitResFile2022" Name="RevitWPFFW.res.dll" KeyPath="yes"></File>
+			</Component>
+
+			<Component Id="RevitUI2022" Guid="{9EA316E5-7132-45E6-AFA2-F80CE8A4F4EF}">
+				<File Id="RevitUIFile2022" Name="RevitWPFFW.ui.dll" KeyPath="yes"></File>
+			</Component>
+
+
+		</DirectoryRef>
+
+	</Fragment>
+
+
+
+
+</Wix>

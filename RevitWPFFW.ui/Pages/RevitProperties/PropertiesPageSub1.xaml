@@ -21,7 +21,7 @@
         <Border Style="{StaticResource RevitHeaderBorder}">
             <Grid VerticalAlignment="Stretch" Height="auto" Background="{StaticResource MainBorderBrush}">
                 <TextBlock Style="{StaticResource RevitPropertyHeaderBlock}"  
-                           Text="Location Information"/>
+                           Text="Properties Page Sub 1"/>
             </Grid>
         </Border>
 
@@ -30,7 +30,7 @@
 
             <!--Definitions-->
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width=".75*"/>
+                <ColumnDefinition Width=".5*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
@@ -49,7 +49,7 @@
                     Grid.Row="0" 
                     Style="{StaticResource RevitPropertyGridBorder}">
                 <TextBlock Style="{StaticResource RevitPropertyDescriptionBlock}"
-                           Text="Venue" />
+                           Text="Property 1" />
             </Border>
 
             <Border Grid.Row="0"  
@@ -64,17 +64,17 @@
                     <ComboBox Style="{StaticResource DefaultComboBox}"
                               Grid.Row=" 0" Grid.Column="0"
                               SelectedIndex="0"
-                              ItemsSource="{Binding Path=VenueItems, UpdateSourceTrigger=PropertyChanged}"
-                              SelectedItem="{Binding Path=SelectedVenue, UpdateSourceTrigger=PropertyChanged}"
+                              ItemsSource="{Binding Path=Path, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding Path=Path, UpdateSourceTrigger=PropertyChanged}"
                               DisplayMemberPath="Description"
-                              ToolTip="Select the venue to place the seats">
+                              ToolTip="Tooltip">
                     </ComboBox>
 
                     <Button Grid.Column="1"  
                             Content="Edit..." 
                             Click="VenueEditButton_OnClick"
                             Style="{StaticResource RevitPropertyButton}"
-                            ToolTip="Edit the venues"/>
+                            ToolTip="Tooltip"/>
                 </Grid>
             </Border>
 
@@ -84,17 +84,17 @@
                     Style="{StaticResource RevitPropertyGridBorder}">
                 <TextBlock 
                            Style="{StaticResource RevitPropertyDescriptionBlock}"
-                           Text="Section" />
+                           Text="Property 2" />
             </Border>
 
             <Border Grid.Column="1"  
                     Grid.Row="1"
                     Style="{StaticResource RevitPropertyValueBorder}">
                 <ComboBox Style="{StaticResource DefaultComboBox}"
-                          ItemsSource="{Binding Path=PlanAreaItems, UpdateSourceTrigger=PropertyChanged}"
-                          SelectedItem="{Binding Path=SelectedPlanArea, UpdateSourceTrigger=PropertyChanged}"
+                          ItemsSource="{Binding Path=Path, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding Path=Path, UpdateSourceTrigger=PropertyChanged}"
                           DisplayMemberPath="Description"
-                          ToolTip="Select a current or new section to create the rows of seats">
+                          ToolTip="Tooltip">
                 </ComboBox>
             </Border>
 
@@ -104,7 +104,7 @@
                     Style="{StaticResource RevitPropertyGridBorder}">
                 <TextBlock 
                     Style="{StaticResource RevitPropertyDescriptionBlock}"
-                    Text="Starting Row" />
+                    Text="Property 3" />
             </Border>
 
             <Border Grid.Column="1"  
@@ -112,10 +112,10 @@
                     Style="{StaticResource RevitPropertyValueBorder}">
 
                 <ComboBox Style="{StaticResource DefaultComboBox}"
-                          ItemsSource="{Binding Path=RowIdentifierItems, UpdateSourceTrigger=PropertyChanged}"
-                          SelectedItem="{Binding Path=SelectedRowIdentifier, UpdateSourceTrigger=PropertyChanged}"
+                          ItemsSource="{Binding Path=Path, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding Path=Path, UpdateSourceTrigger=PropertyChanged}"
                           DisplayMemberPath="Description"
-                          ToolTip="Select the row to start">
+                          ToolTip="Tooltip">
                 </ComboBox>
             </Border>
 
@@ -125,7 +125,7 @@
                     Style="{StaticResource RevitPropertyGridBorder}">
                 <TextBlock 
                     Style="{StaticResource RevitPropertyDescriptionBlock}"
-                    Text="Seat Sequence" />
+                    Text="Property 4" />
             </Border>
 
             <Border Grid.Column="1"  
@@ -133,10 +133,10 @@
                     Style="{StaticResource RevitPropertyValueBorder}">
 
                 <ComboBox Style="{StaticResource DefaultComboBox}"
-                          ItemsSource="{Binding Path=SeatNumberSequenceItems, UpdateSourceTrigger=PropertyChanged}"
-                          SelectedItem="{Binding Path=SelectedSeatNumberSequence, UpdateSourceTrigger=PropertyChanged}"
+                          ItemsSource="{Binding Path=Path, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding Path=Path, UpdateSourceTrigger=PropertyChanged}"
                           DisplayMemberPath="Description"
-                          ToolTip="Choose seat numbering to be sequential, even, or odd">
+                          ToolTip="Tooltip">
                 </ComboBox>
             </Border>
 
@@ -147,7 +147,7 @@
                     Style="{StaticResource RevitPropertyGridBorder}">
                 <TextBlock 
                     Style="{StaticResource RevitPropertyDescriptionBlock}"
-                    Text="Starting Seat Number" />
+                    Text="Property 5" />
             </Border>
 
             <Border Grid.Column="1"  
@@ -155,10 +155,10 @@
                     Style="{StaticResource RevitPropertyValueBorder}">
 
                 <TextBox Style="{StaticResource RevitPropertyTextBox}"
-                         Name="SeatNumberText"
-                         Text="Seat Number Text"
-                         KeyDown="SeatNumberText_OnKeyDown"
-                         ToolTip="Enter the starting seat number to use">
+                         Name="Property5Text"
+                         Text="Property 5 Text"
+                         KeyDown="Property5Text_OnKeyDown"
+                         ToolTip="Tooltip">
                 </TextBox>
             </Border>
 

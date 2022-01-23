@@ -19,9 +19,14 @@
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Components.wxs" />
+    <Compile Include="Components 2020.wxs" />
+    <Compile Include="Components 2021.wxs" />
+    <Compile Include="Components 2022.wxs" />
     <Compile Include="Directories.wxs" />
+    <Compile Include="PB_CustomizeDlg.wxs" />
+    <Compile Include="PB_WixUI_FeatureTree.wxs" />
     <Compile Include="Product.wxs" />
+    <Compile Include="Properties.wxs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Common.wxl" />
@@ -59,28 +64,14 @@
   <!--UPDATE INFORMATION FOR PROJECT SPECIFICS-->
   <Target Name="BeforeBuild">
     <!--Get Assembly Version-->
-    <GetAssemblyIdentity AssemblyFiles="..\RevitWPFFW\bin\$(Configuration)\RevitWPFFW.dll">
+    <GetAssemblyIdentity AssemblyFiles="..\..\RevitWPFFW\bin\$(Configuration)\2020\RevitWPFFW.dll">
       <Output TaskParameter="Assemblies" ItemName="AssemblyVersion" />
     </GetAssemblyIdentity>
     <!--Assembly Version from Project Properties Shows in Uninstall-->
     <!--File Version from Project Properties Shows in File Property in installed version-->
     <PropertyGroup>
-      <DefineConstants>BuildVersion=%(AssemblyVersion.Version);BasePath=..\RevitWPFFW\bin\$(Configuration)</DefineConstants>
+      <DefineConstants>BuildVersion=%(AssemblyVersion.Version);BasePath=..\..\RevitWPFFW\bin\$(Configuration)\2020</DefineConstants>
     </PropertyGroup>
-    <!--<HeatDirectory
-		  OutputFile="ComponentsGenerated.wxs"
-		  DirectoryRefId="INSTALLFOLDER"
-		  ComponentGroupName="PublishedComponents"
-		  SuppressCom="true"
-		  Directory="..\WPFComboTest\bin\$(Configuration)\app.publish"
-		  SuppressFragments="true"
-		  SuppressRegistry="true"
-		  SuppressRootDirectory="true"
-		  AutoGenerateGuids="false"
-		  GenerateGuidsNow="true"
-		  ToolPath="$(WixToolPath)"
-		  PreprocessorVariable="var.BasePath"
-	  />-->
   </Target>
   <!--After Build-->
   <Target Name="AfterBuild">
