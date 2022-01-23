@@ -15,7 +15,7 @@ namespace PB.RevitWPFFW.core
     [Regeneration(RegenerationOption.Manual)]
     public class OpenDialogCommand : IExternalCommand
     {
-        Document _doc;
+        private Document _doc;
 
         #region Command Execution
         /// <summary>
