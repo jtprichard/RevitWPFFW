@@ -1,6 +1,6 @@
 ﻿using Autodesk.Revit.UI;
 
-namespace RevitWPFFW.core
+namespace PB.RevitWPFFW.core
 {
     /// <summary>
     /// Class for creating Argument (Wrapped) External Events

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using Autodesk.Revit.UI;
-using RevitWPFFW.core;
-using RevitWPFFW.res;
+using PB.RevitWPFFW.core;
+using PB.RevitWPFFW.res;
 using Autodesk.Revit.UI.Events;
 
-namespace RevitWPFFW.ui
+namespace PB.RevitWPFFW.ui
 {
     /// <summary>
     /// Class to add Revit Ribbon Panel

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace RevitWPFFW.ui
+namespace PB.RevitWPFFW.ui
 {
     /// <summary>
     /// Interaction logic for PropertiesPage.xaml

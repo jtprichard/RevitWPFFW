@@ -1,8 +1,8 @@
 ﻿using Autodesk.Revit.UI;
-using RevitWPFFW.res;
+using PB.RevitWPFFW.res;
 using System.Windows.Media.Imaging;
 
-namespace RevitWPFFW.core
+namespace PB.RevitWPFFW.core
 {
     /// <summary>
     /// Class holds properties assocaited with text, comboboxes

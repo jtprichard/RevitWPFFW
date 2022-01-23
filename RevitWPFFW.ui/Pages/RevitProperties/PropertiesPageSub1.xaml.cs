@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using PB.MVVMToolkit.Dialogs;
 
-namespace RevitWPFFW.ui
+namespace PB.RevitWPFFW.ui
 {
     /// <summary>
     /// Interaction logic for PropertiesPageSub1.xaml

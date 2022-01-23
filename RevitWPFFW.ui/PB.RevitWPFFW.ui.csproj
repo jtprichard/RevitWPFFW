@@ -7,7 +7,7 @@
     <ProjectGuid>{DCE04318-FE42-464B-86BC-4D60F1A7FCE6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RevitWPFFW.ui</RootNamespace>
+    <RootNamespace>PB.RevitWPFFW.ui</RootNamespace>
     <AssemblyName>RevitWPFFW.ui</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -122,13 +122,13 @@
       <Project>{5982a92c-47ba-4ead-bf1b-29555b08947c}</Project>
       <Name>PB.MVVMToolkit</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RevitWPFFW.core\RevitWPFFW.core.csproj">
+    <ProjectReference Include="..\RevitWPFFW.core\PB.RevitWPFFW.core.csproj">
       <Project>{b0db87ba-a6fc-481c-bf58-da4b4f791c0f}</Project>
-      <Name>RevitWPFFW.core</Name>
+      <Name>PB.RevitWPFFW.core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RevitWPFFW.res\RevitWPFFW.res.csproj">
+    <ProjectReference Include="..\RevitWPFFW.res\PB.RevitWPFFW.res.csproj">
       <Project>{4abb7f68-520f-4956-8851-8ac0cd9bf9de}</Project>
-      <Name>RevitWPFFW.res</Name>
+      <Name>PB.RevitWPFFW.res</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

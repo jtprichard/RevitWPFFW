@@ -1,4 +1,4 @@
-﻿namespace RevitWPFFW.core
+﻿namespace PB.RevitWPFFW.core
 {
     /// <summary>
     /// Base Abstract command for wrapped commands

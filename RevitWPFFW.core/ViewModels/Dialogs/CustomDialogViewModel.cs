@@ -7,7 +7,7 @@ using PB.MVVMToolkit.DialogServices;
 using PB.MVVMToolkit.ViewModel;
 using PB.MVVMToolkit.Dialogs;
 
-namespace RevitWPFFW.core
+namespace PB.RevitWPFFW.core
 {
     public class CustomDialogViewModel : BaseDialogViewModel
     {

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media.Imaging;
 
-namespace RevitWPFFW.res
+namespace PB.RevitWPFFW.res
 {
     /// <summary>
     /// Gets an embedded image from the .res assembly based on a file name and extension

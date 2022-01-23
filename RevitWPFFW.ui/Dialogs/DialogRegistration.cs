@@ -1,8 +1,8 @@
 ﻿using PB.MVVMToolkit.DialogServices;
 using System.Windows.Controls;
-using RevitWPFFW.core;
+using PB.RevitWPFFW.core;
 
-namespace RevitWPFFW.ui
+namespace PB.RevitWPFFW.ui
 {
     /// <summary>
     /// Registration class for dialog services

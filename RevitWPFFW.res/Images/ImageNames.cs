@@ -1,4 +1,4 @@
-﻿namespace RevitWPFFW.res
+﻿namespace PB.RevitWPFFW.res
 {
     /// <summary>
     /// Stores Icon Image Names for central reference by ribbons

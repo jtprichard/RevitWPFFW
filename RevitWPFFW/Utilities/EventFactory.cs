@@ -1,13 +1,12 @@
-﻿using System;
+﻿using Autodesk.Revit.ApplicationServices;
+using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.UI;
-using Autodesk.Revit.ApplicationServices;
 using Autodesk.Revit.UI.Events;
 using Autodesk.Windows;
-using Autodesk.Revit.DB.Events;
-using RevitWPFFW.core;
-using RevitWPFFW.ui;
+using PB.RevitWPFFW.core;
+using PB.RevitWPFFW.ui;
 
-namespace RevitWPFFW
+namespace PB.RevitWPFFW
 {
     /// <summary>
     /// Event registration class at startup
@@ -135,10 +134,10 @@ namespace RevitWPFFW
             //If button is found, place button on quick access toolbar for monitoring 
             if (foundPanel != null && foundItem != null)
             {
-                var position = Utilities.GetPositionBeforeButton("ID_REVIT_FILE_PRINT");
-                Utilities.PlaceButtonOnQuickAccess(position, foundItem);
-                Utilities.RemovePanelFromTab(foundTab, foundPanel);
-                Utilities.RemoveTabFromRibbon(foundTab);
+                var position = global::PB.RevitWPFFW.ui.Utilities.GetPositionBeforeButton("ID_REVIT_FILE_PRINT");
+                global::PB.RevitWPFFW.ui.Utilities.PlaceButtonOnQuickAccess(position, foundItem);
+                global::PB.RevitWPFFW.ui.Utilities.RemovePanelFromTab(foundTab, foundPanel);
+                global::PB.RevitWPFFW.ui.Utilities.RemoveTabFromRibbon(foundTab);
             }
         }
 

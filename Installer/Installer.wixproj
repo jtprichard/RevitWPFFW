@@ -41,8 +41,8 @@
     </WixExtension>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RevitWPFFW\RevitWPFFW.csproj">
-      <Name>RevitWPFFW</Name>
+    <ProjectReference Include="..\RevitWPFFW\PB.RevitWPFFW.csproj">
+      <Name>PB.RevitWPFFW</Name>
       <Project>{2c55583f-a184-4e76-9f2c-c976d89d104a}</Project>
       <Private>True</Private>
       <DoNotHarvest>True</DoNotHarvest>

@@ -7,7 +7,7 @@ using PB.MVVMToolkit.ViewModel;
 using System.Windows.Input;
 using PB.MVVMToolkit.DialogServices;
 
-namespace RevitWPFFW.core
+namespace PB.RevitWPFFW.core
 {
     public class Page1ViewModel : BaseViewModel
     {

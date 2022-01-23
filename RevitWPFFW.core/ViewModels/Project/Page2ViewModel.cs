@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Input;
 using PB.MVVMToolkit.ViewModel;
 
-namespace RevitWPFFW.core
+namespace PB.RevitWPFFW.core
 {
     /// <summary>
     /// View Model for WPF Page

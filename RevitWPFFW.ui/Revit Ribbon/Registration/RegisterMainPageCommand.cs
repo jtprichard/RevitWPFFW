@@ -2,9 +2,9 @@
 using Autodesk.Revit.DB;
 using Autodesk.Revit.Attributes;
 using System.Windows;
-using RevitWPFFW.core;
+using PB.RevitWPFFW.core;
 
-namespace RevitWPFFW.ui
+namespace PB.RevitWPFFW.ui
 {
     /// <summary>
     /// Register Main Page in zero state document
