@@ -2,7 +2,7 @@
 using System.ComponentModel;
 
 
-namespace RevitWPFFW.core
+namespace PB.RevitWPFFW.core
 {
     public class ListItem : INotifyPropertyChanged
     {

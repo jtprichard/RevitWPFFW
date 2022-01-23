@@ -5,7 +5,7 @@ using Autodesk.Revit.UI;
 using PB.MVVMToolkit.DialogServices;
 
 
-namespace RevitWPFFW.core
+namespace PB.RevitWPFFW.core
 {
     /// <summary>
     /// A Sample Revit Command Initiated from the Ribbon
@@ -15,7 +15,7 @@ namespace RevitWPFFW.core
     [Regeneration(RegenerationOption.Manual)]
     public class OpenDialogCommand : IExternalCommand
     {
-        Document _doc;
+        private Document _doc;
 
         #region Command Execution
         /// <summary>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RevitWPFFW.core
+namespace PB.RevitWPFFW.core
 {
     /// <summary>
     /// Creates and Stores the Dockable Pane Guid

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+	<AddIn Type="Application">
+		<Name>Application RevitWPFFW</Name>
+		<Assembly>.\RevitWPFFW\RevitWPFFW.dll</Assembly>
+		<FullClassName>RevitWPFFW.App</FullClassName>
+		<ClientId>587D6503-BB9A-469A-AE94-2EFE76098633</ClientId>
+		<VendorId>com.performancebim</VendorId>
+		<VendorDescription>Performance BIM</VendorDescription>
+	</AddIn>
+</RevitAddIns>

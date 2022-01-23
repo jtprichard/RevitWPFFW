@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+		<!--Help/Support website (shows in the add/remove programs-->
+		<Property Id="ARPURLINFOABOUT">http://www.performancebim.com</Property>
+
+		<!--Determines if the Revit Applications are installed by looking for the Revit 202# folder-->
+		<Property Id="REVIT2020INSTALLED">
+			<DirectorySearch Path="[ProgramFiles64Folder]"
+			                 Depth="0"
+			                 AssignToProperty="no"
+			                 Id="ProgramFilesFolderSearch">
+
+				<DirectorySearch Path="Revit 2020"
+								 Depth ="3"
+								 AssignToProperty="no"
+								 Id="Revit2020FolderSearch0">
+
+				</DirectorySearch>
+			</DirectorySearch>
+		</Property>
+
+		<Property Id="REVIT2021INSTALLED">
+			<DirectorySearch Path="[ProgramFiles64Folder]"
+			                 Depth="0"
+			                 AssignToProperty="no"
+			                 Id="ProgramFilesFolderSearch1">
+
+				<DirectorySearch Path="Revit 2021"
+				                 Depth ="3"
+				                 AssignToProperty="no"
+				                 Id="Revit2021FolderSearch">
+
+				</DirectorySearch>
+			</DirectorySearch>
+		</Property>
+
+		<Property Id="REVIT2022INSTALLED">
+			<DirectorySearch Path="[ProgramFiles64Folder2]"
+			                 Depth="0"
+			                 AssignToProperty="no"
+			                 Id="ProgramFilesFolderSearch">
+
+				<DirectorySearch Path="Revit 2022"
+				                 Depth ="3"
+				                 AssignToProperty="no"
+				                 Id="Revit2022FolderSearch">
+
+				</DirectorySearch>
+			</DirectorySearch>
+		</Property>
+
+
+		<!--Creates a selection property used by the checkbox-->
+		<Property Id="REVIT2020SELECTED"/>
+		<Property Id="REVIT2021SELECTED"/>
+		<Property Id="REVIT2022SELECTED"/>
+
+		<!--Set the selection properties
+		Selection is checked if Revit application version is installed and
+		either it is the first application install, or the app product feature was previously installed.
+		The intent is to check available products by default, but represent the current installation 
+		state when doing an installation modification-->
+		<SetProperty Id="REVIT2020SELECTED" 
+		             After="MigrateFeatureStates" 
+		             Value="Selected">
+			<![CDATA[REVIT2020INSTALLED AND (NOT Installed OR NOT !PRODUCT2020=2)]]>
+		</SetProperty>
+
+		<SetProperty Id="REVIT2021SELECTED" 
+		             After="MigrateFeatureStates" 
+		             Value="Selected">
+			<![CDATA[REVIT2021INSTALLED AND (NOT Installed OR NOT !PRODUCT2021=2)]]>
+		</SetProperty>
+
+		<SetProperty Id="REVIT2022SELECTED" 
+		             After="MigrateFeatureStates" 
+		             Value="Selected">
+			<![CDATA[REVIT2022INSTALLED AND (NOT Installed OR NOT !PRODUCT2022=2)]]>
+		</SetProperty>
+
+	</Fragment>
+</Wix>

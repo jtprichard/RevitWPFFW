@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace RevitWPFFW.res
+namespace PB.RevitWPFFW.res
 {
     public static class ResourceAssembly
     {

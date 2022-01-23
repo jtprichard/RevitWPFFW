@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--A big thank-you to Alvaro Ortega Pickmans for sharing this information.  
+This multi-version install is largely based on his solution.
+https://github.com/alvpickmans/multiversion-revit-plugin-sample
+
+The following must be changed per application and in each Project:
+1.  Project Guid
+2.  Input project properties here or in properties UI
+3.  Ensure the package id matches what you need in the addin manifest
+4.  Select and upate target frameworks.  This begins at 2020, but earlier frameworks can be added
+5.  Insert custom pre-processor constants - see examples below
+6.  Ensure manifest creation (approximately mid-way down) matches addin name
+7.  Ensure project name in additional 4.8 (Revit 2022) build matches, as it is hard coded
+
+-->
+
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<RootNamespace>PB.RevitWPFFW</RootNamespace>
+		<AssemblyName>RevitWPFFW</AssemblyName>
+		<AppDesignerFolder>Properties</AppDesignerFolder>
+		<ProjectGuid>{2C55583F-A184-4E76-9F2C-C976D89D104A}</ProjectGuid>
+		<FileAlignment>512</FileAlignment>
+		<Deterministic>true</Deterministic>
+		<Authors>Performance BIM</Authors>
+		<PackageId>com.PerformanceBim</PackageId>
+		<Company>Performance BIM</Company>
+		<PackageProjectUrl>http://www.performancebim.com</PackageProjectUrl>
+		<Product>RevitWPFFW</Product>
+		<Version>1.0.0.0</Version>
+		<NeutralLanguage>en</NeutralLanguage>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<ApplicationIcon>pb_icon.ico</ApplicationIcon>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Include="pb_icon.ico" />
+	</ItemGroup>
+
+
+	<!--Target Frameworks-->
+	<PropertyGroup>
+		<!-- Please remove the targets you don't need in order
+      to exclude Revit versions your add-in won't support
+      use the list below for matching Revit version with .NET target
+              2020  |  net471
+              2021  |  net48
+			  2022  |  net48
+      -->
+		<TargetFrameworks>net471;net48</TargetFrameworks>
+		<RuntimeIdentifiers>win</RuntimeIdentifiers>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(TargetFramework)' == 'net471' ">
+		<RevitVersion>2020</RevitVersion>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(TargetFramework)' == 'net48' ">
+		<RevitVersion>2021</RevitVersion>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(TargetFramework)' == 'net48' ">
+		<RevitVersion>2022</RevitVersion>
+	</PropertyGroup>
+
+
+	<!--Debug / Release Configurations-->
+	<PropertyGroup>
+		<Configurations>Debug;Debug One;Release</Configurations>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug One'">
+		<!-- You could debug just ONE addin version,
+         instead of building all the versions above.
+         Just put ONE target from the list above
+         e.g. if you want to debug ONLY Revit 2019,
+         put net47 below and switch to 'Debug One' configuration
+      -->
+		<TargetFrameworks>net471</TargetFrameworks>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="$(Configuration.Contains('Debug'))">
+		<DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
+		<DebugType>full</DebugType>
+		<OutputPath>..\bin\Debug\$(RevitVersion)</OutputPath>
+	</PropertyGroup>
+
+
+
+	<!--Base behavior properties-->
+	<PropertyGroup>
+		<!-- Forcibly set platform to 'x64' and ignore architecture-related problems -->
+		<PlatformTarget>x64</PlatformTarget>
+		<Platforms>x64</Platforms>
+		<ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+
+		<!-- Force the project to use the legacy debugger engine -->
+		<DebugEngines>{351668CC-8477-4fbf-BFE3-5F1006E4DB1F}</DebugEngines>
+
+		<!-- Invert the behavior of new .csproj format - exclude files by default -->
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+		<EnableDefaultItems>false</EnableDefaultItems>
+
+		<!-- Multiple targets can cause obj folder locking by concurrent builds -->
+		<BuildInParallel>false</BuildInParallel>
+
+		<!-- Override 'OutputPath' to Debug/Release + Revit version -->
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<OutputPath>..\bin\$(Configuration)\$(RevitVersion)</OutputPath>
+	</PropertyGroup>
+
+
+	<!--Compiler Conditional Constants-->
+	<PropertyGroup>
+		<!-- Define symbols to use in the code in order to accommodate different Revit versions,
+    e.g. by wrapping legacy / deprecated API calls with #if REVIT2020 | REVIT2021 
+		Example:  #if !REVIT2020 [code] #else [code] #endif-->
+		<DefineConstants>REVIT$(RevitVersion);WINFORMS</DefineConstants>
+		<PreprocessorDefinitions>$(DefineConstants)</PreprocessorDefinitions>
+	</PropertyGroup>
+
+	<!--We can define our custom preprocessor constants to simplify our project code-->
+	<!--Left as an example but currenty unused-->
+	<PropertyGroup Condition="'$(RevitVersion)' != '2018' AND '$(RevitVersion)' != '2019' AND '$(RevitVersion)' != '2020'">
+		<DefineConstants>$(DefineConstants);USE_FORGETYPEID</DefineConstants>
+		<PreprocessorDefinitions>$(DefineConstants)</PreprocessorDefinitions>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net471|x64'">
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+		<GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+	</PropertyGroup>
+
+
+	<ItemGroup>
+		<Reference Include="PresentationCore" />
+		<Reference Include="PresentationFramework" />
+		<Reference Include="WindowsBase" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(DefineConstants.Contains('WINFORMS'))">
+		<Reference Include="System.Windows.Forms" />
+	</ItemGroup>
+
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net471' ">
+		<Reference Include="AdWindows">
+			<HintPath>C:\Program Files\Autodesk\Revit 2020\AdWindows.dll</HintPath>
+			<EmbedInteropTypes>false</EmbedInteropTypes>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="RevitAPI">
+			<HintPath>C:\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
+			<EmbedInteropTypes>false</EmbedInteropTypes>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="RevitAPIUI">
+			<HintPath>C:\Program Files\Autodesk\Revit 2020\RevitAPIUI.dll</HintPath>
+			<EmbedInteropTypes>false</EmbedInteropTypes>
+			<Private>false</Private>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net48' And '$(RevitVersion)' == '2021' ">
+		<Reference Include="AdWindows">
+			<HintPath>C:\Program Files\Autodesk\Revit 2021\AdWindows.dll</HintPath>
+			<EmbedInteropTypes>false</EmbedInteropTypes>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="RevitAPI">
+			<HintPath>C:\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
+			<EmbedInteropTypes>false</EmbedInteropTypes>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="RevitAPIUI">
+			<HintPath>C:\Program Files\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath>
+			<EmbedInteropTypes>false</EmbedInteropTypes>
+			<Private>false</Private>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net48' And '$(RevitVersion)' == '2022' ">
+		<Reference Include="AdWindows">
+			<HintPath>C:\Program Files\Autodesk\Revit 2022\AdWindows.dll</HintPath>
+			<EmbedInteropTypes>false</EmbedInteropTypes>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="RevitAPI">
+			<HintPath>C:\Program Files\Autodesk\Revit 2022\RevitAPI.dll</HintPath>
+			<EmbedInteropTypes>false</EmbedInteropTypes>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="RevitAPIUI">
+			<HintPath>C:\Program Files\Autodesk\Revit 2022\RevitAPIUI.dll</HintPath>
+			<EmbedInteropTypes>false</EmbedInteropTypes>
+			<Private>false</Private>
+		</Reference>
+	</ItemGroup>
+
+
+	<!--Option for Nuget SDK packages instead of locally installed version references.  
+	Unfortunately, there are issues getting different packages to load under the same net target
+	(2021 & 2022 require same Net target, but different Revit SDK)-->
+	<!--<ItemGroup>
+		-->
+	<!--Conditionaly reference the latest Revit SDK assemblies dependending on which version we are targeting-->
+	<!--
+		<PackageReference Include="Autodesk.Revit.SDK" Version="2020.2.1.2001" Condition=" '$(RevitVersion)' == '2020' " PrivateAssets="All" />
+		<PackageReference Include="Autodesk.Revit.SDK" Version="2021.*" Condition=" '$(RevitVersion)' == '2021' " PrivateAssets="All" />
+		<PackageReference Include="Autodesk.Revit.SDK" Version="2022.*" Condition=" '$(RevitVersion)' == '2022' " PrivateAssets="All" />
+	</ItemGroup>-->
+
+	<!--<Target Name="PreventRevitSDKCopyLocal" AfterTargets="ResolveReferences">
+		<ItemGroup>
+			-->
+	<!-- A temporary fix for Revit SDK files being copied to the output folder -->
+	<!--
+			<ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" Condition="'%(ReferenceCopyLocalPaths.NuGetPackageId)' == 'Autodesk.Revit.SDK'" />
+		</ItemGroup>
+	</Target>-->
+
+	<!--Add-In Manifest Creation-->
+	<ItemGroup>
+		<!-- Add-in manifest is processed via MSBuild -->
+		<Content Include="Manifests\RevitWPFFW.addin">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+
+		<EmbeddedResource Include="Resources\**\*.*">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</EmbeddedResource>
+
+		<Content Include="Properties\launchSettings.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<Target Name="CreateAddinManifest" AfterTargets="AfterBuild">
+		<ItemGroup>
+			<AddinManifest Include="$(OutputPath)\$(AssemblyName).addin" />
+		</ItemGroup>
+		<ReplaceFileText InputFilename="Manifests\RevitWPFFW.addin" OutputFilename="@(AddinManifest)" MatchExpression="VendorDescription&gt;(.*?)&lt;" ReplacementText="VendorDescription&gt;$(Company), $(PackageProjectUrl)&lt;" />
+		<ReplaceFileText InputFilename="@(AddinManifest)" OutputFilename="@(AddinManifest)" MatchExpression="FullClassName&gt;((.*?)\.)+" ReplacementText="FullClassName&gt;$(RootNamespace)." />
+		<ReplaceFileText InputFilename="@(AddinManifest)" OutputFilename="@(AddinManifest)" MatchExpression="&lt;Name&gt;(.*?)&lt;" ReplacementText="&lt;Name&gt;$(Product)&lt;" />
+		<ReplaceFileText InputFilename="@(AddinManifest)" OutputFilename="@(AddinManifest)" MatchExpression="&lt;VendorId&gt;(.*?)&lt;" ReplacementText="&lt;VendorId&gt;$(PackageId)&lt;" />
+		<ReplaceFileText Condition="'$(Configuration)' == 'Release'" InputFilename="@(AddinManifest)" OutputFilename="@(AddinManifest)" MatchExpression="Assembly&gt;(.*?)&lt;" ReplacementText="Assembly&gt;.\$(Product)\$(AssemblyName).dll&lt;" />
+		<ReplaceFileText Condition="$(Configuration.Contains('Debug'))" InputFilename="@(AddinManifest)" OutputFilename="@(AddinManifest)" MatchExpression="Assembly&gt;(.*?)&lt;" ReplacementText="Assembly&gt;$([System.IO.Path]::GetFullPath('$(OutputPath)'))$(AssemblyName).dll&lt;" />
+	</Target>
+
+	<!--Compile each version-->
+	<UsingTask Condition="'$(MSBuildRuntimeType)' == 'Full'" TaskName="ReplaceFileText" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+		<ParameterGroup>
+			<InputFilename ParameterType="System.String" Required="true" />
+			<OutputFilename ParameterType="System.String" Required="true" />
+			<MatchExpression ParameterType="System.String" Required="true" />
+			<ReplacementText ParameterType="System.String" Required="true" />
+		</ParameterGroup>
+		<Task>
+			<Reference Include="System.Core" />
+			<Using Namespace="System" />
+			<Using Namespace="System.IO" />
+			<Using Namespace="System.Text.RegularExpressions" />
+			<Code Type="Fragment" Language="cs">
+				<![CDATA[
+              File.WriteAllText(OutputFilename,Regex.Replace(File.ReadAllText(InputFilename),MatchExpression,ReplacementText));
+        ]]>
+			</Code>
+		</Task>
+	</UsingTask>
+
+	<UsingTask Condition="'$(MSBuildRuntimeType)' == 'Core'" TaskName="ReplaceFileText" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+		<ParameterGroup>
+			<InputFilename ParameterType="System.String" Required="true" />
+			<OutputFilename ParameterType="System.String" Required="true" />
+			<MatchExpression ParameterType="System.String" Required="true" />
+			<ReplacementText ParameterType="System.String" Required="true" />
+		</ParameterGroup>
+		<Task>
+			<Using Namespace="System" />
+			<Using Namespace="System.IO" />
+			<Using Namespace="System.Text.RegularExpressions" />
+			<Code Type="Fragment" Language="cs">
+				<![CDATA[
+              File.WriteAllText(OutputFilename,Regex.Replace(File.ReadAllText(InputFilename),MatchExpression,ReplacementText));
+        ]]>
+			</Code>
+		</Task>
+	</UsingTask>
+
+	<!--Force compile of Revit 2021 using net4.8
+	Ensure Project Name matches build project name-->
+	<Target Name="Test">
+		<Message Importance="high" Text="-- Building $(MSBuildProjectFile), TF = $(TargetFramework), Config = $(Configuration), Revit Version = $(RevitVersion) --" />
+	</Target>
+
+	<Target Name="Build2021" BeforeTargets="DispatchToInnerBuilds">
+		<Message Importance="high" Text="*** running pre-dispatch builds ***" />
+		<MSBuild Projects="PB.RevitWPFFW.csproj" Properties="Configuration=$(Configuration);TargetFramework=net48;RevitVersion=2021"></MSBuild>
+	</Target>
+
+
+	<Target Name="CopyAddinsToAppData" AfterTargets="CreateAddinManifest" Condition="$(Configuration.Contains('Debug'))">
+		<!-- Copy newly compiled add-in files to AppData folder (before starting the debugger) -->
+		<Message Importance="high" Text="Copying addin file into Revit Addin folder" />
+		<ItemGroup>
+			<AddinFiles Include="$(OutputPath)\..\**\*.addin" />
+		</ItemGroup>
+		<Copy SourceFiles="@(AddinFiles)" DestinationFolder="$(AppData)\Autodesk\Revit\Addins\%(RecursiveDir)" SkipUnchangedFiles="true" OverwriteReadOnlyFiles="true" Retries="3" RetryDelayMilliseconds="300" />
+	</Target>
+
+	<Target Name="CleanAddinsInAppData" AfterTargets="AfterClean">
+		<!-- Delete previously deployed to AppData folder add-in files -->
+		<ItemGroup>
+			<AddinFiles Include="$(AppData)\Autodesk\Revit\Addins\**\$(AssemblyName).*" />
+		</ItemGroup>
+		<Delete Files="@(AddinFiles)" />
+	</Target>
+
+
+	<ItemGroup>
+    <Compile Include="App.cs" />
+    <Compile Include="FileSettings\FileUtilities.cs" />
+    <Compile Include="FileSettings\SupportFileSettings.cs" />
+    <Compile Include="Utilities\EventFactory.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RevitWPFFW.core\PB.RevitWPFFW.core.csproj">
+      <Project>{b0db87ba-a6fc-481c-bf58-da4b4f791c0f}</Project>
+      <Name>PB.RevitWPFFW.core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RevitWPFFW.ui\PB.RevitWPFFW.ui.csproj">
+      <Project>{dce04318-fe42-464b-86bc-4d60f1a7fce6}</Project>
+      <Name>PB.RevitWPFFW.ui</Name>
+    </ProjectReference>
+  </ItemGroup>
+
+  <!--Work Around required for WIX Installer to be able to avoid errors when compiling with multiple frameworks-->
+  <!--https://github.com/wixtoolset/issues/issues/5705-->
+  <Target Name="GetTargetPath" Returns="@(_FakeOutputPath)">
+	  <ItemGroup>
+		  <_FakeOutputPath Include="$(MSBuildProjectDirectory)\$(PackageOutputPath)\$(AssemblyName).UNK" />
+	  </ItemGroup>
+  </Target>
+
+  <ItemGroup />
+</Project>

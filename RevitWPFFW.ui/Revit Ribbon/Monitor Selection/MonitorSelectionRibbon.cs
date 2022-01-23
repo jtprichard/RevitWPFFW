@@ -1,7 +1,7 @@
 ﻿using Autodesk.Revit.UI;
-using RevitWPFFW.core;
+using PB.RevitWPFFW.core;
 
-namespace RevitWPFFW.ui
+namespace PB.RevitWPFFW.ui
 {
     /// <summary>
     /// Creates temporary ribbon tab, panel, and button

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+
+		<!--Product Components Group-->
+		<ComponentGroup Id="2021Components">
+
+			<!--AddIn-->
+			<ComponentRef Id="AddIn2021"/>
+			<ComponentRef Id="RevitMain2021"/>
+			<ComponentRef Id="RevitCore2021"/>
+			<ComponentRef Id="RevitRes2021"/>
+			<ComponentRef Id="RevitUI2021"/>
+			<ComponentRef Id="MVVMToolkit2021"/>
+			<ComponentRef Id="Help2021"/>
+
+		</ComponentGroup>
+
+		<!--Installed AddIn File-->
+		<DirectoryRef Id="INSTALLFOLDER2021" FileSource="..\..\RevitWPFFW\bin\$(var.Configuration)\2021\">
+			<!--UPDATE GUIDS AND FILES TO COPY-->
+			<Component Id="AddIn2021" Guid="{7B3501F4-1EFF-4813-8F7E-1058392D6312}">
+				<File Id="AddInFile2021" Name="RevitWPFFW.addin" KeyPath="yes"></File>
+			</Component>
+		</DirectoryRef>
+
+		<!--Installed Files-->
+		<DirectoryRef Id="INSTALLAPPFOLDER2021" FileSource="..\..\RevitWPFFW\bin\$(var.Configuration)\2021">
+
+			<Component Id="RevitMain2021" Guid="{1174C8D7-15AE-40A1-8F89-C83069709AD1}">
+				<File Id="RevitMainFile2021" Name="RevitWPFFW.dll" KeyPath="yes"></File>
+			</Component>
+
+			<Component Id="RevitCore2021" Guid="{6B22D2FE-18AF-4B6C-A754-67E4C930B86F}">
+				<File Id="RevitCoreFile2021" Name="RevitWPFFW.core.dll" KeyPath="yes"></File>
+			</Component>
+
+			<Component Id="RevitRes2021" Guid="{7EA3B2C7-B059-4497-9512-B34F789927C4}">
+				<File Id="RevitResFile2021" Name="RevitWPFFW.res.dll" KeyPath="yes"></File>
+			</Component>
+
+			<Component Id="RevitUI2021" Guid="{E37DB218-7933-4DAF-B163-EC5FF980E733}">
+				<File Id="RevitUIFile2021" Name="RevitWPFFW.ui.dll" KeyPath="yes"></File>
+			</Component>
+
+			<Component Id="MVVMToolkit2021" Guid="{766CB892-DFE7-48A8-956D-3C79F2F11143}">
+				<File Id="MVVMToolkitFile2021" Name="PB.MVVMToolkit.dll" KeyPath="yes"></File>
+			</Component>
+
+			<Component Id="Help2021" Guid="{B3141D20-4B4B-431D-814D-3801EB819145}">
+				<File Id="HelpFile2021" Name="Help Template.chm" KeyPath="yes"></File>
+			</Component>
+
+
+		</DirectoryRef>
+
+	</Fragment>
+
+
+
+
+</Wix>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+
+		<!--Product Components Group-->
+		<ComponentGroup Id="2020Components">
+
+			<!--AddIn-->
+			<ComponentRef Id="AddIn2020"/>
+			<ComponentRef Id="RevitMain2020"/>
+			<ComponentRef Id="RevitCore2020"/>
+			<ComponentRef Id="RevitRes2020"/>
+			<ComponentRef Id="RevitUI2020"/>
+			<ComponentRef Id="MVVMToolkit2020"/>
+			<ComponentRef Id="Help2020"/>
+
+		</ComponentGroup>
+
+		<!--Installed AddIn File-->
+		<DirectoryRef Id="INSTALLFOLDER2020" FileSource="..\..\RevitWPFFW\bin\$(var.Configuration)\2020\">
+			<!--UPDATE GUIDS AND FILES TO COPY-->
+			<Component Id="AddIn2020" Guid="{B53FF4D4-4474-4C79-8A90-88EB46989418}">
+				<File Id="AddInFile2020" Name="RevitWPFFW.addin" KeyPath="yes"></File>
+			</Component>
+		</DirectoryRef>
+
+		<!--Installed Files-->
+		<DirectoryRef Id="INSTALLAPPFOLDER2020" FileSource="..\..\RevitWPFFW\bin\$(var.Configuration)\2020">
+
+			<!--UPDATE GUIDS AND FILES TO COPY-->
+
+			<Component Id="RevitMain2020" Guid="{45F8BE9B-2B11-4353-9CD7-8F85357F9C82}">
+				<File Id="RevitMainFile2020" Name="RevitWPFFW.dll" KeyPath="yes"></File>
+			</Component>
+
+			<Component Id="RevitCore2020" Guid="{4660AC63-A06E-4A84-B56B-CA43F86C6D5F}">
+				<File Id="RevitCoreFile2020" Name="RevitWPFFW.core.dll" KeyPath="yes"></File>
+			</Component>
+
+			<Component Id="RevitRes2020" Guid="{9A4D80AF-FEEA-4D0E-942B-8C24E0808EA1}">
+				<File Id="RevitResFile2020" Name="RevitWPFFW.res.dll" KeyPath="yes"></File>
+			</Component>
+
+			<Component Id="RevitUI2020" Guid="{5AE4BFEF-73C1-4EFB-B8EB-AF260587DB9D}">
+				<File Id="RevitUIFile2020" Name="RevitWPFFW.ui.dll" KeyPath="yes"></File>
+			</Component>
+
+			<Component Id="MVVMToolkit2020" Guid="{91292FA4-B8D1-481C-94F5-9F6899F8DE5F}">
+				<File Id="MVVMToolkitFile2020" Name="PB.MVVMToolkit.dll" KeyPath="yes"></File>
+			</Component>
+
+			<Component Id="Help2020" Guid="{6905E3EC-2554-4F48-A753-C0FF62FC4BAD}">
+				<File Id="HelpFile2020" Name="Help Template.chm" KeyPath="yes"></File>
+			</Component>
+
+		</DirectoryRef>
+
+	</Fragment>
+
+
+
+
+</Wix>

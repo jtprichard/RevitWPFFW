@@ -1,7 +1,7 @@
 ﻿using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 
-namespace RevitWPFFW.core
+namespace PB.RevitWPFFW.core
 {
     /// <summary>
     /// Command Class required for Selection Monitoring Event

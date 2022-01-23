@@ -2,7 +2,7 @@
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 
-namespace RevitWPFFW.core
+namespace PB.RevitWPFFW.core
 {
     /// <summary>
     /// Show Family Manager dockable pane

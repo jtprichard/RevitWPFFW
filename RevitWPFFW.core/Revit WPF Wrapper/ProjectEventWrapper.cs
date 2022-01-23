@@ -1,5 +1,5 @@
 ﻿
-namespace RevitWPFFW.core
+namespace PB.RevitWPFFW.core
 {
     /// <summary>
     /// Stores a static copy of the Event Handler

@@ -1,7 +1,7 @@
 ﻿using PB.MVVMToolkit.DialogServices;
 
 
-namespace RevitWPFFW.ui
+namespace PB.RevitWPFFW.ui
 {
     /// <summary>
     /// Interaction logic for CustomDialogView.xaml

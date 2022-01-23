@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="RevitWPFFW.ui.PropertiesPageSub4"
+﻿<UserControl x:Class="PB.RevitWPFFW.ui.PropertiesPageSub4"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -21,7 +21,7 @@
         <Border Style="{StaticResource RevitHeaderBorder}">
             <Grid VerticalAlignment="Stretch" Height="auto" Background="{StaticResource MainBorderBrush}">
                 <TextBlock Style="{StaticResource RevitPropertyHeaderBlock}"  
-                           Text="Focus Point"/>
+                           Text="Properties Page Sub 4"/>
             </Grid>
         </Border>
 
@@ -30,7 +30,7 @@
 
             <!--Definitions-->
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width=".75*"/>
+                <ColumnDefinition Width=".5*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
@@ -43,7 +43,7 @@
                     Grid.Column="0" 
                     Style="{StaticResource RevitPropertyGridBorder}">
                 <TextBlock Style="{StaticResource RevitPropertyDescriptionBlock}"
-                           Text="Calculation Type" />
+                           Text="Property 1" />
             </Border>
 
             <Border Grid.Row="0"  
@@ -52,11 +52,11 @@
 
                 <ComboBox Style="{StaticResource DefaultComboBox}"
                           SelectedIndex="0"
-                          x:Name="FocusPointCombo"
-                          ItemsSource="{Binding Path=FocusPointItems, UpdateSourceTrigger=PropertyChanged}"
-                          SelectedItem="{Binding Path=SelectedFocusPoint, UpdateSourceTrigger=PropertyChanged}"
+                          x:Name="Property1Combo"
+                          ItemsSource="{Binding Path=Path, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding Path=Path, UpdateSourceTrigger=PropertyChanged}"
                           DisplayMemberPath="Name"
-                          ToolTip="Select the focuspoint to use to place the seats">
+                          ToolTip="Tooltip">
 
                     <ComboBox.ItemContainerStyle>
                         <Style TargetType="ComboBoxItem">
@@ -72,8 +72,6 @@
             <TextBox x:Name="DummyText"
                  Visibility="Hidden"/>
         </Grid>
-
-
 
     </StackPanel>
 </UserControl>

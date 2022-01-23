@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--A big thank-you to Alvaro Ortega Pickmans for sharing this information.  
+This multi-version install is largely based on his solution.
+https://github.com/alvpickmans/multiversion-revit-plugin-sample
+
+The following must be changed per application and in each Project:
+1.  Project Guid
+2.  Input project properties here or in properties UI
+3.  Ensure the package id matches what you need in the addin manifest
+4.  Select and upate target frameworks.  This begins at 2020, but earlier frameworks can be added
+5.  Insert custom pre-processor constants - see examples below
+6.  Ensure manifest creation (approximately mid-way down) matches addin name
+7.  Ensure project name in additional 4.8 (Revit 2022) build matches, as it is hard coded
+
+-->
+
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<RootNamespace>PB.RevitWPFFW.core</RootNamespace>
+		<AssemblyName>RevitWPFFW.core</AssemblyName>
+		<AppDesignerFolder>Properties</AppDesignerFolder>
+		<ProjectGuid>{B0DB87BA-A6FC-481C-BF58-DA4B4F791C0F}</ProjectGuid>
+		<FileAlignment>512</FileAlignment>
+		<Deterministic>true</Deterministic>
+		<Authors>RevitWPFFW.core</Authors>
+		<PackageId>RevitWPFFW.core</PackageId>
+		<Company>RevitWPFFW.core</Company>
+		<PackageProjectUrl>http://www.performancebim.com</PackageProjectUrl>
+		<Product>RevitWPFFW.core</Product>
+		<Version>1.0.0.0</Version>
+		<NeutralLanguage>en</NeutralLanguage>
+	</PropertyGroup>
+
+	<!--Target Frameworks-->
+	<PropertyGroup>
+		<!-- Please remove the targets you don't need in order
+      to exclude Revit versions your add-in won't support
+      use the list below for matching Revit version with .NET target
+              2020  |  net471
+              2021  |  net48
+			  2022  |  net48
+      -->
+		<TargetFrameworks>net471;net48</TargetFrameworks>
+		<RuntimeIdentifiers>win</RuntimeIdentifiers>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(TargetFramework)' == 'net471' ">
+		<RevitVersion>2020</RevitVersion>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(TargetFramework)' == 'net48' ">
+		<RevitVersion>2021</RevitVersion>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(TargetFramework)' == 'net48' ">
+		<RevitVersion>2022</RevitVersion>
+	</PropertyGroup>
+
+	<!--Debug / Release Configurations-->
+	<PropertyGroup>
+		<Configurations>Debug;Debug One;Release</Configurations>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug One'">
+		<!-- You could debug just ONE addin version,
+         instead of building all the versions above.
+         Just put ONE target from the list above
+         e.g. if you want to debug ONLY Revit 2019,
+         put net47 below and switch to 'Debug One' configuration
+      -->
+		<TargetFrameworks>net471</TargetFrameworks>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="$(Configuration.Contains('Debug'))">
+		<DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
+		<DebugType>full</DebugType>
+		<OutputPath>..\bin\Debug\$(RevitVersion)</OutputPath>
+	</PropertyGroup>
+
+	<!--Base behavior properties-->
+	<PropertyGroup>
+		<!-- Forcibly set platform to 'x64' and ignore architecture-related problems -->
+		<PlatformTarget>x64</PlatformTarget>
+		<Platforms>x64</Platforms>
+		<ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+
+		<!-- Force the project to use the legacy debugger engine -->
+		<DebugEngines>{351668CC-8477-4fbf-BFE3-5F1006E4DB1F}</DebugEngines>
+
+		<!-- Invert the behavior of new .csproj format - exclude files by default -->
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+		<EnableDefaultItems>false</EnableDefaultItems>
+
+		<!-- Multiple targets can cause obj folder locking by concurrent builds -->
+		<BuildInParallel>false</BuildInParallel>
+
+		<!-- Override 'OutputPath' to Debug/Release + Revit version -->
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<OutputPath>..\bin\$(Configuration)\$(RevitVersion)</OutputPath>
+	</PropertyGroup>
+
+	<!--Compiler Conditional Constants-->
+	<PropertyGroup>
+		<!-- Define symbols to use in the code in order to accommodate different Revit versions,
+    e.g. by wrapping legacy / deprecated API calls with #if REVIT2014 | REVIT2015 
+		Example:  #if !REVIT2020 [code] #else [code] #endif-->
+		<DefineConstants>REVIT$(RevitVersion);WINFORMS</DefineConstants>
+		<PreprocessorDefinitions>$(DefineConstants)</PreprocessorDefinitions>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Reference Include="PresentationCore" />
+		<Reference Include="PresentationFramework" />
+		<Reference Include="System.Xaml" />
+		<Reference Include="WindowsBase" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(DefineConstants.Contains('WINFORMS'))">
+		<Reference Include="System.Windows.Forms" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net471' ">
+		<Reference Include="AdWindows">
+			<HintPath>C:\Program Files\Autodesk\Revit 2020\AdWindows.dll</HintPath>
+			<EmbedInteropTypes>false</EmbedInteropTypes>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="RevitAPI">
+			<HintPath>C:\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
+			<EmbedInteropTypes>false</EmbedInteropTypes>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="RevitAPIUI">
+			<HintPath>C:\Program Files\Autodesk\Revit 2020\RevitAPIUI.dll</HintPath>
+			<EmbedInteropTypes>false</EmbedInteropTypes>
+			<Private>false</Private>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net48' And '$(RevitVersion)' == '2021' ">
+		<Reference Include="AdWindows">
+			<HintPath>C:\Program Files\Autodesk\Revit 2021\AdWindows.dll</HintPath>
+			<EmbedInteropTypes>false</EmbedInteropTypes>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="RevitAPI">
+			<HintPath>C:\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
+			<EmbedInteropTypes>false</EmbedInteropTypes>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="RevitAPIUI">
+			<HintPath>C:\Program Files\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath>
+			<EmbedInteropTypes>false</EmbedInteropTypes>
+			<Private>false</Private>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net48' And '$(RevitVersion)' == '2022' ">
+		<Reference Include="AdWindows">
+			<HintPath>C:\Program Files\Autodesk\Revit 2022\AdWindows.dll</HintPath>
+			<EmbedInteropTypes>false</EmbedInteropTypes>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="RevitAPI">
+			<HintPath>C:\Program Files\Autodesk\Revit 2022\RevitAPI.dll</HintPath>
+			<EmbedInteropTypes>false</EmbedInteropTypes>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="RevitAPIUI">
+			<HintPath>C:\Program Files\Autodesk\Revit 2022\RevitAPIUI.dll</HintPath>
+			<EmbedInteropTypes>false</EmbedInteropTypes>
+			<Private>false</Private>
+		</Reference>
+	</ItemGroup>
+
+
+	<!--Option for Nuget SDK packages instead of locally installed version references.  
+	Unfortunately, there are issues getting different packages to load under the same net target
+	(2021 & 2022 require same Net target, but different Revit SDK)-->
+
+	<!--<ItemGroup>
+		-->
+	<!--Conditionaly reference the latest Revit SDK assemblies dependending on which version we are targeting-->
+	<!--
+		<PackageReference Include="Autodesk.Revit.SDK" Version="2020.2.1.2001" Condition=" '$(RevitVersion)' == '2020' " PrivateAssets="All" />
+		<PackageReference Include="Autodesk.Revit.SDK" Version="2021.*" Condition=" '$(RevitVersion)' == '2021' " PrivateAssets="All" />
+		<PackageReference Include="Autodesk.Revit.SDK" Version="2022.*" Condition=" '$(RevitVersion)' == '2022' " PrivateAssets="All" />
+	</ItemGroup>-->
+
+	<Target Name="PreventRevitSDKCopyLocal" AfterTargets="ResolveReferences">
+		<ItemGroup>
+			<!-- A temporary fix for Revit SDK files being copied to the output folder -->
+			<ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" Condition="'%(ReferenceCopyLocalPaths.NuGetPackageId)' == 'Autodesk.Revit.SDK'" />
+		</ItemGroup>
+	</Target>
+
+	<!--Launch Settings-->
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\**\*.*">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</EmbeddedResource>
+
+		<Content Include="Properties\launchSettings.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<!--Compile each version-->
+	<UsingTask Condition="'$(MSBuildRuntimeType)' == 'Full'" TaskName="ReplaceFileText" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+		<ParameterGroup>
+			<InputFilename ParameterType="System.String" Required="true" />
+			<OutputFilename ParameterType="System.String" Required="true" />
+			<MatchExpression ParameterType="System.String" Required="true" />
+			<ReplacementText ParameterType="System.String" Required="true" />
+		</ParameterGroup>
+		<Task>
+			<Reference Include="System.Core" />
+			<Using Namespace="System" />
+			<Using Namespace="System.IO" />
+			<Using Namespace="System.Text.RegularExpressions" />
+			<Code Type="Fragment" Language="cs">
+				<![CDATA[
+              File.WriteAllText(OutputFilename,Regex.Replace(File.ReadAllText(InputFilename),MatchExpression,ReplacementText));
+        ]]>
+			</Code>
+		</Task>
+	</UsingTask>
+
+	<UsingTask Condition="'$(MSBuildRuntimeType)' == 'Core'" TaskName="ReplaceFileText" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+		<ParameterGroup>
+			<InputFilename ParameterType="System.String" Required="true" />
+			<OutputFilename ParameterType="System.String" Required="true" />
+			<MatchExpression ParameterType="System.String" Required="true" />
+			<ReplacementText ParameterType="System.String" Required="true" />
+		</ParameterGroup>
+		<Task>
+			<Using Namespace="System" />
+			<Using Namespace="System.IO" />
+			<Using Namespace="System.Text.RegularExpressions" />
+			<Code Type="Fragment" Language="cs">
+				<![CDATA[
+              File.WriteAllText(OutputFilename,Regex.Replace(File.ReadAllText(InputFilename),MatchExpression,ReplacementText));
+        ]]>
+			</Code>
+		</Task>
+	</UsingTask>
+
+	<!--Force compile of Revit 2021 using net4.8
+	Ensure Project Name matches build project name-->
+	<Target Name="Test">
+		<Message Importance="high" Text="-- Building $(MSBuildProjectFile), TF = $(TargetFramework), Config = $(Configuration), Revit Version = $(RevitVersion) --" />
+	</Target>
+
+	<Target Name="Build2021" BeforeTargets="DispatchToInnerBuilds">
+		<Message Importance="high" Text="*** running pre-dispatch builds ***" />
+		<MSBuild Projects="PB.RevitWPFFW.core.csproj" Properties="Configuration=$(Configuration);TargetFramework=net48;RevitVersion=2021"></MSBuild>
+	</Target>
+
+  <ItemGroup>
+    <Compile Include="ApplicationAssembly.cs" />
+    <Compile Include="Commands\Availability\AvailabilityFam.cs" />
+    <Compile Include="Commands\Availability\AvailabilityProj.cs" />
+    <Compile Include="Commands\Availability\MonitorSelectionEnabler.cs" />
+    <Compile Include="Commands\Monitor Selection\MonitorSelectionCommand.cs" />
+    <Compile Include="Commands\SampleRevitCommand.cs" />
+    <Compile Include="Commands\ShowDockablePaneCommand.cs" />
+    <Compile Include="Commands\TestCommand.cs" />
+    <Compile Include="Commands\WPF Wrapped\BaseCommand.cs" />
+    <Compile Include="Commands\WPF Wrapped\TransactionCommand.cs" />
+    <Compile Include="Data\CheckBoxData.cs" />
+    <Compile Include="Data\Combo1Data.cs" />
+    <Compile Include="Data\ListItem.cs" />
+    <Compile Include="Enumerations\ViewModels\CheckBoxEnum.cs" />
+    <Compile Include="Enumerations\ViewModels\Combo1Enum.cs" />
+    <Compile Include="Enumerations\ViewModels\PageType.cs" />
+    <Compile Include="Event Handlers\RevitWPFEventHandler.cs" />
+    <Compile Include="PaneIdentifiers\DockablePaneIdentifier.cs" />
+    <Compile Include="Revit WPF Wrapper\ProjectEventWrapper.cs" />
+    <Compile Include="Revit WPF Wrapper\RevitEventWrapper.cs" />
+    <Compile Include="Revit WPF Wrapper\WPFEventCommandArgs.cs" />
+    <Compile Include="RevitControlledApplication.cs" />
+    <Compile Include="RevitDocument.cs" />
+    <Compile Include="Commands\OpenDialogCommand.cs" />
+    <Compile Include="ViewModels\Dialogs\CustomDialogViewModel.cs" />
+    <Compile Include="ViewModels\Project\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\Project\Page1BViewModel.cs" />
+    <Compile Include="ViewModels\Project\Page2ViewModel.cs" />
+    <Compile Include="ViewModels\Project\Page1ViewModel.cs" />
+    <Compile Include="ViewModels\Revit Ribbon\RevitRibbonViewModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\MVVMToolkit\MVVMToolkit\PB.MVVMToolkit.csproj">
+      <Project>{5982a92c-47ba-4ead-bf1b-29555b08947c}</Project>
+      <Name>PB.MVVMToolkit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RevitWPFFW.res\PB.RevitWPFFW.res.csproj">
+      <Project>{4abb7f68-520f-4956-8851-8ac0cd9bf9de}</Project>
+      <Name>PB.RevitWPFFW.res</Name>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+
+  <ItemGroup />
+
+</Project>

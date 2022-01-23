@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) .NET Foundation and contributors. All rights reserved. Licensed under the Microsoft Reciprocal License. See LICENSE.TXT file in the project root for full license information. -->
+
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <UI>
+
+            <!--Text Styles-->
+            <TextStyle Id="Tahoma_Title"
+                       FaceName="Tahoma"
+                       Size="12"
+                       Underline="yes"
+                       Bold="yes"/>
+
+            <TextStyle Id="Tahoma_Bold"
+                       FaceName="Tahoma"
+                       Size="8"
+                       Bold="yes"
+                       Red="0"
+                       Green="58"
+                       Blue="112"/>
+
+			<TextStyle Id="Tahoma_Italic"
+			           FaceName="Tahoma"
+			           Size="8"
+			           Bold="yes"
+                       Italic="yes"
+			           Red="0"
+			           Green="58"
+			           Blue="112"/>
+
+            <Property Id="DummyProperty" Value="off"/>
+
+	        <Dialog Id="PB_CustomizeDlg" Width="370" Height="270" Title="!(loc.CustomizeDlg_Title)" TrackDiskSpace="yes">
+                <!--<Control Id="Tree" Type="SelectionTree" X="25" Y="85" Width="175" Height="115" Property="_BrowseProperty" Sunken="yes" TabSkip="no" Text="!(loc.CustomizeDlgTree)" />-->
+
+                <Control Id="Back" Type="PushButton" X="192" Y="243" Width="56" Height="17" Text="!(loc.WixUIBack)" />
+
+                <!--Sets the selection values based on current feature state
+				https://www.joyofsetup.com/2007/05/30/feature-conditions-and-ui/-->
+
+                <Control Id="Next" Type="PushButton" X="248" Y="243" Width="56" Height="17" Default="yes" Text="!(loc.WixUINext)">
+                    <Subscribe Event="SelectionNoItems" Attribute="Enabled" />
+					<Publish Event="AddLocal" Value="ALL">1</Publish>
+					<Publish Event="Remove" Value="PRODUCT2020">NOT REVIT2020SELECTED</Publish>
+                    <Publish Event="Remove" Value="PRODUCT2021">NOT REVIT2021SELECTED</Publish>
+                    <Publish Event="Remove" Value="PRODUCT2022">NOT REVIT2022SELECTED</Publish>
+                </Control>
+
+
+                <!--From Wix CustomizeDlg standard-->
+                <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="!(loc.WixUICancel)">
+                    <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+                </Control>
+                <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" TabSkip="no" Text="!(loc.CustomizeDlgBannerBitmap)" />
+                <Control Id="Text" Type="Text" X="25" Y="55" Width="320" Height="20" Text="!(loc.CustomizeDlgText)" />
+                <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="370" Height="0" />
+                <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="0" />
+                <Control Id="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Transparent="yes" NoPrefix="yes" Text="!(loc.CustomizeDlgDescription)" />
+                <Control Id="Title" Type="Text" X="15" Y="6" Width="210" Height="15" Transparent="yes" NoPrefix="yes" Text="{\Tahoma_Title}!(loc.CustomizeDlgTitle)" />
+                <Control Id="Box" Type="GroupBox" X="170" Y="85" Width="180" Height="125" />
+
+
+                <!--Application specific text description-->
+                <Control Id="InstallLocationDescription" 
+                         Type="Text" 
+                         X="175" 
+                         Y="110" 
+                         Width="170" 
+                         Height="10" 
+                         Text="Applications are installed in:"/>
+
+                <Control Id="InstallLocation" 
+                         Type="Text" 
+                         X="178" 
+                         Y="122" 
+                         Width="170" 
+                         Height="50" 
+                         Text="{\Tahoma_Italic}Program Data/Autodesk/Revit/Addins"/>
+
+
+				<!--Group box and checkboxes for feature installation-->
+                <Control Id="groupBox"
+                         Type="GroupBox"
+                         X="25"
+                         Y="85"
+                         Width="140"
+                         Height="125"
+                         Sunken="yes"
+                         Text="{\Tahoma_Bold}Select Versions and Features"/>
+
+				<Control Id="cbRevit2020"
+                         Type="CheckBox"
+                         Property="REVIT2020SELECTED"
+                         X="50"
+                         Y="110"
+                         Height="10"
+                         Width="100"
+                         CheckBoxValue="Selected"
+                         Text="Revit 2020">
+
+					<Condition Action="enable">
+						<![CDATA[REVIT2020INSTALLED]]>
+					</Condition>
+
+					<Condition Action="disable">
+						<![CDATA[NOT REVIT2020INSTALLED]]>
+					</Condition>
+
+				</Control>
+
+                <Control Id="cbRevit2021"
+                         Type="CheckBox"
+                         Property="REVIT2021SELECTED"
+                         X="50"
+                         Y="125"
+                         Height="10"
+                         Width="100"
+                         CheckBoxValue="Selected"
+                         Text="Revit 2021">
+
+					<Condition Action="enable">
+						<![CDATA[REVIT2021INSTALLED]]>
+					</Condition>
+
+					<Condition Action="disable">
+						<![CDATA[NOT REVIT2021INSTALLED]]>
+					</Condition>
+
+				</Control>
+
+				<Control Id="cbRevit2022"
+                         Type="CheckBox"
+                         Property="REVIT2022SELECTED"
+                         X="50"
+                         Y="140"
+                         Height="10"
+                         Width="100"
+                         CheckBoxValue="Selected"
+                         Text="Revit 2022">
+					<Condition Action="enable">
+						<![CDATA[REVIT2022INSTALLED]]>
+					</Condition>
+
+					<Condition Action="disable">
+						<![CDATA[NOT REVIT2022INSTALLED]]>
+					</Condition>
+				</Control>
+
+
+			</Dialog>
+        </UI>
+    </Fragment>
+</Wix>

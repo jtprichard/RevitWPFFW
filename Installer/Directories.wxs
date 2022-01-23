@@ -8,7 +8,17 @@
 				<Directory Id="Autodesk" Name="Autodesk">
 					<Directory Id="Revit" Name="Revit">
 						<Directory Id="Addins" Name="Addins">
-							<Directory Id="INSTALLFOLDER" Name="!(loc.RevitVersion)" />
+							<Directory Id="INSTALLFOLDER2020" Name="2020">
+								<Directory Id="INSTALLAPPFOLDER2020" Name="RevitWPFFW"/>
+							</Directory>
+
+							<Directory Id="INSTALLFOLDER2021" Name="2021">
+								<Directory Id="INSTALLAPPFOLDER2021" Name="RevitWPFFW"/>
+							</Directory>
+
+							<Directory Id="INSTALLFOLDER2022" Name="2022">
+								<Directory Id="INSTALLAPPFOLDER2022" Name="RevitWPFFW"/>
+							</Directory>
 						</Directory>
 					</Directory>
 				</Directory>

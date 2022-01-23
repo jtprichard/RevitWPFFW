@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="RevitWPFFW.ui.PropertiesPageSub3"
+﻿<UserControl x:Class="PB.RevitWPFFW.ui.PropertiesPageSub3"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -19,7 +19,7 @@
         <Border Style="{StaticResource RevitHeaderBorder}">
             <Grid VerticalAlignment="Stretch" Height="auto" Background="{StaticResource MainBorderBrush}">
                 <TextBlock Style="{StaticResource RevitPropertyHeaderBlock}"  
-                           Text="Row Layouts"/>
+                           Text="Properties Page Sub 3"/>
             </Grid>
         </Border>
 
@@ -28,7 +28,7 @@
 
             <!--Definitions-->
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width=".75*"/>
+                <ColumnDefinition Width=".5*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
@@ -49,7 +49,7 @@
                     Grid.Column="0" 
                     Style="{StaticResource RevitPropertyGridBorder}">
                 <TextBlock Style="{StaticResource RevitPropertyDescriptionBlock}"
-                           Text="Calculation Type" />
+                           Text="Property 1" />
             </Border>
 
             <Border Grid.Row="0"  
@@ -58,11 +58,11 @@
 
                 <ComboBox Style="{StaticResource DefaultComboBox}"
                           SelectedIndex="0"
-                          x:Name="CalculationTypeCombo"
-                          ItemsSource="{Binding Path=PlanCalcItems, UpdateSourceTrigger=PropertyChanged}"
-                          SelectedItem="{Binding Path=SelectedPlanCalc, UpdateSourceTrigger=PropertyChanged}"
+                          x:Name="Property1Combo"
+                          ItemsSource="{Binding Path=Path, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding Path=Path, UpdateSourceTrigger=PropertyChanged}"
                           DisplayMemberPath="Description"
-                          ToolTip="Select the calculation method to use">
+                          ToolTip="Tooltip">
                 </ComboBox>
             </Border>
 
@@ -72,7 +72,7 @@
                     Grid.Column="0" 
                     Style="{StaticResource RevitPropertyGridBorder}">
                 <TextBlock Style="{StaticResource RevitPropertyDescriptionBlock}"
-                           Text="Layout" />
+                           Text="Property 2" />
             </Border>
 
             <Border Grid.Row="1"  
@@ -81,11 +81,11 @@
 
                 <ComboBox Style="{StaticResource DefaultComboBox}"
                           SelectedIndex="0"
-                          x:Name="LayoutCombo"
-                          ItemsSource="{Binding Path=SortOrderItems, UpdateSourceTrigger=PropertyChanged}"
-                          SelectedItem="{Binding Path=SelectedSortOrder, UpdateSourceTrigger=PropertyChanged}"
+                          x:Name="Property2Combo"
+                          ItemsSource="{Binding Path=Path, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding Path=Path, UpdateSourceTrigger=PropertyChanged}"
                           DisplayMemberPath="Description"
-                          ToolTip="Select the sorting order for the seats in a row">
+                          ToolTip="Tooltip">
                 </ComboBox>
             </Border>
 
@@ -95,7 +95,7 @@
                     Grid.Column="0" 
                     Style="{StaticResource RevitPropertyGridBorder}">
                 <TextBlock Style="{StaticResource RevitPropertyDescriptionBlock}"
-                           Text="Starting Row" />
+                           Text="Property 3" />
             </Border>
 
             <Border Grid.Row="2"  
@@ -104,11 +104,11 @@
 
                 <ComboBox Style="{StaticResource DefaultComboBox}"
                           SelectedIndex="0"
-                          x:Name="StartRowCombo" 
-                          ItemsSource="{Binding Path=RowParityItems, UpdateSourceTrigger=PropertyChanged}"
-                          SelectedItem="{Binding Path=SelectedRowParity, UpdateSourceTrigger=PropertyChanged}"
+                          x:Name="Property3Combo" 
+                          ItemsSource="{Binding Path=Path, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding Path=Path, UpdateSourceTrigger=PropertyChanged}"
                           DisplayMemberPath="Description"
-                          ToolTip="Select an even, odd, or best fit for seats in the starting row">
+                          ToolTip="Tooltip">
                 </ComboBox>
             </Border>
 
@@ -118,7 +118,7 @@
                     Grid.Column="0" 
                     Style="{StaticResource RevitPropertyGridBorder}">
                 <TextBlock Style="{StaticResource RevitPropertyDescriptionBlock}"
-                           Text="Stagger Rows" />
+                           Text="Property 4" />
             </Border>
 
             <Border Grid.Row="3"  
@@ -127,9 +127,9 @@
 
                 <CheckBox Margin="3,0,0,0"
                           VerticalContentAlignment="Center"
-                          x:Name="StaggerCheckBox" 
-                          IsChecked="{Binding Path=StaggerRows, UpdateSourceTrigger=PropertyChanged}"
-                          ToolTip="Chooses whether rows should stagger even / odd, or all rows should use what is noted in the [starting row] selector"/>
+                          x:Name="Property4CheckBox" 
+                          IsChecked="{Binding Path=Path, UpdateSourceTrigger=PropertyChanged}"
+                          ToolTip="Tooltip"/>
             </Border>
 
 
@@ -138,7 +138,7 @@
                     Grid.Column="0" 
                     Style="{StaticResource RevitPropertyGridBorder}">
                 <TextBlock Style="{StaticResource RevitPropertyDescriptionBlock}"
-                           Text="Elevation Alignment" />
+                           Text="Property 5" />
             </Border>
 
             <Border Grid.Row="4"  
@@ -147,11 +147,11 @@
 
                 <ComboBox Style="{StaticResource DefaultComboBox}"
                           SelectedIndex="0"
-                          x:Name="AlignmentCombo"
-                          ItemsSource="{Binding Path=RowElevationItems, UpdateSourceTrigger=PropertyChanged}"
-                          SelectedItem="{Binding Path=SelectedRowElevation, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                          x:Name="Property5Combo"
+                          ItemsSource="{Binding Path=Path, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding Path=Path, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                           DisplayMemberPath="Description"
-                          ToolTip="Align seats to a workplane or to a floor object">
+                          ToolTip="Tooltip">
                     <ComboBox.ItemContainerStyle>
                         <Style TargetType="ComboBoxItem">
                             <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
@@ -166,8 +166,8 @@
                     Grid.Column="0" 
                     Style="{StaticResource RevitPropertyGridBorder}">
                 <TextBlock Style="{StaticResource RevitPropertyDescriptionBlock}"
-                           Text="Floor Direction"
-                           x:Name="FloorDirectionLabel"/>
+                           Text="Property 6"
+                           x:Name="Property6Label"/>
             </Border>
 
             <Border Grid.Row="5"  
@@ -176,13 +176,13 @@
 
                 <ComboBox Style="{StaticResource DefaultComboBox}"
                           SelectedIndex="0"
-                          x:Name="FloorDirectionCombo"
-                          ItemsSource="{Binding Path=FloorDirectionItems, UpdateSourceTrigger=PropertyChanged}"
-                          SelectedItem="{Binding Path=SelectedFloorDirection, UpdateSourceTrigger=PropertyChanged}"
+                          x:Name="Property6Combo"
+                          ItemsSource="{Binding Path=Path, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding Path=Path, UpdateSourceTrigger=PropertyChanged}"
                           DisplayMemberPath="Description"
-                          IsEnabled="{Binding Path=IsFloorComboEnabled, UpdateSourceTrigger=PropertyChanged}"
-                          ToolTip="Select whether to align to the closest floor, the floor above, or the floor below the current workplane"
-                >
+                          IsEnabled="{Binding Path=Path, UpdateSourceTrigger=PropertyChanged}"
+                          ToolTip="Tooltip">
+                
                 </ComboBox>
             </Border>
 

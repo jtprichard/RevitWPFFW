@@ -2,7 +2,7 @@
 using System;
 using System.Reflection;
 
-namespace RevitWPFFW.core
+namespace PB.RevitWPFFW.core
 {
     /// <summary>
     /// This is an example of of wrapping a method with an ExternalEventHandler using a string argument.

@@ -3,10 +3,10 @@ using System.Windows;
 using System.Windows.Controls;
 using Autodesk.Revit.UI;
 using PB.MVVMToolkit;
-using RevitWPFFW.core;
+using PB.RevitWPFFW.core;
 
 
-namespace RevitWPFFW.ui
+namespace PB.RevitWPFFW.ui
 {
     /// <summary>
     /// Interaction logic for MainPage.xaml

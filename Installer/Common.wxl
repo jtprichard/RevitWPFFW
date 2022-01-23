@@ -16,4 +16,9 @@
 	<String Id="DowngradeErrorMessage">A newer version of RevitWPFFW is already installed</String>
 
 	<String Id="Language">1033</String>
+
+	<!--Dialog Text Customization-->
+	<String Id="CustomizeDlgTitle">Revit Version and Tools Setup</String>
+	<String Id="CustomizeDlgText">Select the Revit Versions and Tools you would like to install</String>
+
 </WixLocalization>

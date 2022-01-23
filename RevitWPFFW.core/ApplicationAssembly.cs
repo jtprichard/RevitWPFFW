@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace RevitWPFFW.core
+namespace PB.RevitWPFFW.core
 {
     /// <summary>
     /// The main application asssembly helper methods

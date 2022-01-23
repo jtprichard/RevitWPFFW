@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using PB.MVVMToolkit.Dialogs;
 
-namespace RevitWPFFW.ui
+namespace PB.RevitWPFFW.ui
 {
     /// <summary>
     /// Interaction logic for PropertiesPageSub1.xaml
@@ -21,14 +21,14 @@ namespace RevitWPFFW.ui
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SeatNumberText_OnKeyDown(object sender, KeyEventArgs e)
+        private void Property5Text_OnKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Return)
             {
                 DummyText.Visibility = Visibility.Visible;
                 DummyText.Focus();
                 DummyText.Visibility = Visibility.Hidden;
-                SeatNumberText.Focus();
+                Property5Text.Focus();
             }
         }
 
