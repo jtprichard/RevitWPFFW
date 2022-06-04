@@ -44,6 +44,7 @@ The following must be changed per application and in each Project:
       -->
 		<TargetFrameworks>net471;net48</TargetFrameworks>
 		<RuntimeIdentifiers>win</RuntimeIdentifiers>
+		<UseWPF>true</UseWPF>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(TargetFramework)' == 'net471' ">
