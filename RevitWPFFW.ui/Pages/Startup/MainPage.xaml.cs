@@ -24,9 +24,6 @@ namespace PB.RevitWPFFW.ui
 
             InitializeComponent();
 
-            //Register the dialog models and viewmodels
-            DialogRegistration.SetServices(this);
-
             //Assign datacontext
             DataContext = new MainPageViewModel();
 

@@ -1,10 +1,12 @@
-﻿using Autodesk.Revit.ApplicationServices;
+﻿using System.Windows;
+using System.Windows.Interop;
 using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
 using Autodesk.Windows;
 using PB.RevitWPFFW.core;
 using PB.RevitWPFFW.ui;
+using Application = Autodesk.Revit.ApplicationServices.Application;
 
 namespace PB.RevitWPFFW
 {
@@ -34,6 +36,9 @@ namespace PB.RevitWPFFW
 
             //Register Event Handler to monitor selections
             a.ControlledApplication.ApplicationInitialized += MonitorSelectionInitialized;
+
+            //Register Dialog Services
+            RegisterDialogs(a);
         }
 
         private static void OnViewActivated(object sender, ViewActivatedEventArgs e)
@@ -139,6 +144,21 @@ namespace PB.RevitWPFFW
                 global::PB.RevitWPFFW.ui.Utilities.RemovePanelFromTab(foundTab, foundPanel);
                 global::PB.RevitWPFFW.ui.Utilities.RemoveTabFromRibbon(foundTab);
             }
+        }
+
+        /// <summary>
+        /// Register DialogServices Object with Revit Window as Owner
+        /// </summary>
+        /// <param name="uiapp">Revit UIControlledApplication Object</param>
+        private static void RegisterDialogs(UIControlledApplication uiapp)
+        {
+            var rvtHandle = uiapp.MainWindowHandle;
+
+            HwndSource hwndSource = HwndSource.FromHwnd(rvtHandle);
+            Window wnd = hwndSource.RootVisual as Window;
+
+            DialogRegistration.SetServices(wnd);
+
         }
 
         #endregion

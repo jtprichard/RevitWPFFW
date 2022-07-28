@@ -28,7 +28,7 @@ namespace PB.RevitWPFFW.core
         /// <exception cref="System.NotImplementedException"></exception>
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            var dialogService = DialogService.Instance;
+            var dialogService = RevitControlledApplication.GetDialogService();
             
             var vm = new CustomDialogViewModel();
             vm.OkClicked += OptionOk;
